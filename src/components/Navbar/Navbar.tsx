@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 
@@ -7,124 +7,75 @@ const NavbarContainer = styled(motion.nav)`
   top: 0;
   left: 0;
   right: 0;
-  height: 80px;
-  background: rgba(30, 30, 30, 0.95);
-  backdrop-filter: blur(10px);
+  z-index: 1000;
+  padding: 20px 120px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 2rem;
-  z-index: 1000;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+  transition: background 0.3s ease;
+
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
 `;
 
 const NavLinks = styled.div`
   display: flex;
-  gap: 4rem;
+  gap: 40px;
   align-items: center;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
-const NavLink = styled(motion.a)`
+const NavLink = styled.a`
   color: #FFFFFF;
   text-decoration: none;
-  font-size: 1.1rem;
-  font-family: 'Syne', sans-serif;
-  font-weight: 600;
-  position: relative;
-  padding: 0.5rem 0;
-  opacity: 0.7;
-  transition: opacity 0.3s ease;
+  font-size: 16px;
+  font-weight: 500;
   cursor: pointer;
-  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
 
   &:hover {
-    opacity: 1;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: #E01212;
-    transition: width 0.3s ease;
-  }
-
-  &:hover::after {
-    width: 100%;
+    color: #E01212;
   }
 `;
 
-const navVariants = {
-  hidden: { y: -100, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.8,
-      ease: "easeOut"
-    }
-  }
-};
+const Navbar: React.FC = () => {
+  const [scrolled, setScrolled] = useState(false);
 
-const linkVariants = {
-  hover: {
-    y: -2,
-    transition: {
-      duration: 0.2,
-      ease: "easeInOut"
-    }
-  }
-};
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 50;
+      setScrolled(isScrolled);
+    };
 
-const Navbar = () => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const scrollToSection = (sectionId: string) => {
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
     <NavbarContainer
-      variants={navVariants}
-      initial="hidden"
-      animate="visible"
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      style={{
+        background: scrolled ? 'rgba(30, 30, 30, 0.95)' : 'transparent'
+      }}
     >
       <NavLinks>
-        <NavLink 
-          onClick={() => scrollToSection('hero')}
-          variants={linkVariants}
-          whileHover="hover"
-        >
-          Home
-        </NavLink>
-        <NavLink 
-          onClick={() => scrollToSection('work')}
-          variants={linkVariants}
-          whileHover="hover"
-        >
-          Work
-        </NavLink>
-        <NavLink 
-          onClick={() => scrollToSection('services')}
-          variants={linkVariants}
-          whileHover="hover"
-        >
-          Services
-        </NavLink>
-        <NavLink 
-          onClick={() => scrollToSection('contact')}
-          variants={linkVariants}
-          whileHover="hover"
-        >
-          Contact
-        </NavLink>
+        <NavLink onClick={() => scrollToSection('hero')}>Home</NavLink>
+        <NavLink onClick={() => scrollToSection('work')}>Work</NavLink>
+        <NavLink onClick={() => scrollToSection('services')}>Services</NavLink>
+        <NavLink onClick={() => scrollToSection('contact')}>Contact</NavLink>
       </NavLinks>
     </NavbarContainer>
   );

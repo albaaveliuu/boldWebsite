@@ -27,6 +27,7 @@ const globalStyles = css`
     font-family: 'Syne', sans-serif;
     background: #1E1E1E;
     color: #FFFFFF;
+    overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -51,10 +52,10 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={
           <>
-            <Hero />
-            <Work />
-            <Services />
-            <Contact />
+            <section id="hero"><Hero /></section>
+            <section id="work"><Work /></section>
+            <section id="services"><Services /></section>
+            <section id="contact"><Contact /></section>
             <Footer />
           </>
         } />
