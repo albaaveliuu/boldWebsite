@@ -90,7 +90,7 @@ const ProjectTitleContainer = styled.div`
 `;
 
 const ProjectTitle = styled.h3`
-  font-size: 14px;
+  font-size: 18px;
   color: #000000;
   font-weight: 500;
   margin: 0;

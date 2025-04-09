@@ -10,6 +10,7 @@ const ContactSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: 'Hando', sans-serif;
 `;
 
 const SectionTitleContainer = styled.div`
@@ -28,6 +29,7 @@ const SectionTitle = styled.h2`
   font-weight: 700;
   margin: 0;
   text-transform: uppercase;
+  font-family: 'Hando', sans-serif;
 `;
 
 const TitleLine = styled.div`
@@ -55,9 +57,14 @@ const FormSection = styled.div`
 
 const FormTitle = styled.div`
   margin: 0 0 20px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-right: -100px;
+  
   svg {
     width: auto;
-    height: 32px;
+    height: 120px;
     path {
       fill: #FFFFFF;
     }
@@ -69,21 +76,25 @@ const CollaborateText = styled.h4`
   color: #FFFFFF;
   margin: 20px 0;
   font-weight: 500;
-`;
-
-const FormSubtitle = styled.p`
-  font-size: 16px;
-  color: #FFFFFF;
-  margin: 0 0 40px 0;
-  line-height: 1.6;
-  opacity: 0.8;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-right: -100px;
+  font-family: 'Hando', sans-serif;
 `;
 
 const Form = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
+  margin-top: 40px;
+`;
+
+const InputRow = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
 `;
 
 const Input = styled.input`
@@ -93,9 +104,11 @@ const Input = styled.input`
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: #FFFFFF;
   font-size: 16px;
+  font-family: 'Hando', sans-serif;
 
   &::placeholder {
     color: rgba(255, 255, 255, 0.5);
+    font-family: 'Hando', sans-serif;
   }
 
   &:focus {
@@ -113,9 +126,11 @@ const TextArea = styled.textarea`
   font-size: 16px;
   min-height: 120px;
   resize: vertical;
+  font-family: 'Hando', sans-serif;
 
   &::placeholder {
     color: rgba(255, 255, 255, 0.5);
+    font-family: 'Hando', sans-serif;
   }
 
   &:focus {
@@ -135,6 +150,7 @@ const SubmitButton = styled.button`
   transition: background-color 0.3s ease;
   align-self: flex-start;
   margin-top: 10px;
+  font-family: 'Hando', sans-serif;
 
   &:hover {
     background: #FF1414;
@@ -147,6 +163,9 @@ const ImageSection = styled.div`
   height: 100%;
   min-height: 600px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const BackgroundImage = styled.img`
@@ -168,14 +187,16 @@ const Contact: React.FC = () => {
             <SloganSVG />
           </FormTitle>
           <CollaborateText>Let's Collaborate!</CollaborateText>
-          <FormSubtitle>
-            Have a project in mind? We'd love to hear about it. Drop us a message and let's make something extraordinary.
-          </FormSubtitle>
           <Form>
-            <Input type="text" placeholder="Name" />
-            <Input type="email" placeholder="Email" />
-            <Input type="tel" placeholder="Phone" />
-            <TextArea placeholder="Tell us more..." />
+            <InputRow>
+              <Input type="text" placeholder="Name" />
+              <Input type="text" placeholder="Company" />
+            </InputRow>
+            <InputRow>
+              <Input type="text" placeholder="Subject" />
+              <Input type="tel" placeholder="Phone" />
+            </InputRow>
+            <TextArea placeholder="Give us more..." />
             <SubmitButton type="submit">CONTACT US</SubmitButton>
           </Form>
         </FormSection>

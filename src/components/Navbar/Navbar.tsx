@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
-import boldLogoRed from '../../images/boldLogoRed.svg';
+import iconImage from '../../images/icon.png';
 
 const NavbarContainer = styled(motion.nav)`
   position: fixed;
@@ -34,6 +34,11 @@ const Logo = styled.img`
   height: 40px;
   width: auto;
   cursor: pointer;
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
 `;
 
 const NavLink = styled.a<{ $isActive?: boolean }>`
@@ -112,7 +117,7 @@ const Navbar: React.FC = () => {
         </NavLink>
       </NavGroup>
       <Logo 
-        src={boldLogoRed} 
+        src={iconImage} 
         alt="Bold" 
         onClick={() => scrollToSection('home')}
       />
