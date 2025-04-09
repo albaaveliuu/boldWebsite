@@ -1,219 +1,195 @@
 import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
-import { motion, useAnimation, useScroll } from 'framer-motion';
-import boldLogoRed from '../../images/boldLogoRed.svg';
-import slogan from '../../images/Slogan.svg';
+import { motion, useScroll } from 'framer-motion';
+import Slogan from '../../images/Slogan.svg';
+import { ReactComponent as ArrowDownIcon } from '../../images/ArrowDownIcon.svg';
+import NewsletterPopup from '../Newsletter/NewsletterPopup';
 
-const HeroSection = styled(motion.section)`
-  min-height: 100vh;
-  background: #1E1E1E;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+// Import all header images
+import headerImage1 from '../../images/header/Artboard 1.png';
+import headerImage2 from '../../images/header/Artboard 2.png';
+import headerImage3 from '../../images/header/Artboard 3.png';
+import headerImage4 from '../../images/header/Artboard 4.png';
+import headerImage5 from '../../images/header/Artboard 5.png';
+import headerImage6 from '../../images/header/Artboard 6.png';
+import headerImage7 from '../../images/header/Artboard 7.png';
+import headerImage8 from '../../images/header/Artboard 8.png';
+import headerImage9 from '../../images/header/Artboard 9.png';
+import headerImage10 from '../../images/header/Artboard 10.png';
+
+const HeroSection = styled.section`
+  height: 100vh;
+  width: 100%;
   position: relative;
   overflow: hidden;
-  padding: 2rem;
-`;
-
-const LogoContainer = styled(motion.div)`
-  position: relative;
-  width: 35vw;
-  max-width: 500px;
-  aspect-ratio: 1;
+  background-color: #000;
   display: flex;
   align-items: center;
   justify-content: center;
-  perspective: 1000px;
 `;
 
-const MainLogo = styled(motion.img)`
+const HeroContent = styled.div`
+  max-width: 1200px;
   width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 0 30px rgba(224, 18, 18, 0.3));
-  transform-style: preserve-3d;
-  cursor: pointer;
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-`;
-
-const SloganLogo = styled(motion.img)`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  opacity: 0;
-  filter: drop-shadow(0 0 30px rgba(224, 18, 18, 0.3));
-  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-`;
-
-const LogoWrapper = styled(motion.div)`
-  position: relative;
-  width: 100%;
-  height: 100%;
-
-  &:hover {
-    ${MainLogo} {
-      opacity: 0.3;
-    }
-    ${SloganLogo} {
-      opacity: 1;
-    }
-  }
-`;
-
-const LogoGlow = styled(motion.div)`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle, rgba(224, 18, 18, 0.2) 0%, rgba(30, 30, 30, 0) 70%);
-  pointer-events: none;
-`;
-
-const FloatingParticle = styled(motion.div)`
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background: #E01212;
-  border-radius: 50%;
-  filter: blur(1px);
-`;
-
-const Subtitle = styled(motion.p)`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 1.8rem;
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  color: #E01212;
-  text-align: center;
-  max-width: 800px;
-  line-height: 1.6;
-  margin-top: 400px;
-  letter-spacing: 0.5px;
-
-  @media (max-width: 768px) {
-    font-size: 1.4rem;
-    max-width: 90%;
-    margin-top: 300px;
-  }
-`;
-
-const ScrollButton = styled(motion.button)`
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: transparent;
-  border: none;
-  cursor: pointer;
+  padding: 0 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  justify-content: center;
+  z-index: 2;
+  position: relative;
+`;
 
-  &:hover {
+const HeroText = styled.div`
+  text-align: center;
+  margin-bottom: 40px;
+  color: #fff;
+  
+  h1 {
+    font-size: 64px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    
+    @media (max-width: 768px) {
+      font-size: 36px;
+    }
+  }
+  
+  p {
+    font-size: 20px;
     opacity: 0.8;
-  }
-`;
-
-const Arrow = styled(motion.div)`
-  width: 24px;
-  height: 24px;
-  border-right: 3px solid #E01212;
-  border-bottom: 3px solid #E01212;
-  transform: rotate(45deg);
-  opacity: 0.3;
-  margin: -8px 0;
-
-  &:nth-child(1) {
-    animation: fadeArrow 1.5s infinite;
-  }
-  &:nth-child(2) {
-    animation: fadeArrow 1.5s infinite 0.2s;
-  }
-  &:nth-child(3) {
-    animation: fadeArrow 1.5s infinite 0.4s;
-  }
-
-  @keyframes fadeArrow {
-    0% {
-      opacity: 0.3;
-      transform: rotate(45deg) translateY(0);
-    }
-    50% {
-      opacity: 1;
-      transform: rotate(45deg) translateY(10px);
-    }
-    100% {
-      opacity: 0.3;
-      transform: rotate(45deg) translateY(0);
+    
+    @media (max-width: 768px) {
+      font-size: 16px;
     }
   }
 `;
 
-const createParticles = (count: number) => {
-  return Array.from({ length: count }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100 - 50,
-    y: Math.random() * 100 - 50,
-    scale: Math.random() * 0.5 + 0.5,
-    duration: Math.random() * 2 + 2
-  }));
-};
+const HeroImageContainer = styled.div`
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 1;
+`;
 
-const Hero = () => {
-  const [showScroll, setShowScroll] = useState(false);
-  const controls = useAnimation();
+const HeroImage = styled(motion.img)`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+`;
+
+const ScrollIndicator = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  color: #fff;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+  position: absolute;
+  bottom: 40px;
+  z-index: 10;
+  
+  span {
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+  
+  &:hover {
+    opacity: 1;
+  }
+  
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+`;
+
+const SloganSection = styled.section`
+  position: relative;
+  padding: 200px 20px;
+  background: #FFFFFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+`;
+
+const BackgroundSlogan = styled(motion.img)`
+  position: absolute;
+  width: 600px;
+  height: auto;
+  filter: brightness(0);
+`;
+
+const SloganText = styled(motion.div)`
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 800px;
+`;
+
+const SloganTitle = styled(motion.h2)`
+  font-size: 48px;
+  color: #000000;
+  margin-bottom: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+`;
+
+const SloganDescription = styled(motion.p)`
+  font-size: 24px;
+  color: #000000;
+  line-height: 1.6;
+  margin: 0 auto;
+`;
+
+const Hero: React.FC = () => {
   const { scrollY } = useScroll();
-  const particles = createParticles(20);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [buttonVisible, setButtonVisible] = useState(true);
+  const [showNewsletter, setShowNewsletter] = useState<boolean>(false);
+  
+  const headerImages = [
+    headerImage1,
+    headerImage2,
+    headerImage3,
+    headerImage4,
+    headerImage5,
+    headerImage6,
+    headerImage7,
+    headerImage8,
+    headerImage9,
+    headerImage10
+  ];
 
   useEffect(() => {
-    const startAnimation = async () => {
-      await controls.start({
-        scale: 1,
-        rotateY: 360,
-        transition: {
-          duration: 2,
-          ease: "easeOut"
-        }
-      });
-
-      controls.start({
-        rotateY: [0, 10, -10, 0],
-        transition: {
-          duration: 6,
-          repeat: Infinity,
-          repeatType: "reverse",
-          ease: "easeInOut"
-        }
-      });
-    };
-
-    startAnimation();
-  }, [controls]);
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % headerImages.length);
+    }, 800);
+    
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (scrollY.get() > 100) {
-        setShowScroll(false);
-      } else {
-        setShowScroll(true);
-      }
+      setButtonVisible(window.scrollY < 100);
     };
 
-    const unsubscribe = scrollY.onChange(handleScroll);
-    return () => unsubscribe();
-  }, [scrollY]);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
+  // Show newsletter popup after a short delay when the page loads
   useEffect(() => {
     const timer = setTimeout(() => {
-      setShowScroll(true);
+      setShowNewsletter(true);
     }, 2000);
 
     return () => clearTimeout(timer);
@@ -226,94 +202,137 @@ const Hero = () => {
     }
   };
 
+  const handleCloseNewsletter = () => {
+    setShowNewsletter(false);
+  };
+
+  const buttonVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const arrowVariants = {
+    animate: {
+      y: [0, 10, 0],
+      transition: {
+        duration: 1.5,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }
+    }
+  };
+
+  const imageVariants = {
+    enter: { opacity: 0 },
+    center: { 
+      opacity: 1,
+      transition: {
+        duration: 0.5
+      }
+    },
+    exit: { 
+      opacity: 0,
+      transition: {
+        duration: 0.5
+      }
+    }
+  };
+
+  const sloganVariants = {
+    hidden: { 
+      scale: 0.8, 
+      opacity: 0 
+    },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: {
+        duration: 0.3,
+        ease: "easeOut"
+      }
+    },
+    fadeOut: {
+      opacity: 0.15,
+      transition: {
+        duration: 0.3,
+        delay: 0.5
+      }
+    }
+  };
+
+  const textVariants = {
+    hidden: { 
+      opacity: 0,
+      y: 20 
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        delay: 0.8
+      }
+    }
+  };
+
   return (
-    <HeroSection>
-      <LogoContainer
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        <LogoGlow
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.5, 0.8, 0.5],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            repeatType: "reverse",
-            ease: "easeInOut"
-          }}
+    <>
+      <HeroSection>
+        <HeroImageContainer>
+          {headerImages.map((image, index) => (
+            <HeroImage
+              key={index}
+              src={image}
+              alt={`Digital Studio Hero ${index + 1}`}
+              initial={{ opacity: 0 }}
+              animate={{ 
+                opacity: index === currentImageIndex ? 1 : 0,
+                transition: { duration: 0.4 }
+              }}
+            />
+          ))}
+        </HeroImageContainer>
+    
+      </HeroSection>
+      <SloganSection>
+        <BackgroundSlogan
+          src={Slogan}
+          alt="Bold Slogan"
+          variants={sloganVariants}
+          initial="hidden"
+          animate={["visible", "fadeOut"]}
+          viewport={{ once: true }}
         />
-        
-        <LogoWrapper
-          whileHover={{
-            scale: 1.02,
-            filter: "drop-shadow(0 0 50px rgba(224, 18, 18, 0.5))",
-            transition: { 
-              duration: 0.6,
-              ease: "easeInOut"
-            }
-          }}
-        >
-          <MainLogo
-            src={boldLogoRed}
-            alt="Bold"
-            initial={{ scale: 0.8, rotateY: 0 }}
-            animate={controls}
-          />
-          <SloganLogo
-            src={slogan}
-            alt="Bold Slogan"
-            initial={{ scale: 0.8, rotateY: 0 }}
-            animate={controls}
-          />
-        </LogoWrapper>
-
-        {particles.map((particle) => (
-          <FloatingParticle
-            key={particle.id}
-            initial={{ x: 0, y: 0, opacity: 0 }}
-            animate={{
-              x: [0, particle.x],
-              y: [0, particle.y],
-              opacity: [0, 1, 0],
-              scale: [1, particle.scale, 0]
-            }}
-            transition={{
-              duration: particle.duration,
-              repeat: Infinity,
-              repeatType: "reverse",
-              ease: "easeInOut"
-            }}
-          />
-        ))}
-      </LogoContainer>
-
-      <Subtitle
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1, duration: 0.8 }}
-      >
-        Let's Create Together
-      </Subtitle>
-      
-      <ScrollButton
-        onClick={scrollToWork}
-        animate={{
-          opacity: showScroll ? 1 : 0,
-          y: showScroll ? 0 : 20
-        }}
-        transition={{
-          duration: 0.5,
-          ease: "easeOut"
-        }}
-      >
-        <Arrow />
-        <Arrow />
-        <Arrow />
-      </ScrollButton>
-    </HeroSection>
+        <SloganText>
+          <SloganTitle
+            variants={textVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            Design makes a statement.
+          </SloganTitle>
+          <SloganDescription
+            variants={textVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            We turn concepts into visuals that demand attention,
+            <br />
+            spark action, and make you impossible to ignore.
+          </SloganDescription>
+        </SloganText>
+      </SloganSection>
+      <NewsletterPopup onClose={handleCloseNewsletter} isVisible={showNewsletter} />
+    </>
   );
 };
 

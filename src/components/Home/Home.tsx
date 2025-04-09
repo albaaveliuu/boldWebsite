@@ -5,6 +5,7 @@ import Hero from '../Hero/Hero';
 import Work from '../Work/Work';
 import Services from '../Services/Services';
 import Contact from '../Contact/Contact';
+import Newsletter from '../Newsletter/Newsletter';
 import Footer from '../Footer/Footer';
 
 const HomeContainer = styled(motion.div)`
@@ -24,6 +25,7 @@ const Home = () => {
       <Hero />
       <Services />
       <Work />
+      <Newsletter />
       <Contact />
       <Footer />
     </HomeContainer>

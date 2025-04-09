@@ -1,31 +1,117 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 
-const ServicesContainer = styled(motion.div)`
-  padding: 8rem 2rem;
-  background: #1E1E1E;
-  display: flex;
-  gap: 4rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-
+const ServicesSection = styled.section`
+  padding: 120px 20px;
+  background: #FFFFFF;
+  
   @media (max-width: 768px) {
-    flex-direction: column;
-    gap: 2rem;
+    padding: 80px 16px;
   }
 `;
 
-const IconContainer = styled(motion.div)`
-  width: 300px;
-  height: 300px;
+const Container = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+`;
+
+const SectionHeader = styled.div`
+  margin-bottom: 80px;
+  width: 100%;
+  
+  @media (max-width: 768px) {
+    margin-bottom: 60px;
+  }
+`;
+
+const TitleContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 2000px;
+  padding: 0;
+  margin: 0 auto 40px;
+  
+  @media (max-width: 768px) {
+    gap: 12px;
+    margin-bottom: 30px;
+  }
+`;
+
+const Title = styled.h2`
+  font-size: 20px;
+  color: #000000;
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
+  
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+`;
+
+const TitleLine = styled.div`
+  height: 1px;
+  background: #000000;
+  flex: 1;
+`;
+
+const Description = styled.p`
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.7);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+`;
+
+const ServicesGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 60px;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 30px;
+  }
+`;
+
+const ServiceCard = styled(motion.div)`
+  background: #FFFFFF;
+  padding: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    padding: 30px;
+    
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+  }
+`;
+
+const ServiceIcon = styled.div`
+  width: 60px;
+  height: 60px;
+  margin-bottom: 30px;
   color: #E01212;
-  position: sticky;
-  top: 20%;
 
   svg {
     width: 100%;
@@ -33,219 +119,122 @@ const IconContainer = styled(motion.div)`
   }
 
   @media (max-width: 768px) {
-    width: 200px;
-    height: 200px;
-    margin: 0 auto;
-    position: relative;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 24px;
   }
-`;
-
-const ServicesList = styled(motion.div)`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-`;
-
-const ServiceItem = styled(motion.div)`
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  padding: 2rem;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.05);
-  cursor: pointer;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateX(10px);
-  }
-`;
-
-const ServiceNumber = styled.span`
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.3);
-  min-width: 40px;
 `;
 
 const ServiceTitle = styled.h3`
-  font-size: 2rem;
-  color: #FFFFFF;
-  margin: 0;
-`;
+  font-size: 24px;
+  color: #000000;
+  margin-bottom: 16px;
+  font-weight: 600;
 
-const ServicesSection = styled.div`
-  padding: 100px 120px;
-  background: #1E1E1E;
-  text-align: center;
   @media (max-width: 768px) {
-    padding: 60px 20px;
+    font-size: 20px;
+    margin-bottom: 12px;
   }
 `;
 
-const SectionTitle = styled.h2`
-  font-size: 64px;
-  margin-bottom: 24px;
-  color: #E01212;
-  text-align: center;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  line-height: 1.2;
+const ServiceDescription = styled.p`
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.7);
+  line-height: 1.6;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    line-height: 1.5;
+  }
 `;
 
-const services = [
-  {
-    id: 1,
-    title: "Development",
-    icon: (color: string) => (
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" stroke={color} strokeWidth="1.5"/>
-        <path d="M12 12m-8 0a8 8 0 1 0 16 0a8 8 0 1 0 -16 0" stroke={color} strokeWidth="1.5"/>
-        <path d="M12 12l4.5 4.5" stroke={color} strokeWidth="1.5"/>
-        <path d="M12 12l-4.5 -4.5" stroke={color} strokeWidth="1.5"/>
-        <path d="M12 12l4.5 -4.5" stroke={color} strokeWidth="1.5"/>
-        <path d="M12 12l-4.5 4.5" stroke={color} strokeWidth="1.5"/>
-      </svg>
-    ),
-    color: "#E01212"
-  },
-  {
-    id: 2,
-    title: "Motion Graphic",
-    icon: (color: string) => (
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M4 8h16M4 16h16" stroke={color} strokeWidth="1.5" strokeLinecap="round"/>
-        <path d="M8 4v16M16 4v16" stroke={color} strokeWidth="1.5" strokeLinecap="round"/>
-      </svg>
-    ),
-    color: "#FF6B6B"
-  },
-  {
-    id: 3,
-    title: "Video Editing",
-    icon: (color: string) => (
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M15 10l5-5M19 5l-5 5" stroke={color} strokeWidth="1.5" strokeLinecap="round"/>
-        <path d="M4 8h8" stroke={color} strokeWidth="1.5" strokeLinecap="round"/>
-        <path d="M4 16h8" stroke={color} strokeWidth="1.5" strokeLinecap="round"/>
-      </svg>
-    ),
-    color: "#4ECDC4"
-  },
-  {
-    id: 4,
-    title: "3D Animation",
-    icon: (color: string) => (
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z" stroke={color} strokeWidth="1.5"/>
-        <path d="M12 12l8-4.5M12 12v9M12 12L4 7.5" stroke={color} strokeWidth="1.5"/>
-      </svg>
-    ),
-    color: "#FFD93D"
-  },
-  {
-    id: 5,
-    title: "Branding",
-    icon: (color: string) => (
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M3 21h18M3 7v14M21 7v14M6 7h12a3 3 0 0 0 3-3V3H3v1a3 3 0 0 0 3 3z" stroke={color} strokeWidth="1.5"/>
-        <path d="M12 7v14" stroke={color} strokeWidth="1.5" strokeDasharray="3 3"/>
-      </svg>
-    ),
-    color: "#6C5CE7"
-  },
-  {
-    id: 6,
-    title: "Web Design",
-    icon: (color: string) => (
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M3 12h18M12 3v18M12 12l7-7M12 12l-7 7" stroke={color} strokeWidth="1.5"/>
-      </svg>
-    ),
-    color: "#00B894"
-  }
-];
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
+const Services: React.FC = () => {
+  const services = [
+    {
+      title: "Web Design & Development",
+      description: "Create stunning, responsive websites that engage your audience and drive results. We combine aesthetics with functionality.",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 4h16M4 4v16M4 4l16 16M20 4v16M20 20H4M20 20L4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+        </svg>
+      )
+    },
+    {
+      title: "Brand Strategy",
+      description: "Develop a strong brand identity that resonates with your target audience and sets you apart from competitors.",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 12m-8 0a8 8 0 1 0 16 0a8 8 0 1 0 -16 0" stroke="currentColor" strokeWidth="2"/>
+          <path d="M12 12l4 4M12 12l-4 -4M12 12l-4 4M12 12l4 -4" stroke="currentColor" strokeWidth="2"/>
+        </svg>
+      )
+    },
+    {
+      title: "Motion Graphics",
+      description: "Bring your brand to life with captivating animations and visual effects that tell your story.",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 8h16M4 16h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+          <path d="M8 4v16M16 4v16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+        </svg>
+      )
+    },
+    {
+      title: "UI/UX Design",
+      description: "Create intuitive and engaging user experiences that keep your customers coming back for more.",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 4h16v16H4z" stroke="currentColor" strokeWidth="2"/>
+          <path d="M8 8h8v8H8z" stroke="currentColor" strokeWidth="2"/>
+        </svg>
+      )
+    },
+    {
+      title: "Digital Marketing",
+      description: "Drive growth with data-driven strategies across social media, SEO, and content marketing.",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 4v16M4 12h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+        </svg>
+      )
+    },
+    {
+      title: "Content Creation",
+      description: "Produce engaging content that tells your story and connects with your audience across all platforms.",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 12m-8 0a8 8 0 1 0 16 0a8 8 0 1 0 -16 0" stroke="currentColor" strokeWidth="2"/>
+          <path d="M12 8v8M8 12h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+        </svg>
+      )
     }
-  }
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, x: -20 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 20
-    }
-  }
-};
-
-const iconVariants = {
-  initial: { rotate: 0 },
-  hover: { rotate: 180, scale: 1.1 },
-};
-
-const Services = () => {
-  const [activeService, setActiveService] = useState(1);
+  ];
 
   return (
-    <ServicesSection>
-      <SectionTitle>Our Services</SectionTitle>
-      <ServicesContainer
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        <IconContainer
-          initial="initial"
-          animate={{
-            scale: [1, 1.05, 1],
-            rotate: [0, 10, -10, 0],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            repeatType: "reverse",
-          }}
-        >
-          {services.find(s => s.id === activeService)?.icon(services.find(s => s.id === activeService)?.color || "#E01212")}
-        </IconContainer>
-
-        <ServicesList>
-          {services.map((service) => (
-            <ServiceItem
-              key={service.id}
-              variants={itemVariants}
-              onHoverStart={() => setActiveService(service.id)}
-              whileHover={{
-                x: 20,
-                backgroundColor: `${service.color}15`,
-                transition: { duration: 0.3 }
-              }}
-              style={{
-                borderLeft: activeService === service.id ? `4px solid ${service.color}` : "none"
-              }}
+    <ServicesSection id="services">
+      <Container>
+        <SectionHeader>
+          <TitleContainer>
+            <Title>SERVICES</Title>
+            <TitleLine />
+          </TitleContainer>
+        </SectionHeader>
+        <ServicesGrid>
+          {services.map((service, index) => (
+            <ServiceCard
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <ServiceNumber style={{ color: activeService === service.id ? service.color : undefined }}>
-                {String(service.id).padStart(2, '0')}
-              </ServiceNumber>
+              <ServiceIcon>{service.icon}</ServiceIcon>
               <ServiceTitle>{service.title}</ServiceTitle>
-            </ServiceItem>
+              <ServiceDescription>{service.description}</ServiceDescription>
+            </ServiceCard>
           ))}
-        </ServicesList>
-      </ServicesContainer>
+        </ServicesGrid>
+      </Container>
     </ServicesSection>
   );
 };

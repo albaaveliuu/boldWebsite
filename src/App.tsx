@@ -6,6 +6,7 @@ import Hero from './components/Hero/Hero';
 import Work from './components/Work/Work';
 import Services from './components/Services/Services';
 import Contact from './components/Contact/Contact';
+import Newsletter from './components/Newsletter/Newsletter';
 import ProjectDetail from './components/ProjectDetail/ProjectDetail';
 import Footer from './components/Footer/Footer';
 
@@ -53,8 +54,9 @@ const App: React.FC = () => {
         <Route path="/" element={
           <>
             <section id="hero"><Hero /></section>
-            <section id="work"><Work /></section>
             <section id="services"><Services /></section>
+            <section id="work"><Work /></section>
+            <Newsletter />
             <section id="contact"><Contact /></section>
             <Footer />
           </>

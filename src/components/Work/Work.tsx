@@ -1,54 +1,68 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import styled from '@emotion/styled';
+import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import thumbnail01 from '../../images/thumbnail01.png';
+import thumbnail02 from '../../images/thumbnail02.png';
+import thumbnail03 from '../../images/thumbnail03.png';
+import thumbnail04 from '../../images/thumbnail04.png';
+import thumbnail05 from '../../images/thumbnail05.png';
+import thumbnail06 from '../../images/thumbnail06.png';
 
-const WorkSection = styled.div`
-  padding: 100px 120px;
-  background: #1E1E1E;
-  overflow-x: hidden;
+const WorkSection = styled.section`
+  padding: 100px 20px;
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  @media (max-width: 768px) {
-    padding: 60px 20px;
-  }
 `;
 
-const WorkGrid = styled.div`
+const SectionTitleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 2000px;
+  padding: 0 20px;
+`;
+
+const SectionTitle = styled.h2`
+  font-size: 20px;
+  color: #000000;
+  font-weight: 700;
+  margin: 0;
+  text-transform: uppercase;
+`;
+
+const TitleLine = styled.div`
+  flex: 1;
+  height: 1px;
+  background-color: #000000;
+`;
+
+const ProjectsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 100px;
-  margin-top: 80px;
-  max-width: 2200px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0 40px;
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    padding: 0 20px;
-    gap: 40px;
-  }
+  max-width: 2000px;
+  width: 100%;
+  margin-top: 60px;
 `;
 
-const ProjectCard = styled(motion.div)`
+const Project = styled(motion.div)`
   position: relative;
-  background: #2A2A2A;
-  border-radius: 16px;
-  overflow: hidden;
-  cursor: pointer;
-  aspect-ratio: 24/9;
-  height: 450px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  max-width: 1200px;
-  margin: 0 auto;
   width: 100%;
+  height: 400px;
+  max-width: 800px;
+  background: #1E1E1E;
+  cursor: pointer;
+  overflow: hidden;
+  margin: 0 auto;
 
   &:hover {
-    .project-image {
+    img {
       transform: scale(1.05);
-    }
-    .project-overlay {
-      opacity: 1;
     }
   }
 `;
@@ -57,141 +71,177 @@ const ProjectImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
-const ProjectOverlay = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+const ProjectContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding: 40px;
+  align-items: flex-start;
+  width: 100%;
 `;
 
-const ProjectInfo = styled.div`
-  color: #FFFFFF;
-  transform: translateY(20px);
-  transition: transform 0.3s ease;
+const ProjectTitleContainer = styled.div`
+  width: 100%;
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 `;
 
 const ProjectTitle = styled.h3`
-  font-size: 32px;
-  margin-bottom: 16px;
-  font-weight: 700;
+  font-size: 14px;
+  color: #000000;
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
 `;
 
 const ProjectDescription = styled.p`
   font-size: 18px;
-  line-height: 1.6;
-  color: #C9C9C9;
-  margin-bottom: 20px;
-`;
-
-const SectionTitle = styled.h2`
-  font-size: 64px;
-  margin-bottom: 24px;
-  color: #E01212;
+  color: #FFFFFF;
   text-align: center;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  line-height: 1.2;
+  max-width: 600px;
+  line-height: 1.6;
 `;
-
-const projects = [
-  {
-    id: 1,
-    title: "E-commerce Platform",
-    description: "A modern e-commerce solution with seamless user experience",
-    image: "/images/project1.jpg"
-  },
-  {
-    id: 2,
-    title: "Social Media Dashboard",
-    description: "Analytics and management platform for social media",
-    image: "/images/project2.jpg"
-  },
-  {
-    id: 3,
-    title: "Mobile Banking App",
-    description: "Secure and intuitive mobile banking application",
-    image: "/images/project3.jpg"
-  },
-  {
-    id: 4,
-    title: "AI-Powered Analytics",
-    description: "Advanced data analytics platform with machine learning capabilities",
-    image: "/images/project4.jpg"
-  }
-];
-
-const cardVariants = {
-  hidden: { 
-    opacity: 0,
-    y: 50,
-    scale: 0.95
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 20
-    }
-  },
-  hover: {
-    scale: 1.02,
-    transition: {
-      type: "spring",
-      stiffness: 400,
-      damping: 10
-    }
-  }
-};
 
 const Work: React.FC = () => {
   const navigate = useNavigate();
+  const [titleWidths, setTitleWidths] = React.useState<{ [key: string]: number }>({});
+  const titleRefs = React.useRef<{ [key: string]: HTMLHeadingElement }>({});
 
-  const handleProjectClick = (projectId: number) => {
-    navigate(`/project/${projectId}`);
+  React.useEffect(() => {
+    const newTitleWidths: { [key: string]: number } = {};
+    Object.keys(titleRefs.current).forEach(key => {
+      if (titleRefs.current[key]) {
+        newTitleWidths[key] = titleRefs.current[key].offsetWidth;
+      }
+    });
+    setTitleWidths(newTitleWidths);
+  }, []);
+
+  const projects = [
+    {
+      id: 1,
+      title: "Brand Identity",
+      description: "Creating a unique and memorable brand identity for a tech startup",
+      image: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+    },
+    {
+      id: 2,
+      title: "Web Design",
+      description: "Designing a modern and responsive website for a fashion brand",
+      image: "https://images.unsplash.com/photo-1558655146-d09347e92766?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+    }
+  ];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
   };
 
   return (
-    <WorkSection>
-      <SectionTitle>Our Work</SectionTitle>
-      <ProjectDescription>
-        Exploring the intersection of technology and creativity
-      </ProjectDescription>
-      <WorkGrid>
-        {projects.map((project, index) => (
-          <ProjectCard
-            key={project.id}
-            onClick={() => handleProjectClick(project.id)}
-            variants={cardVariants}
-            initial="hidden"
-            whileInView="visible"
-            whileHover="hover"
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ delay: index * 0.2 }}
+    <WorkSection id="work">
+      <SectionTitleContainer>
+        <SectionTitle>Work</SectionTitle>
+        <TitleLine />
+      </SectionTitleContainer>
+      <ProjectsGrid>
+        <ProjectContainer>
+          <Project
+            whileHover={{ y: -10 }}
+            transition={{ duration: 0.3 }}
           >
-            <ProjectImage src={project.image} alt={project.title} className="project-image" />
-            <ProjectOverlay className="project-overlay">
-              <ProjectInfo>
-                <ProjectTitle>{project.title}</ProjectTitle>
-                <ProjectDescription>{project.description}</ProjectDescription>
-              </ProjectInfo>
-            </ProjectOverlay>
-          </ProjectCard>
-        ))}
-      </WorkGrid>
+            <ProjectImage src={thumbnail01} alt="Project 1" />
+          </Project>
+          <ProjectTitleContainer>
+            <ProjectTitle>Print Design</ProjectTitle>
+            <TitleLine />
+          </ProjectTitleContainer>
+        </ProjectContainer>
+
+        <ProjectContainer>
+          <Project
+            whileHover={{ y: -10 }}
+            transition={{ duration: 0.3 }}
+          >
+            <ProjectImage src={thumbnail02} alt="Project 2" />
+          </Project>
+          <ProjectTitleContainer>
+            <ProjectTitle>Event Design</ProjectTitle>
+            <TitleLine />
+          </ProjectTitleContainer>
+        </ProjectContainer>
+
+        <ProjectContainer>
+          <Project
+            whileHover={{ y: -10 }}
+            transition={{ duration: 0.3 }}
+          >
+            <ProjectImage src={thumbnail03} alt="Project 3" />
+          </Project>
+          <ProjectTitleContainer>
+            <ProjectTitle>Motion & Animation</ProjectTitle>
+            <TitleLine />
+          </ProjectTitleContainer>
+        </ProjectContainer>
+
+        <ProjectContainer>
+          <Project
+            whileHover={{ y: -10 }}
+            transition={{ duration: 0.3 }}
+          >
+            <ProjectImage src={thumbnail04} alt="Project 4" />
+          </Project>
+          <ProjectTitleContainer>
+            <ProjectTitle>Brand Strategy</ProjectTitle>
+            <TitleLine />
+          </ProjectTitleContainer>
+        </ProjectContainer>
+
+        <ProjectContainer>
+          <Project
+            whileHover={{ y: -10 }}
+            transition={{ duration: 0.3 }}
+          >
+            <ProjectImage src={thumbnail05} alt="Project 5" />
+          </Project>
+          <ProjectTitleContainer>
+            <ProjectTitle>Sustainable Design Principles</ProjectTitle>
+            <TitleLine />
+          </ProjectTitleContainer>
+        </ProjectContainer>
+
+        <ProjectContainer>
+          <Project
+            whileHover={{ y: -10 }}
+            transition={{ duration: 0.3 }}
+          >
+            <ProjectImage src={thumbnail06} alt="Project 6" />
+          </Project>
+          <ProjectTitleContainer>
+            <ProjectTitle>Social Media Design</ProjectTitle>
+            <TitleLine />
+          </ProjectTitleContainer>
+        </ProjectContainer>
+      </ProjectsGrid>
     </WorkSection>
   );
 };
