@@ -299,7 +299,7 @@ const Hero: React.FC = () => {
             />
           ))}
         </HeroImageContainer>
-    
+       
       </HeroSection>
       <SloganSection>
         <BackgroundSlogan
