@@ -13,7 +13,7 @@ const NavbarContainer = styled(motion.nav)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #000000;
+  background: rgba(0, 0, 0, 0.9);
 
   @media (max-width: 768px) {
     padding: 20px;
@@ -51,10 +51,6 @@ const NavLink = styled.a<{ $isActive?: boolean }>`
   text-transform: uppercase;
   letter-spacing: 1px;
   
-  ${props => props.$isActive && `
-    color: #E01212;
-  `}
-
   &:hover {
     color: #E01212;
   }

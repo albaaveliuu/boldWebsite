@@ -56,7 +56,6 @@ const App: React.FC = () => {
             <section id="hero"><Hero /></section>
             <section id="services"><Services /></section>
             <section id="work"><Work /></section>
-            <Newsletter />
             <section id="contact"><Contact /></section>
             <Footer />
           </>
