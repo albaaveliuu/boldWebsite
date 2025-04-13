@@ -1,12 +1,11 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { motion } from 'framer-motion';
-import astronautImage from '../../images/astronaut.png';
 import { ReactComponent as SloganSVG } from '../../images/Slogan.svg';
+import astronautImage from '../../images/astronaut.png';
 
 const ContactSection = styled.section`
   padding: 100px 20px;
-  background: #FFFFFF;
+  background: #1e1e1e;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,32 +22,19 @@ const SectionTitleContainer = styled.div`
   margin-bottom: 60px;
 `;
 
-const SectionTitle = styled.h2`
-  font-size: 20px;
-  color: #000000;
-  font-weight: 700;
-  margin: 0;
-  text-transform: uppercase;
-  font-family: 'Hando', sans-serif;
-`;
 
-const TitleLine = styled.div`
-  flex: 1;
-  height: 1px;
-  background-color: #000000;
-`;
 
 const ContactContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 100%;
   max-width: 1200px;
-  background: #000000;
+  background:rgb(255, 255, 255);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
 `;
 
 const FormSection = styled.div`
-  background: #000000;
+  background: #FFFFFF;
   padding: 60px;
   display: flex;
   flex-direction: column;
@@ -66,14 +52,14 @@ const FormTitle = styled.div`
     width: auto;
     height: 120px;
     path {
-      fill: #FFFFFF;
+      fill: #1e1e1e;
     }
   }
 `;
 
 const CollaborateText = styled.h4`
   font-size: 24px;
-  color: #FFFFFF;
+  color: #1e1e1e;
   margin: 20px 0;
   font-weight: 500;
   width: 100%;
@@ -100,86 +86,103 @@ const InputRow = styled.div`
 const Input = styled.input`
   width: 100%;
   padding: 12px;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #FFFFFF;
+  background: #E5E5E5;
+  border: none;
+  color: #1e1e1e;
   font-size: 16px;
   font-family: 'Hando', sans-serif;
 
   &::placeholder {
-    color: rgba(255, 255, 255, 0.5);
+    color: #1e1e1e;
     font-family: 'Hando', sans-serif;
   }
 
   &:focus {
     outline: none;
-    border-color: rgba(255, 255, 255, 0.4);
+    background: #D9D9D9;
   }
 `;
 
 const TextArea = styled.textarea`
   width: 100%;
   padding: 12px;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #FFFFFF;
+  background: #E5E5E5;
+  border: none;
+  color: #1e1e1e;
   font-size: 16px;
   min-height: 120px;
   resize: vertical;
   font-family: 'Hando', sans-serif;
 
   &::placeholder {
-    color: rgba(255, 255, 255, 0.5);
+    color: #1e1e1e;
     font-family: 'Hando', sans-serif;
   }
 
   &:focus {
     outline: none;
-    border-color: rgba(255, 255, 255, 0.4);
+    background: #D9D9D9;
   }
 `;
 
 const SubmitButton = styled.button`
   padding: 12px 32px;
-  background: #E01212;
+  background: #1e1e1e;
   color: #FFFFFF;
   border: none;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  align-self: flex-start;
-  margin-top: 10px;
+  width: fit-content;
+  min-width: 160px;
+  display: block;
+  margin: 10px auto 0;
   font-family: 'Hando', sans-serif;
 
   &:hover {
-    background: #FF1414;
+    background: #333333;
   }
 `;
 
-const ImageSection = styled.div`
+const ImageContainer = styled.div`
+  background-image: url(${astronautImage});
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(100%);
   position: relative;
-  width: 100%;
-  height: 100%;
-  min-height: 600px;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+  }
 `;
 
-const BackgroundImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+const Title = styled.h2`
+  font-size: 48px;
+  font-weight: 800;
+  color: #1E1E1E;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+`;
+
+const Subtitle = styled.p`
+  font-size: 24px;
+  color: #1E1E1E;
+  margin-bottom: 40px;
 `;
 
 const Contact: React.FC = () => {
   return (
     <ContactSection id="contact">
       <SectionTitleContainer>
-        <SectionTitle>Contact</SectionTitle>
-        <TitleLine />
+       
       </SectionTitleContainer>
       <ContactContainer>
         <FormSection>
@@ -196,16 +199,11 @@ const Contact: React.FC = () => {
               <Input type="text" placeholder="Subject" />
               <Input type="tel" placeholder="Phone" />
             </InputRow>
-            <TextArea placeholder="Give us more..." />
-            <SubmitButton type="submit">CONTACT US</SubmitButton>
+            <TextArea placeholder="Give us more ..." />
+            <SubmitButton type="submit">Contact us</SubmitButton>
           </Form>
         </FormSection>
-        <ImageSection>
-          <BackgroundImage 
-            src={astronautImage}
-            alt="Astronaut Background" 
-          />
-        </ImageSection>
+        <ImageContainer />
       </ContactContainer>
     </ContactSection>
   );

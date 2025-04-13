@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { motion, useScroll } from 'framer-motion';
 import Slogan from '../../images/Slogan.svg';
+
 import { ReactComponent as ArrowDownIcon } from '../../images/ArrowDownIcon.svg';
 import NewsletterPopup from '../Newsletter/NewsletterPopup';
 
@@ -114,7 +115,7 @@ const ScrollIndicator = styled(motion.div)`
 const SloganSection = styled.section`
   position: relative;
   padding: 200px 20px;
-  background: #FFFFFF;
+  background: #1E1E1E;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -135,17 +136,11 @@ const SloganText = styled(motion.div)`
   max-width: 800px;
 `;
 
-const SloganTitle = styled(motion.h2)`
-  font-size: 48px;
-  color: #000000;
-  margin-bottom: 24px;
-  font-weight: 700;
-  line-height: 1.2;
-`;
+
 
 const SloganDescription = styled(motion.p)`
-  font-size: 24px;
-  color: #000000;
+  font-size: 28px;
+  color:rgb(255, 255, 255);
   line-height: 1.6;
   margin: 0 auto;
 `;
@@ -252,7 +247,7 @@ const Hero: React.FC = () => {
     },
     visible: {
       scale: 1,
-      opacity: 1,
+      opacity: 2,
       transition: {
         duration: 0.3,
         ease: "easeOut"
@@ -311,20 +306,14 @@ const Hero: React.FC = () => {
           viewport={{ once: true }}
         />
         <SloganText>
-          <SloganTitle
-            variants={textVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            Design makes a statement.
-          </SloganTitle>
+          
           <SloganDescription
             variants={textVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
           >
+             Design makes a statement.<br />
             We turn concepts into visuals that demand attention,
             <br />
             spark action, and make you impossible to ignore.

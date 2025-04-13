@@ -3,12 +3,12 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Global, css } from '@emotion/react';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
-import Work from './components/Work/Work';
 import Services from './components/Services/Services';
 import Contact from './components/Contact/Contact';
-import Newsletter from './components/Newsletter/Newsletter';
 import ProjectDetail from './components/ProjectDetail/ProjectDetail';
 import Footer from './components/Footer/Footer';
+import Team from './components/Team/Team';
+import Slogan from './components/Slogan/Slogan';
 
 const globalStyles = css`
   @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap');
@@ -55,7 +55,8 @@ const App: React.FC = () => {
           <>
             <section id="hero"><Hero /></section>
             <section id="services"><Services /></section>
-            <section id="work"><Work /></section>
+            <section id="slogan"><Slogan /></section>
+            <section id="team"><Team /></section>
             <section id="contact"><Contact /></section>
             <Footer />
           </>

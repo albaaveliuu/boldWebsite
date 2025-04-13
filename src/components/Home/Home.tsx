@@ -7,6 +7,7 @@ import Services from '../Services/Services';
 import Contact from '../Contact/Contact';
 import Newsletter from '../Newsletter/Newsletter';
 import Footer from '../Footer/Footer';
+import HowWeWork from '../HowWeWork/HowWeWork';
 
 const HomeContainer = styled(motion.div)`
   min-height: 100vh;
@@ -24,6 +25,7 @@ const Home = () => {
     >
       <Hero />
       <Services />
+      <HowWeWork />
       <Work />
       <Newsletter />
       <Contact />

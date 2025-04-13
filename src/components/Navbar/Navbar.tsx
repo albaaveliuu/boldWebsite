@@ -24,6 +24,11 @@ const NavGroup = styled.div`
   display: flex;
   gap: 40px;
   align-items: center;
+  flex: 1;
+
+  &:last-child {
+    justify-content: flex-end;
+  }
 
   @media (max-width: 768px) {
     display: none;
@@ -35,6 +40,9 @@ const Logo = styled.img`
   width: auto;
   cursor: pointer;
   transition: opacity 0.3s ease;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 
   &:hover {
     opacity: 0.8;

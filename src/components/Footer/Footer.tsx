@@ -1,86 +1,112 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import horizontalLogo from '../../images/horizontalLogo.svg';
+import { Link } from 'react-router-dom';
+import { ReactComponent as Logo } from '../../images/boldLogoRed.svg';
 
 const FooterContainer = styled.footer`
   background: #1E1E1E;
-  padding: 40px 120px;
-  color: #FFFFFF;
-  text-align: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-
-  @media (max-width: 768px) {
-    padding: 30px 20px;
-  }
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
 `;
 
 const FooterContent = styled.div`
+  width: 100%;
   max-width: 1200px;
-  margin: 0 auto;
   display: flex;
-  flex-direction: column;
-  gap: 20px;
-`;
+  justify-content: space-between;
+  align-items: center;
 
-const FooterLogo = styled.img`
-  height: 40px;
-  width: auto;
-  margin: 0 auto;
-  filter: brightness(0) invert(1);
-  transition: filter 0.3s ease;
-
-  &:hover {
-    filter: brightness(1) invert(0);
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 20px;
   }
 `;
 
-const FooterText = styled.p`
-  font-size: 16px;
-  color: #C9C9C9;
-  margin: 0;
-  line-height: 1.6;
+const LogoContainer = styled(Link)`
+  svg {
+    width: 40px;
+    height: 40px;
+    path {
+      fill: #FFFFFF;
+    }
+  }
 `;
 
-const FooterLinks = styled.div`
+const LinksContainer = styled.div`
   display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin-top: 20px;
+  gap: 24px;
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 `;
 
-const FooterLink = styled.a`
-  color: #C9C9C9;
+const FooterLink = styled(Link)`
+  color: #FFFFFF;
   text-decoration: none;
   font-size: 14px;
   transition: color 0.3s ease;
+  opacity: 0.8;
 
   &:hover {
-    color: #E01212;
+    opacity: 1;
   }
 `;
 
-const Copyright = styled.p`
+const SocialLinks = styled.div`
+  display: flex;
+  gap: 24px;
+`;
+
+const SocialLink = styled.a`
+  color: #FFFFFF;
+  text-decoration: none;
   font-size: 14px;
-  color: #888;
-  margin: 20px 0 0;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    opacity: 1;
+  }
+`;
+
+const RedDot = styled.span`
+  width: 4px;
+  height: 4px;
+  background: #E01212;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 8px;
+  vertical-align: middle;
 `;
 
 const Footer: React.FC = () => {
   return (
     <FooterContainer>
       <FooterContent>
-        <FooterLogo src={horizontalLogo} alt="Bold" />
-        <FooterText>
-          Creating innovative digital experiences through design and technology
-        </FooterText>
-        <FooterLinks>
-          <FooterLink href="#work">Work</FooterLink>
-          <FooterLink href="#services">Services</FooterLink>
-          <FooterLink href="#contact">Contact</FooterLink>
-        </FooterLinks>
-        <Copyright>
-          © {new Date().getFullYear()} Bold. All rights reserved.
-        </Copyright>
+        <LogoContainer to="/">
+          <Logo />
+        </LogoContainer>
+        <LinksContainer>
+          <FooterLink to="/privacy">Data Privacy</FooterLink>
+          <FooterLink to="/imprint">Imprint</FooterLink>
+          <FooterLink to="/terms">Terms & Conditions</FooterLink>
+        </LinksContainer>
+        <SocialLinks>
+          <SocialLink href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+            Instagram
+          </SocialLink>
+          <SocialLink href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+            LinkedIn
+          </SocialLink>
+          <SocialLink href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+            Facebook
+          </SocialLink>
+        </SocialLinks>
       </FooterContent>
     </FooterContainer>
   );

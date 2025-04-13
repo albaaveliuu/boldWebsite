@@ -54,7 +54,7 @@ const Logo = styled(BoldLogo)`
 `;
 
 const FormTitle = styled.h3`
-  font-size: 15px;
+  font-size: 12px;
   color: #FFFFFF;
   margin: 0 0 4px 0;
   font-weight: 400;
