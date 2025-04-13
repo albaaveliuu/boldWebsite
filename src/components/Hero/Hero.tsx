@@ -316,7 +316,7 @@ const Hero: React.FC = () => {
              Design makes a statement.<br />
             We turn concepts into visuals that demand attention,
             <br />
-            spark action, and make you impossible to ignore.
+            spark action, and make you IMPOSSIBLE TO IGNORE.
           </SloganDescription>
         </SloganText>
       </SloganSection>

@@ -149,19 +149,8 @@ const ImageContainer = styled.div`
   background-image: url(${astronautImage});
   background-size: cover;
   background-position: center;
-  filter: grayscale(100%);
   position: relative;
   overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.3);
-  }
 `;
 
 const Title = styled.h2`
