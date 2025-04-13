@@ -16,8 +16,15 @@ import headerImage6 from '../../images/header/Artboard 6.png';
 import headerImage7 from '../../images/header/Artboard 7.png';
 import headerImage8 from '../../images/header/Artboard 8.png';
 import headerImage9 from '../../images/header/Artboard 9.png';
-import headerImage10 from '../../images/header/Artboard 10.png';
-
+import headerImage10 from '../../images/header/Artboard10.png';
+import headerImage11 from '../../images/header/Artboard11.png';
+import headerImage12 from '../../images/header/Artboard12.png';
+import headerImage13 from '../../images/header/Artboard13.png';
+import headerImage14 from '../../images/header/Artboard14.png';
+import headerImage15 from '../../images/header/Artboard15.png';
+import headerImage16 from '../../images/header/Artboard16.png';
+import headerImage17 from '../../images/header/Artboard17.png';
+import headerImage19 from '../../images/header/Artboard19.png';
 const HeroSection = styled.section`
   height: 100vh;
   width: 100%;
@@ -161,7 +168,15 @@ const Hero: React.FC = () => {
     headerImage7,
     headerImage8,
     headerImage9,
-    headerImage10
+    headerImage10,
+    headerImage11,
+    headerImage12,
+    headerImage13,
+    headerImage14,
+    headerImage15,
+    headerImage16,
+    headerImage17,
+    headerImage19
   ];
 
   useEffect(() => {

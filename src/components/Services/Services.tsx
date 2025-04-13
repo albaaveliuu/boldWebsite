@@ -142,6 +142,21 @@ const Services: React.FC = () => {
   const stageZ = useTransform(scrollYProgress, [0, 1], [0, 100]);
   const titleOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
+  // Create transforms for each item outside the map function
+  const itemScales = items.map((_, index) => 
+    useTransform(scrollYProgress, 
+      [index * 0.25, (index + 1) * 0.25], 
+      [0.8, 1]
+    )
+  );
+
+  const itemOpacities = items.map((_, index) => 
+    useTransform(scrollYProgress,
+      [index * 0.25, (index + 1) * 0.25],
+      [0, 1]
+    )
+  );
+
   return (
     <ServicesSection ref={containerRef} id="services">
       <StickyContainer>
@@ -174,14 +189,8 @@ const Services: React.FC = () => {
                 }
               }}
               style={{
-                scale: useTransform(scrollYProgress, 
-                  [index * 0.25, (index + 1) * 0.25], 
-                  [0.8, 1]
-                ),
-                opacity: useTransform(scrollYProgress,
-                  [index * 0.25, (index + 1) * 0.25],
-                  [0, 1]
-                )
+                scale: itemScales[index],
+                opacity: itemOpacities[index]
               }}
             >
               <StageImage src={item.image} alt={item.title} />

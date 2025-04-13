@@ -86,8 +86,6 @@ const Title = styled.h3`
   white-space: pre-line;
 `;
 
-
-
 const Form = styled.form`
   display: flex;
   gap: 16px;
@@ -149,7 +147,7 @@ interface NewsletterPopupProps {
   isVisible?: boolean;
 }
 
-const NewsletterPopup: React.FC<NewsletterPopupProps> = ({ onClose, isVisible = true }) => {
+const NewsletterPopup: React.FC<NewsletterPopupProps> = ({ onClose, isVisible = true }): JSX.Element => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission here
@@ -158,8 +156,8 @@ const NewsletterPopup: React.FC<NewsletterPopupProps> = ({ onClose, isVisible = 
 
   return (
     <LazyMotion features={domAnimation}>
-      <AnimatePresence mode="sync">
-        {isVisible ? (
+      <AnimatePresence>
+        {isVisible && (
           <PopupOverlay
             key="popup-overlay"
             initial={{ opacity: 0 }}
@@ -168,6 +166,7 @@ const NewsletterPopup: React.FC<NewsletterPopupProps> = ({ onClose, isVisible = 
             onClick={onClose}
           >
             <PopupContainer
+              key="popup-container"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
@@ -192,7 +191,7 @@ const NewsletterPopup: React.FC<NewsletterPopupProps> = ({ onClose, isVisible = 
               </ContentWrapper>
             </PopupContainer>
           </PopupOverlay>
-        ) : null}
+        )}
       </AnimatePresence>
     </LazyMotion>
   );
