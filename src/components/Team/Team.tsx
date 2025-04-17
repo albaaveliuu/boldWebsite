@@ -1,120 +1,183 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
-// Import team member images
-import BunaImage from '../../images/team/Buna.png';
-import DioraImage from '../../images/team/Diora.png';
-import RitaImage from '../../images/team/Rita.png';
-import LumiImage from '../../images/team/Lumi.png';
 
 const TeamSection = styled.section`
   background: #1E1E1E;
-  padding: 0;
-  min-height: 100vh;
+  padding: 180px 0;
 `;
 
 const Container = styled.div`
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 40px;
 `;
 
 const Title = styled.h2`
   color: #FFFFFF;
-  font-size: 96px;
+  font-size: 95px;
   font-weight: 700;
-  font-family: 'Syncopate', sans-serif;
-  margin: 80px 0;
+  font-family: 'Hando', sans-serif;
+  margin-bottom: 100px;
   text-transform: uppercase;
-  padding: 0 20px;
   line-height: 1;
   letter-spacing: -2px;
 `;
 
 const TeamGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
-  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
 `;
 
 const TeamMember = styled(motion.div)`
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  gap: 60px;
+  align-items: flex-start;
 `;
 
-const MemberImage = styled.div`
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
+interface MemberImageProps {
+  isRed?: boolean;
+}
+
+const MemberImage = styled.div<MemberImageProps>`
+  width: 400px;
+  height: 400px;
+  flex-shrink: 0;
   overflow: hidden;
-  margin-bottom: 24px;
+  background: ${props => props.isRed ? '#E01212' : 'transparent'};
   
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    filter: grayscale(100%);
   }
 `;
 
-const MemberName = styled.h3`
+const MemberInfo = styled.div`
   color: #FFFFFF;
-  font-size: 24px;
+  flex: 1;
+  padding-top: 8px;
+`;
+
+const MemberName = styled.h3`
+  font-size: 44px;
   font-weight: 600;
-  font-family: 'Syncopate', sans-serif;
+  font-family: 'Hando', sans-serif;
   margin-bottom: 8px;
+  text-transform: uppercase;
 `;
 
 const MemberRole = styled.p`
-  color: #FFFFFF;
-  font-size: 16px;
+  font-size: 26px;
   opacity: 0.8;
-  font-family: 'Syncopate', sans-serif;
+  font-family: 'Hando', sans-serif;
+  margin-bottom: 32px;
+`;
+
+const MemberDescription = styled.p`
+  font-size: 20px;
+  line-height: 1.8;
+  opacity: 0.7;
+  font-family: 'Hando', sans-serif;
+  margin-bottom: 32px;
+  max-width: 600px;
+`;
+
+const BottomRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+`;
+
+const SocialLinks = styled.div`
+  display: flex;
+  gap: 20px;
+`;
+
+const SocialLink = styled.a`
+  color: #FFFFFF;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  width: 28px;
+  height: 28px;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+  }
+`;
+
+const Signature = styled.img`
+  height: 70px;
+  opacity: 0.8;
 `;
 
 const Team: React.FC = () => {
   const teamMembers = [
     {
       name: 'Buna Pula',
-      role: 'Managing Director & Brand Specialist',
-      image: require('../../images/team/Buna.png')
+      role: 'Founder & Creative Director',
+      description: 'Founder of Bold Kreativ LLC, Buna leads with a passion for bold design and impactful storytelling. She drives the creative vision, crafting visuals and experiences that leave a lasting impression. Every project is a blend of creativity and strategy, designed to make a statement.',
+      image: require('../../images/bunasquare.png'),
+      signature: require('../../images/bunasignature.png'),
+      linkedin: 'https://linkedin.com/in/bunapula',
+      instagram: 'https://instagram.com/bunapula'
     },
     {
-      name: 'Diora Binxhiu',
-      role: 'Social Media Specialist',
-      image: require('../../images/team/Diora.png')
-    },
-    {
-      name: 'Rita Spahiu',
-      role: 'Talent Manager & Copywriter',
-      image: require('../../images/team/Rita.png')
-    },
-    {
-      name: 'Lumi Pula',
-      role: 'Video Production & Animation',
-      image: require('../../images/team/Lumi.png')
+      name: 'Shuki Dema',
+      role: 'Chief Sales Officer',
+      description: 'With extensive experience in business events, Shuki connects senior executives and C-level leaders to network, collaborate, and solve challenges. From summits to virtual roundtables, he designs tailored experiences that exceed expectations and align with client goals.',
+      image: null,
+      signature: require('../../images/shukisignature.png'),
+      linkedin: 'https://linkedin.com',
+      instagram: 'https://instagram.com'
     }
   ];
 
   return (
     <TeamSection id="team">
       <Container>
-        <Title>TEAM</Title>
+        <Title>FOUNDING<br />TEAM</Title>
         <TeamGrid>
           {teamMembers.map((member, index) => (
             <TeamMember
               key={index}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
             >
-              <MemberImage>
-                <img src={member.image} alt={member.name} />
+              <MemberImage isRed={!member.image}>
+                {member.image && <img src={member.image} alt={member.name} />}
               </MemberImage>
-              <MemberName>{member.name}</MemberName>
-              <MemberRole>{member.role}</MemberRole>
+              <MemberInfo>
+                <MemberName>{member.name}</MemberName>
+                <MemberRole>{member.role}</MemberRole>
+                <MemberDescription>{member.description}</MemberDescription>
+                <BottomRow>
+                  <SocialLinks>
+                    <SocialLink href={member.linkedin} target="_blank" rel="noopener noreferrer">
+                      <svg viewBox="0 0 24 24">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                      </svg>
+                    </SocialLink>
+                    <SocialLink href={member.instagram} target="_blank" rel="noopener noreferrer">
+                      <svg viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                      </svg>
+                    </SocialLink>
+                  </SocialLinks>
+                  <Signature src={member.signature} alt={`${member.name}'s signature`} />
+                </BottomRow>
+              </MemberInfo>
             </TeamMember>
           ))}
         </TeamGrid>

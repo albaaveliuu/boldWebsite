@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Global, css } from '@emotion/react';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
+import About from './components/About/About';
 import Services from './components/Services/Services';
 import Contact from './components/Contact/Contact';
 import ProjectDetail from './components/ProjectDetail/ProjectDetail';
@@ -56,11 +57,11 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={
           <>
-            <section id="hero"><Hero /></section>
-            <section id="services"><Services /></section>
-          
-            <section id="team"><Team /></section>
-            <section id="contact"><Contact /></section>
+            <Hero />
+            <About />
+            <Services />
+            <Team />
+            <Contact />
             <Footer />
           </>
         } />
