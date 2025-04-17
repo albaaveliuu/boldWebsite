@@ -52,6 +52,7 @@ const ServiceImageContainer = styled.div`
   height: 500px;
   overflow: hidden;
   z-index: 1;
+  cursor: pointer;
   
   &:hover {
     img {
@@ -106,6 +107,15 @@ const ServiceDescription = styled.p`
 `;
 
 const Services: React.FC = () => {
+  const handleEventHostingClick = () => {
+    const link = document.createElement('a');
+    link.href = '/images/services/Event Hosting Bold.pdf';
+    link.download = 'Event Hosting Bold.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const services = [
     {
       title: 'BRANDING',
@@ -120,7 +130,8 @@ const Services: React.FC = () => {
     {
       title: 'BUSINESS\nEVENT\nHOSTING',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-      image: require('../../images/services/BusinessEventHosting.png')
+      image: require('../../images/services/BusinessEventHosting.png'),
+      onClick: handleEventHostingClick
     },
     {
       title: 'MOTION\nDESIGN',
@@ -146,7 +157,7 @@ const Services: React.FC = () => {
         <ServicesList>
           {services.map((service, index) => (
             <ServiceItem key={index}>
-              <ServiceImageContainer>
+              <ServiceImageContainer onClick={service.onClick}>
                 <ServiceImage src={service.image} alt={service.title} />
               </ServiceImageContainer>
               <ServiceContent>
