@@ -9,129 +9,99 @@ import LumiImage from '../../images/team/Lumi.png';
 
 const TeamSection = styled.section`
   background: #1E1E1E;
-  padding: 100px 0;
-  width: 100%;
+  padding: 0;
+  min-height: 100vh;
 `;
 
 const Container = styled.div`
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 40px;
 `;
 
-const SectionTitleContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  width: 100%;
-  margin-bottom: 60px;
-`;
-
-const SectionTitle = styled.h2`
-  font-size: 0px;
+const Title = styled.h2`
   color: #FFFFFF;
+  font-size: 96px;
   font-weight: 700;
-  margin: 0;
+  font-family: 'Syncopate', sans-serif;
+  margin: 80px 0;
   text-transform: uppercase;
-  font-family: 'Hando', sans-serif;
+  padding: 0 20px;
+  line-height: 1;
+  letter-spacing: -2px;
 `;
 
 const TeamGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
-  
-  @media (max-width: 1024px) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
-  }
-  
-  @media (max-width: 640px) {
-    grid-template-columns: 1fr;
-  }
+  gap: 40px;
+  padding: 40px 0;
 `;
 
 const TeamMember = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
 `;
 
 const MemberImage = styled.div`
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
-  margin: 0 auto 20px;
   overflow: hidden;
-  position: relative;
-  
-  &:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(224, 18, 18, 0.1);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  
+  margin-bottom: 24px;
   
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
-  }
-  
-  &:hover img {
-    transform: scale(1.1);
   }
 `;
 
 const MemberName = styled.h3`
   color: #FFFFFF;
   font-size: 24px;
-  font-family: 'Hando', sans-serif;
-  margin-bottom: 10px;
+  font-weight: 600;
+  font-family: 'Syncopate', sans-serif;
+  margin-bottom: 8px;
 `;
 
 const MemberRole = styled.p`
-  color:rgb(255, 255, 255);
-  font-size: 15px;
-  font-family: 'Hando', sans-serif;
+  color: #FFFFFF;
+  font-size: 16px;
+  opacity: 0.8;
+  font-family: 'Syncopate', sans-serif;
 `;
-
 
 const Team: React.FC = () => {
   const teamMembers = [
     {
       name: 'Buna Pula',
       role: 'Managing Director & Brand Specialist',
-      image: process.env.PUBLIC_URL + '/images/team/Buna.png'
+      image: require('../../images/team/Buna.png')
     },
     {
       name: 'Diora Binxhiu',
       role: 'Social Media Specialist',
-      image: process.env.PUBLIC_URL + '/images/team/Diora.png'
+      image: require('../../images/team/Diora.png')
     },
     {
       name: 'Rita Spahiu',
-      role: 'Talent Manager & Copywriter ',
-      image: process.env.PUBLIC_URL + '/images/team/Rita.png'
+      role: 'Talent Manager & Copywriter',
+      image: require('../../images/team/Rita.png')
     },
     {
       name: 'Lumi Pula',
       role: 'Video Production & Animation',
-      image: process.env.PUBLIC_URL + '/images/team/Lumi.png'
+      image: require('../../images/team/Lumi.png')
     }
   ];
 
   return (
     <TeamSection id="team">
       <Container>
-        <SectionTitleContainer>
-          <SectionTitle>TEAM</SectionTitle>
-        </SectionTitleContainer>
+        <Title>TEAM</Title>
         <TeamGrid>
           {teamMembers.map((member, index) => (
             <TeamMember

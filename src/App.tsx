@@ -9,6 +9,9 @@ import ProjectDetail from './components/ProjectDetail/ProjectDetail';
 import Footer from './components/Footer/Footer';
 import Team from './components/Team/Team';
 import Slogan from './components/Slogan/Slogan';
+import PrivacyPolicy from './components/Footer/PrivacyPolicy';
+import Imprint from './components/Footer/Imprint';
+import Terms from './components/Footer/Terms';
 
 const globalStyles = css`
   @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap');
@@ -62,6 +65,9 @@ const App: React.FC = () => {
           </>
         } />
         <Route path="/project/:id" element={<ProjectDetail />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/imprint" element={<Imprint />} />
+        <Route path="/terms" element={<Terms />} />
       </Routes>
     </Router>
   );

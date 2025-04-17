@@ -18,10 +18,12 @@ const Title = styled.h2`
   color: #FFFFFF;
   font-size: 96px;
   font-weight: 700;
-  font-family: 'Hando', sans-serif;
+  font-family: 'Syncopate', sans-serif;
   margin: 80px 0;
   text-transform: uppercase;
   padding: 0 20px;
+  line-height: 1;
+  letter-spacing: -2px;
 `;
 
 const ServicesList = styled.div`

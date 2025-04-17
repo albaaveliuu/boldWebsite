@@ -5,30 +5,22 @@ import { ReactComponent as Logo } from '../../images/boldLogoRed.svg';
 
 const FooterContainer = styled.footer`
   background: #1E1E1E;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
+  padding: 24px 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 `;
 
-const FooterContent = styled.div`
-  width: 100%;
-  max-width: 1200px;
+const Container = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    gap: 20px;
-  }
 `;
 
 const LogoContainer = styled(Link)`
   svg {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     path {
       fill: #FFFFFF;
     }
@@ -37,57 +29,44 @@ const LogoContainer = styled(Link)`
 
 const LinksContainer = styled.div`
   display: flex;
-  gap: 24px;
-
-  @media (max-width: 768px) {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+  gap: 32px;
+  align-items: center;
 `;
 
 const FooterLink = styled(Link)`
   color: #FFFFFF;
   text-decoration: none;
-  font-size: 14px;
-  transition: color 0.3s ease;
-  opacity: 0.8;
+  font-family: 'Syncopate', sans-serif;
+  font-size: 11px;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 
   &:hover {
     opacity: 1;
   }
-`;
-
-const SocialLinks = styled.div`
-  display: flex;
-  gap: 24px;
 `;
 
 const SocialLink = styled.a`
   color: #FFFFFF;
   text-decoration: none;
-  font-size: 14px;
-  opacity: 0.8;
+  font-family: 'Syncopate', sans-serif;
+  font-size: 11px;
+  opacity: 0.5;
   transition: opacity 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 
   &:hover {
     opacity: 1;
   }
 `;
 
-const RedDot = styled.span`
-  width: 4px;
-  height: 4px;
-  background: #E01212;
-  border-radius: 50%;
-  display: inline-block;
-  margin: 0 8px;
-  vertical-align: middle;
-`;
-
 const Footer: React.FC = () => {
   return (
     <FooterContainer>
-      <FooterContent>
+      <Container>
         <LogoContainer to="/">
           <Logo />
         </LogoContainer>
@@ -95,19 +74,11 @@ const Footer: React.FC = () => {
           <FooterLink to="/privacy">Data Privacy</FooterLink>
           <FooterLink to="/imprint">Imprint</FooterLink>
           <FooterLink to="/terms">Terms & Conditions</FooterLink>
+          <SocialLink href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</SocialLink>
+          <SocialLink href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</SocialLink>
+          <SocialLink href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</SocialLink>
         </LinksContainer>
-        <SocialLinks>
-          <SocialLink href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-            Instagram
-          </SocialLink>
-          <SocialLink href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-            LinkedIn
-          </SocialLink>
-          <SocialLink href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-            Facebook
-          </SocialLink>
-        </SocialLinks>
-      </FooterContent>
+      </Container>
     </FooterContainer>
   );
 };
