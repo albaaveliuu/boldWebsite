@@ -33,16 +33,21 @@ const ServicesList = styled.div`
 const ServiceItem = styled.div`
   position: relative;
   width: 100%;
-  height: 400px;
+  height: 500px;
   display: flex;
   align-items: center;
   padding: 0 40px;
+  margin-bottom: 120px;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
 `;
 
 const ServiceImageContainer = styled.div`
   position: relative;
-  width: 50%;
-  height: 100%;
+  width: 500px;
+  height: 500px;
   overflow: hidden;
   z-index: 1;
   
@@ -63,19 +68,22 @@ const ServiceImage = styled.img`
 
 const ServiceContent = styled.div`
   position: relative;
-  width: 50%;
+  width: calc(100% - 500px);
   padding-left: 60px;
   display: flex;
   flex-direction: column;
   margin-left: -200px;
+  justify-content: center;
+  height: 100%;
+  padding-top: 60px;
 `;
 
 const ServiceTitle = styled.h3`
   color: #FFFFFF;
   font-size: 84px;
   font-weight: 700;
-  font-family: 'Hando', sans-serif;
-  margin-bottom: 40px;
+  font-family: 'Syncopate', sans-serif;
+  margin-bottom: 60px;
   text-transform: uppercase;
   line-height: 1;
   letter-spacing: 1px;
@@ -84,13 +92,15 @@ const ServiceTitle = styled.h3`
 
 const ServiceDescription = styled.p`
   color: #FFFFFF;
-  font-size: 14px;
+  font-size: 18px;
   line-height: 1.6;
   opacity: 0.8;
   max-width: 400px;
-  margin-left: 100px;
+  margin-left: 220px;
   position: relative;
   z-index: 2;
+  font-family: 'Syncopate', sans-serif;
+  margin-bottom: 0;
 `;
 
 const Services: React.FC = () => {
@@ -98,32 +108,32 @@ const Services: React.FC = () => {
     {
       title: 'BRANDING',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-      image: '/images/services/mockupone.png'
+      image: require('../../images/services/Branding.png')
     },
     {
       title: 'VIDEO &\nPRODUCTION',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-      image: 'https://images.unsplash.com/photo-1601506521793-dc748fc80b67'
+      image: require('../../images/services/VideoAndProduction.png')
     },
     {
       title: 'BUSINESS\nEVENT\nHOSTING',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-      image: 'https://images.unsplash.com/photo-1511578314322-379afb476865'
+      image: require('../../images/services/BusinessEventHosting.png')
     },
     {
       title: 'MOTION\nDESIGN',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-      image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b'
+      image: require('../../images/services/MotionDesign.png')
     },
     {
       title: 'DIGITAL\nMARKETING',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-      image: 'https://images.unsplash.com/photo-1557838923-2985c318be48'
+      image: require('../../images/services/DigitalMarketing.png')
     },
     {
       title: 'WEB DESIGN',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-      image: 'https://images.unsplash.com/photo-1547658719-da2b51169166'
+      image: require('../../images/services/WebDesign.png')
     }
   ];
 
