@@ -121,19 +121,22 @@ const ScrollIndicator = styled(motion.div)`
 
 const SloganSection = styled.section`
   position: relative;
-  padding: 200px 20px;
-  background: #1E1E1E;
+  width: 100%;
+  height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  background: #1E1E1E;
   overflow: hidden;
 `;
 
 const BackgroundSlogan = styled(motion.img)`
   position: absolute;
-  width: 600px;
-  height: auto;
-  filter: brightness(0);
+  width: 40%;
+  height: 40%;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.15;
 `;
 
 const SloganText = styled(motion.div)`
@@ -142,8 +145,6 @@ const SloganText = styled(motion.div)`
   text-align: center;
   max-width: 800px;
 `;
-
-
 
 const SloganDescription = styled(motion.p)`
   font-size: 28px;
@@ -262,7 +263,7 @@ const Hero: React.FC = () => {
     },
     visible: {
       scale: 1,
-      opacity: 2,
+      opacity: 0.15,
       transition: {
         duration: 0.3,
         ease: "easeOut"

@@ -76,13 +76,13 @@ const CloseButton = styled.button`
 `;
 
 const Title = styled.h3`
-  font-size: 26px;
+  font-size: 16px;
   font-weight: 800;
   margin-bottom: 16px;
   color: #1E1E1E;
   text-align: center;
-  font-family: 'Hando';
-  line-height: 1.4;
+  font-family: 'Syne';
+  line-height: 1.0;
   white-space: pre-line;
 `;
 

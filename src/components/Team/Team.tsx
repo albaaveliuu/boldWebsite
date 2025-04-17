@@ -1,6 +1,11 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
+// Import team member images
+import BunaImage from '../../images/team/Buna.png';
+import DioraImage from '../../images/team/Diora.png';
+import RitaImage from '../../images/team/Rita.png';
+import LumiImage from '../../images/team/Lumi.png';
 
 const TeamSection = styled.section`
   background: #1E1E1E;
@@ -23,15 +28,13 @@ const SectionTitleContainer = styled.div`
 `;
 
 const SectionTitle = styled.h2`
-  font-size: 60px;
+  font-size: 0px;
   color: #FFFFFF;
   font-weight: 700;
   margin: 0;
   text-transform: uppercase;
   font-family: 'Hando', sans-serif;
 `;
-
-
 
 const TeamGrid = styled.div`
   display: grid;
@@ -58,7 +61,6 @@ const MemberImage = styled.div`
   border-radius: 50%;
   margin: 0 auto 20px;
   overflow: hidden;
-  border: 2px solid #E01212;
   position: relative;
   
   &:after {
@@ -73,9 +75,6 @@ const MemberImage = styled.div`
     transition: opacity 0.3s ease;
   }
   
-  &:hover:after {
-    opacity: 1;
-  }
   
   img {
     width: 100%;
@@ -97,39 +96,33 @@ const MemberName = styled.h3`
 `;
 
 const MemberRole = styled.p`
-  color: #E01212;
-  font-size: 16px;
+  color:rgb(255, 255, 255);
+  font-size: 15px;
   font-family: 'Hando', sans-serif;
-  text-transform: uppercase;
 `;
 
-const RedDot = styled.span`
-  color: #E01212;
-  font-size: 32px;
-  margin-left: 5px;
-`;
 
 const Team: React.FC = () => {
   const teamMembers = [
     {
-      name: 'John Doe',
-      role: 'Creative Director',
-      image: '/images/team/member1.jpg'
+      name: 'Buna Pula',
+      role: 'Managing Director & Brand Specialist',
+      image: process.env.PUBLIC_URL + '/images/team/Buna.png'
     },
     {
-      name: 'Jane Smith',
-      role: 'Lead Designer',
-      image: '/images/team/member2.jpg'
+      name: 'Diora Binxhiu',
+      role: 'Social Media Specialist',
+      image: process.env.PUBLIC_URL + '/images/team/Diora.png'
     },
     {
-      name: 'Mike Johnson',
-      role: 'Developer',
-      image: '/images/team/member3.jpg'
+      name: 'Rita Spahiu',
+      role: 'Talent Manager & Copywriter ',
+      image: process.env.PUBLIC_URL + '/images/team/Rita.png'
     },
     {
-      name: 'Sarah Williams',
-      role: 'Marketing',
-      image: '/images/team/member4.jpg'
+      name: 'Lumi Pula',
+      role: 'Video Production & Animation',
+      image: process.env.PUBLIC_URL + '/images/team/Lumi.png'
     }
   ];
 
