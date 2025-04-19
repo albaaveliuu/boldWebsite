@@ -2,6 +2,14 @@ import React, { useRef, useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import { motion, useScroll, useTransform, LazyMotion, domAnimation } from 'framer-motion';
 
+// Import service images
+import brandingImage from '../../images/services/Branding.png';
+import videoProductionImage from '../../images/services/VideoAndProduction.png';
+import businessEventImage from '../../images/services/BusinessEventHosting.png';
+import motionDesignImage from '../../images/services/MotionDesign.png';
+import digitalMarketingImage from '../../images/services/DigitalMarketing.png';
+import webDesignImage from '../../images/services/WebDesign.png';
+
 const ServicesSection = styled.section`
   background: #1E1E1E;
   padding: 0;
@@ -156,40 +164,35 @@ const Services: React.FC = () => {
     {
       title: 'BRANDING',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-      image: require('../../images/services/Branding.png')
+      image: brandingImage
     },
     {
       title: 'VIDEO &\nPRODUCTION',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-      image: require('../../images/services/VideoAndProduction.png')
+      image: videoProductionImage
     },
     {
       title: 'BUSINESS\nEVENT\nHOSTING',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-      image: require('../../images/services/BusinessEventHosting.png'),
+      image: businessEventImage,
       onClick: () => {
-        const link = document.createElement('a');
-        link.href = '/images/services/Event Hosting Bold.pdf';
-        link.download = 'Event Hosting Bold.pdf';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        window.open('/images/services/Event Hosting Bold.pdf', '_blank');
       }
     },
     {
       title: 'MOTION\nDESIGN',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-      image: require('../../images/services/MotionDesign.png')
+      image: motionDesignImage
     },
     {
       title: 'DIGITAL\nMARKETING',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-      image: require('../../images/services/DigitalMarketing.png')
+      image: digitalMarketingImage
     },
     {
       title: 'WEB DESIGN',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-      image: require('../../images/services/WebDesign.png')
+      image: webDesignImage
     }
   ];
 

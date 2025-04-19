@@ -25,6 +25,7 @@ import headerImage15 from '../../images/header/Artboard15.png';
 import headerImage16 from '../../images/header/Artboard16.png';
 import headerImage17 from '../../images/header/Artboard17.png';
 import headerImage19 from '../../images/header/Artboard19.png';
+
 const HeroSection = styled.section`
   height: 100vh;
   width: 100%;
@@ -151,6 +152,16 @@ const SloganDescription = styled(motion.p)`
   color:rgb(255, 255, 255);
   line-height: 1.6;
   margin: 0 auto;
+`;
+
+const BackgroundImage = styled(motion.img)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
 `;
 
 const Hero: React.FC = () => {
