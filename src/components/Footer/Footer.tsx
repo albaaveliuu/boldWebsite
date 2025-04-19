@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
+import { ReactComponent as BoldLogo } from '../../images/boldLogoRed.svg';
 
 const FooterSection = styled.footer`
   background: #1E1E1E;
@@ -32,37 +33,41 @@ const Container = styled.div`
   padding: 0 40px;
   position: relative;
   z-index: 2;
-`;
-
-const FooterContent = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 40px;
 `;
 
-const LogoContainer = styled.div`
-  img {
-    height: 40px;
-    width: auto;
-  }
-`;
-
-const LinksContainer = styled.div`
+const LeftColumn = styled.div`
   display: flex;
-  gap: 120px;
+  flex-direction: column;
+  gap: 40px;
+`;
+
+const RightColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 40px;
+`;
+
+const Logo = styled(BoldLogo)`
+  width: 60px;
+  height: auto;
+  path {
+    fill: #FFFFFF;
+  }
 `;
 
 const LinkGroup = styled.div`
   display: flex;
-  gap: 40px;
+  gap: 20px;
 `;
 
 const FooterLink = styled(Link)`
   color: #FFFFFF;
   text-decoration: none;
   font-size: 14px;
-  font-family: 'Hando', sans-serif;
+  font-family: 'Syne', sans-serif;
   opacity: 0.6;
   transition: opacity 0.3s ease;
 
@@ -75,7 +80,7 @@ const ExternalLink = styled.a`
   color: #FFFFFF;
   text-decoration: none;
   font-size: 14px;
-  font-family: 'Hando', sans-serif;
+  font-family: 'Syne', sans-serif;
   opacity: 0.6;
   transition: opacity 0.3s ease;
 
@@ -87,41 +92,36 @@ const ExternalLink = styled.a`
 const Copyright = styled.div`
   color: #FFFFFF;
   font-size: 14px;
-  font-family: 'Hando', sans-serif;
+  font-family: 'Syne', sans-serif;
   opacity: 0.6;
-  text-align: right;
 `;
 
 const Footer: React.FC = () => {
   return (
     <FooterSection>
       <Container>
-        <FooterContent>
-          <LogoContainer>
-            <img src={require('../../images/boldLogoRed.svg').default} alt="Bold Kreativ" />
-          </LogoContainer>
-          <LinksContainer>
-            <LinkGroup>
-              <FooterLink to="/data-privacy">Data Privacy</FooterLink>
-              <FooterLink to="/imprint">Imprint</FooterLink>
-              <FooterLink to="/terms">Terms & Conditions</FooterLink>
-            </LinkGroup>
-            <LinkGroup>
-              <ExternalLink href="https://instagram.com/boldkreativ" target="_blank" rel="noopener noreferrer">
-                Instagram
-              </ExternalLink>
-              <ExternalLink href="https://linkedin.com/company/boldkreativ" target="_blank" rel="noopener noreferrer">
-                Linked In
-              </ExternalLink>
-              <ExternalLink href="https://facebook.com/boldkreativ" target="_blank" rel="noopener noreferrer">
-                Facebook
-              </ExternalLink>
-            </LinkGroup>
-          </LinksContainer>
-        </FooterContent>
-        <Copyright>
-          © 2024 Bold Kretiv L.L.C.
-        </Copyright>
+        <LeftColumn>
+          <Logo />
+          <LinkGroup>
+            <FooterLink to="/data-privacy">Data Privacy</FooterLink>
+            <FooterLink to="/imprint">Imprint</FooterLink>
+            <FooterLink to="/terms">Terms & Conditions</FooterLink>
+          </LinkGroup>
+        </LeftColumn>
+        <RightColumn>
+          <Copyright>© 2024 Bold Kretiv L.L.C.</Copyright>
+          <LinkGroup>
+            <ExternalLink href="https://instagram.com/boldkreativ" target="_blank" rel="noopener noreferrer">
+              Instagram
+            </ExternalLink>
+            <ExternalLink href="https://linkedin.com/company/boldkreativ" target="_blank" rel="noopener noreferrer">
+              Linked In
+            </ExternalLink>
+            <ExternalLink href="https://facebook.com/boldkreativ" target="_blank" rel="noopener noreferrer">
+              Facebook
+            </ExternalLink>
+          </LinkGroup>
+        </RightColumn>
       </Container>
     </FooterSection>
   );
