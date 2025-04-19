@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { ReactComponent as SloganSVG } from '../../images/Slogan.svg';
+import { motion } from 'framer-motion';
 import astronautImage from '../../images/astronaut.png';
+import sloganImage from '../../images/aboutus/sloganhorizontal.png';
 
 const ContactSection = styled.section`
   padding: 100px 20px;
@@ -17,12 +18,36 @@ const SectionTitleContainer = styled.div`
   align-items: center;
   gap: 16px;
   width: 100%;
-  max-width: 2000px;
-  padding: 0 20px;
+  max-width: 1200px;
+  padding: 0 40px;
   margin-bottom: 60px;
+  justify-content: flex-start;
+  
+  @media (max-width: 768px) {
+    padding: 0 20px;
+  }
 `;
 
-
+const SectionTitle = styled.h2`
+  font-size: 95px;
+  font-weight: 700;
+  font-family: 'Syne', sans-serif;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: -2px;
+  white-space: nowrap;
+  color: #FFFFFF;
+  text-align: left;
+  
+  @media (max-width: 768px) {
+    font-size: 60px;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 40px;
+  }
+`;
 
 const ContactContainer = styled.div`
   display: grid;
@@ -31,6 +56,10 @@ const ContactContainer = styled.div`
   max-width: 1200px;
   background:rgb(255, 255, 255);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const FormSection = styled.div`
@@ -39,6 +68,10 @@ const FormSection = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  
+  @media (max-width: 768px) {
+    padding: 40px 20px;
+  }
 `;
 
 const FormTitle = styled.div`
@@ -47,6 +80,10 @@ const FormTitle = styled.div`
   display: flex;
   justify-content: center;
   margin-right: -100px;
+  
+  @media (max-width: 768px) {
+    margin-right: 0;
+  }
   
   svg {
     width: auto;
@@ -67,6 +104,10 @@ const CollaborateText = styled.h4`
   justify-content: center;
   margin-right: -100px;
   font-family: 'Hando', sans-serif;
+  
+  @media (max-width: 768px) {
+    margin-right: 0;
+  }
 `;
 
 const Form = styled.form`
@@ -81,6 +122,10 @@ const InputRow = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
+  
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const Input = styled.input`
@@ -167,16 +212,29 @@ const Subtitle = styled.p`
   margin-bottom: 40px;
 `;
 
+const SloganImage = styled.img`
+  width: 100%;
+  max-width: 902px;
+  height: auto;
+  filter: brightness(0); /* This makes the image black */
+  margin-bottom: 10px;
+  
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
+`;
+
 const Contact: React.FC = () => {
   return (
     <ContactSection id="contact">
       <SectionTitleContainer>
-       
+        <SectionTitle>CONTACT US</SectionTitle>
       </SectionTitleContainer>
       <ContactContainer>
         <FormSection>
+          <SloganImage src={sloganImage} alt="Slogan" />
           <FormTitle>
-            <SloganSVG />
+            Get in Touch
           </FormTitle>
           <CollaborateText>Let's Collaborate!</CollaborateText>
           <Form>

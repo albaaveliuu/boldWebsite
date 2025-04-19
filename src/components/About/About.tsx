@@ -1,11 +1,15 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const AboutSection = styled.section`
   background: #1E1E1E;
   padding: 180px 0;
   color: #FFFFFF;
+  
+  @media (max-width: 768px) {
+    padding: 100px 0;
+  }
 `;
 
 const Container = styled.div`
@@ -16,21 +20,41 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   gap: 60px;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 0 20px;
+    gap: 40px;
+  }
 `;
 
 const Content = styled.div`
   flex: 1;
+  
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const Title = styled.h2`
   font-size: 95px;
   font-weight: 700;
-  font-family: 'Hando', sans-serif;
+  font-family: 'Syne', sans-serif;
   margin-bottom: 40px;
   text-transform: uppercase;
   line-height: 1;
   letter-spacing: -2px;
   white-space: nowrap;
+  
+  @media (max-width: 768px) {
+    font-size: 60px;
+    margin-bottom: 30px;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 40px;
+    margin-bottom: 20px;
+  }
 `;
 
 const Description = styled.p`
@@ -44,12 +68,26 @@ const Description = styled.p`
   &:last-of-type {
     margin-bottom: 40px;
   }
+  
+  @media (max-width: 768px) {
+    font-size: 16px;
+    margin-bottom: 20px;
+    max-width: 100%;
+    
+    &:last-of-type {
+      margin-bottom: 20px;
+    }
+  }
 `;
 
 const Slogan = styled.div`
   margin-top: 0;
   width: 100%;
   max-width: 400px;
+  
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
   
   img {
     width: 100%;
@@ -66,15 +104,31 @@ const ImageContainer = styled(motion.div)`
   align-items: center;
   position: sticky;
   top: 120px;
+  perspective: 1000px;
+  
+  @media (max-width: 768px) {
+    position: relative;
+    top: 0;
+    width: 100%;
+  }
 
   img {
     max-width: 100%;
     height: auto;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 `;
 
 const About: React.FC = () => {
-  const sloganImage = require('../../images/aboutus/Slogan.svg');
+  const { scrollYProgress } = useScroll();
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.2, 1]);
+  const y = useTransform(scrollYProgress, [0, 0.5, 1], [0, -50, 0]);
 
   return (
     <AboutSection id="about">
@@ -91,12 +145,21 @@ const About: React.FC = () => {
             As a collaborative network of designers, strategists, and event specialists, we tailor each project to fit your unique needs. From concept to execution, we blend visual design, media, branding, and hosting into one cohesive, impactful experience.
           </Description>
         </Content>
-        <ImageContainer
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <img src={require('../../images/logo3d.png')} alt="3D Logo" />
+        <ImageContainer>
+          <motion.img 
+            src={require('../../images/logo3d.png')} 
+            alt="3D Logo"
+            style={{
+              scale,
+              y,
+            }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+              duration: 1,
+              ease: "easeOut"
+            }}
+          />
         </ImageContainer>
       </Container>
     </AboutSection>

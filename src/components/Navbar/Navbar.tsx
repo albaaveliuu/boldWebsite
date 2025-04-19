@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
-import { motion } from 'framer-motion';
+import { motion, LazyMotion, domAnimation } from 'framer-motion';
 import iconImage from '../../images/icon.png';
 
 const NavbarContainer = styled(motion.nav)`
@@ -14,10 +14,6 @@ const NavbarContainer = styled(motion.nav)`
   justify-content: space-between;
   align-items: center;
   background: rgba(0, 0, 0, 0.9);
-
-  @media (max-width: 768px) {
-    padding: 20px;
-  }
 `;
 
 const NavGroup = styled.div`
@@ -26,12 +22,12 @@ const NavGroup = styled.div`
   align-items: center;
   flex: 1;
 
-  &:last-child {
-    justify-content: flex-end;
+  &.left-nav {
+    justify-content: flex-start;
   }
 
-  @media (max-width: 768px) {
-    display: none;
+  &.right-nav {
+    justify-content: flex-end;
   }
 `;
 
@@ -64,8 +60,57 @@ const NavLink = styled.a<{ $isActive?: boolean }>`
   }
 `;
 
+const MobileMenuButton = styled.button`
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: none;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+`;
+
+const MobileMenu = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1001;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const MobileNavLinks = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+`;
+
+const MobileNavLink = styled.li<{ $isActive?: boolean }>`
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 10px;
+  
+  &:hover {
+    color: #E01212;
+  }
+`;
+
 const Navbar: React.FC = () => {
   const [activeSection, setActiveSection] = useState('home');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const scrollToSection = (sectionId: string) => {
     if (sectionId === 'home') {
@@ -78,6 +123,10 @@ const Navbar: React.FC = () => {
         setActiveSection(sectionId);
       }
     }
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   useEffect(() => {
@@ -101,50 +150,85 @@ const Navbar: React.FC = () => {
   }, []);
 
   return (
-    <NavbarContainer
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-    >
-      <NavGroup>
-        <NavLink 
+    <LazyMotion features={domAnimation}>
+      <NavbarContainer
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
+        <NavGroup className="left-nav">
+          <NavLink 
+            onClick={() => scrollToSection('home')}
+            $isActive={activeSection === 'home'}
+          >
+            Home
+          </NavLink>
+          <NavLink 
+            onClick={() => scrollToSection('about')}
+            $isActive={activeSection === 'about'}
+          >
+            About
+          </NavLink>
+        </NavGroup>
+        <Logo 
+          src={iconImage} 
+          alt="Bold" 
           onClick={() => scrollToSection('home')}
-          $isActive={activeSection === 'home'}
+        />
+        <NavGroup className="right-nav">
+          <NavLink 
+            onClick={() => scrollToSection('services')}
+            $isActive={activeSection === 'services'}
+          >
+            Services
+          </NavLink>
+          <NavLink 
+            onClick={() => scrollToSection('contact')}
+            $isActive={activeSection === 'contact'}
+          >
+            Contact
+          </NavLink>
+        </NavGroup>
+        <MobileMenuButton onClick={toggleMobileMenu}>
+          {isMobileMenuOpen ? '✕' : '☰'}
+        </MobileMenuButton>
+      </NavbarContainer>
+      
+      {isMobileMenuOpen && (
+        <MobileMenu
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
         >
-          Home
-        </NavLink>
-        <NavLink 
-          onClick={() => scrollToSection('about')}
-          $isActive={activeSection === 'about'}
-        >
-          About
-        </NavLink>
-        <NavLink 
-          onClick={() => scrollToSection('services')}
-          $isActive={activeSection === 'services'}
-        >
-          Services
-        </NavLink>
-      </NavGroup>
-      <Logo 
-        src={iconImage} 
-        alt="Bold" 
-        onClick={() => scrollToSection('home')}
-      />
-      <NavGroup>
-        <NavLink 
-          onClick={() => scrollToSection('work')}
-          $isActive={activeSection === 'work'}
-        >
-          Work
-        </NavLink>
-        <NavLink 
-          onClick={() => scrollToSection('contact')}
-          $isActive={activeSection === 'contact'}
-        >
-          Contact
-        </NavLink>
-      </NavGroup>
-    </NavbarContainer>
+          <MobileNavLinks>
+            <MobileNavLink 
+              onClick={() => scrollToSection('home')}
+              $isActive={activeSection === 'home'}
+            >
+              Home
+            </MobileNavLink>
+            <MobileNavLink 
+              onClick={() => scrollToSection('about')}
+              $isActive={activeSection === 'about'}
+            >
+              About
+            </MobileNavLink>
+            <MobileNavLink 
+              onClick={() => scrollToSection('services')}
+              $isActive={activeSection === 'services'}
+            >
+              Services
+            </MobileNavLink>
+            <MobileNavLink 
+              onClick={() => scrollToSection('contact')}
+              $isActive={activeSection === 'contact'}
+            >
+              Contact
+            </MobileNavLink>
+          </MobileNavLinks>
+        </MobileMenu>
+      )}
+    </LazyMotion>
   );
 };
 

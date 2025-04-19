@@ -157,7 +157,7 @@ const Hero: React.FC = () => {
   const { scrollY } = useScroll();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [buttonVisible, setButtonVisible] = useState(true);
-  const [showNewsletter, setShowNewsletter] = useState<boolean>(false);
+  const [showNewsletter, setShowNewsletter] = useState<boolean>(true);
   
   const headerImages = [
     headerImage1,
@@ -183,7 +183,7 @@ const Hero: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % headerImages.length);
-    }, 800);
+    }, 500);
     
     return () => clearInterval(interval);
   }, []);
@@ -195,15 +195,6 @@ const Hero: React.FC = () => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Show newsletter popup after a short delay when the page loads
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowNewsletter(true);
-    }, 2000);
-
-    return () => clearTimeout(timer);
   }, []);
 
   const scrollToWork = () => {

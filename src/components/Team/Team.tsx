@@ -5,35 +5,62 @@ import { motion } from 'framer-motion';
 const TeamSection = styled.section`
   background: #1E1E1E;
   padding: 180px 0;
+  
+  @media (max-width: 768px) {
+    padding: 100px 0;
+  }
 `;
 
 const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 40px;
+  
+  @media (max-width: 768px) {
+    padding: 0 20px;
+  }
 `;
 
 const Title = styled.h2`
   color: #FFFFFF;
   font-size: 95px;
   font-weight: 700;
-  font-family: 'Hando', sans-serif;
+  font-family: 'Syne', sans-serif;
   margin-bottom: 100px;
   text-transform: uppercase;
   line-height: 1;
   letter-spacing: -2px;
+  
+  @media (max-width: 768px) {
+    font-size: 60px;
+    margin-bottom: 60px;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 40px;
+    margin-bottom: 40px;
+  }
 `;
 
 const TeamGrid = styled.div`
   display: flex;
   flex-direction: column;
   gap: 100px;
+  
+  @media (max-width: 768px) {
+    gap: 60px;
+  }
 `;
 
 const TeamMember = styled(motion.div)`
   display: flex;
   gap: 60px;
   align-items: flex-start;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 30px;
+  }
 `;
 
 interface MemberImageProps {
@@ -46,6 +73,17 @@ const MemberImage = styled.div<MemberImageProps>`
   flex-shrink: 0;
   overflow: hidden;
   background: ${props => props.isRed ? '#E01212' : 'transparent'};
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 300px;
+  }
+  
+  &:hover {
+    transform: scale(1.05);
+  }
   
   img {
     width: 100%;
@@ -59,6 +97,10 @@ const MemberInfo = styled.div`
   color: #FFFFFF;
   flex: 1;
   padding-top: 8px;
+  
+  @media (max-width: 768px) {
+    padding-top: 0;
+  }
 `;
 
 const MemberName = styled.h3`
@@ -66,7 +108,14 @@ const MemberName = styled.h3`
   font-weight: 600;
   font-family: 'Hando', sans-serif;
   margin-bottom: 8px;
-  text-transform: uppercase;
+  
+  @media (max-width: 768px) {
+    font-size: 32px;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 28px;
+  }
 `;
 
 const MemberRole = styled.p`
@@ -74,6 +123,11 @@ const MemberRole = styled.p`
   opacity: 0.8;
   font-family: 'Hando', sans-serif;
   margin-bottom: 32px;
+  
+  @media (max-width: 768px) {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
 `;
 
 const MemberDescription = styled.p`
@@ -83,6 +137,12 @@ const MemberDescription = styled.p`
   font-family: 'Hando', sans-serif;
   margin-bottom: 32px;
   max-width: 600px;
+  
+  @media (max-width: 768px) {
+    font-size: 16px;
+    margin-bottom: 20px;
+    max-width: 100%;
+  }
 `;
 
 const BottomRow = styled.div`
@@ -91,6 +151,10 @@ const BottomRow = styled.div`
   align-items: center;
   width: 100%;
   max-width: 600px;
+  
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
 `;
 
 const SocialLinks = styled.div`
@@ -119,6 +183,10 @@ const SocialLink = styled.a`
 const Signature = styled.img`
   height: 70px;
   opacity: 0.8;
+  
+  @media (max-width: 768px) {
+    height: 50px;
+  }
 `;
 
 const Team: React.FC = () => {
@@ -130,7 +198,7 @@ const Team: React.FC = () => {
       image: require('../../images/bunasquare.png'),
       signature: require('../../images/bunasignature.png'),
       linkedin: 'https://linkedin.com/in/bunapula',
-      instagram: 'https://instagram.com/bunapula'
+      instagram: 'https://behance.net/bunapula'
     },
     {
       name: 'Shuki Dema',

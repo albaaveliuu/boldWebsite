@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
-import { motion, AnimatePresence, LazyMotion, domAnimation } from 'framer-motion';
+import { motion, domAnimation, LazyMotion } from 'framer-motion';
 import headerImage from '../../images/header.png';
 
 const PopupOverlay = styled(motion.div)`
@@ -156,43 +156,41 @@ const NewsletterPopup: React.FC<NewsletterPopupProps> = ({ onClose, isVisible = 
 
   return (
     <LazyMotion features={domAnimation}>
-      <AnimatePresence>
-        {isVisible && (
-          <PopupOverlay
-            key="popup-overlay"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={onClose}
+      {isVisible && (
+        <PopupOverlay
+          key="popup-overlay"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={onClose}
+        >
+          <PopupContainer
+            key="popup-container"
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            transition={{ type: "spring", duration: 0.5 }}
+            onClick={(e) => e.stopPropagation()}
           >
-            <PopupContainer
-              key="popup-container"
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ type: "spring", duration: 0.5 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <ImageSection />
-              <CloseButton onClick={onClose}>×</CloseButton>
-              <ContentWrapper>
-                <Title>
-                  Get exclusive design insights and Bold brand updates.{'\n'}
-                  No spam, just bold ideas.
-                </Title>
-                <Form onSubmit={handleSubmit}>
-                  <Input
-                    type="email"
-                    placeholder="Enter your email"
-                    required
-                  />
-                  <SubmitButton type="submit">Sign up</SubmitButton>
-                </Form>
-              </ContentWrapper>
-            </PopupContainer>
-          </PopupOverlay>
-        )}
-      </AnimatePresence>
+            <ImageSection />
+            <CloseButton onClick={onClose}>×</CloseButton>
+            <ContentWrapper>
+              <Title>
+                Get exclusive design insights and Bold brand updates.{'\n'}
+                No spam, just bold ideas.
+              </Title>
+              <Form onSubmit={handleSubmit}>
+                <Input
+                  type="email"
+                  placeholder="Enter your email"
+                  required
+                />
+                <SubmitButton type="submit">Sign up</SubmitButton>
+              </Form>
+            </ContentWrapper>
+          </PopupContainer>
+        </PopupOverlay>
+      )}
     </LazyMotion>
   );
 };
