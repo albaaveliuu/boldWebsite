@@ -106,7 +106,7 @@ const MemberInfo = styled.div`
 const MemberName = styled.h3`
   font-size: 44px;
   font-weight: 600;
-  font-family: 'Hando', sans-serif;
+  font-family: 'Syne', sans-serif;
   margin-bottom: 8px;
   
   @media (max-width: 768px) {

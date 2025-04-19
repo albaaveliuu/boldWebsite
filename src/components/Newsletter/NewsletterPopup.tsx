@@ -81,7 +81,7 @@ const Title = styled.h3`
   margin-bottom: 16px;
   color: #1E1E1E;
   text-align: center;
-  font-family: 'Syne';
+  font-family: 'Hando', sans-serif;
   line-height: 1.0;
   white-space: pre-line;
 `;
