@@ -113,7 +113,7 @@ const ServiceTitle = styled.h3`
 const ServiceDescription = styled.p`
   color: #FFFFFF;
   font-size: 18px;
-  line-height: 1.8;
+  line-height: 1.5;
   opacity: 0.8;
   font-family: 'Syncopate', sans-serif;
 `;

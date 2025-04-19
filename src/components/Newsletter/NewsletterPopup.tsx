@@ -76,8 +76,8 @@ const CloseButton = styled.button`
 `;
 
 const Title = styled.h3`
-  font-size: 16px;
-  font-weight: 800;
+  font-size: 19px;
+  font-weight: 400;
   margin-bottom: 16px;
   color: #1E1E1E;
   text-align: center;

@@ -59,23 +59,23 @@ const Title = styled.h2`
 
 const Description = styled.p`
   font-size: 20px;
-  line-height: 1.8;
+  line-height: 1.5;
   opacity: 0.8;
   font-family: 'Hando', sans-serif;
-  margin-bottom: 32px;
+  margin-bottom: 20px;
   max-width: 600px;
 
   &:last-of-type {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
   }
   
   @media (max-width: 768px) {
     font-size: 16px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     max-width: 100%;
     
     &:last-of-type {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
   }
 `;

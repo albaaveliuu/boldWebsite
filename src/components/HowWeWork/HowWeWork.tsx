@@ -77,7 +77,7 @@ const StepTitle = styled.h3`
 
 const StepDescription = styled.p`
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.4;
   color: rgba(255, 255, 255, 0.8);
   font-family: 'Hando', sans-serif;
 `;

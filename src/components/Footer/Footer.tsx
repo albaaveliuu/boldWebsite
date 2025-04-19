@@ -103,13 +103,13 @@ const Footer: React.FC = () => {
         <LeftColumn>
           <Logo />
           <LinkGroup>
-            <FooterLink to="/data-privacy">Data Privacy</FooterLink>
-            <FooterLink to="/imprint">Imprint</FooterLink>
+            <FooterLink to="/privacy">Privacy Policy</FooterLink>
             <FooterLink to="/terms">Terms & Conditions</FooterLink>
+            <FooterLink to="/imprint">Imprint</FooterLink>
           </LinkGroup>
         </LeftColumn>
         <RightColumn>
-          <Copyright>© 2024 Bold Kretiv L.L.C.</Copyright>
+          <Copyright>© 2024 Bold Kreativ L.L.C.</Copyright>
           <LinkGroup>
             <ExternalLink href="https://instagram.com/boldkreativ" target="_blank" rel="noopener noreferrer">
               Instagram

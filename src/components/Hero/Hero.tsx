@@ -156,6 +156,11 @@ const TextLine = styled(motion.div)`
   flex-wrap: wrap;
   gap: 12px;
   align-items: center;
+
+  &:first-of-type {
+    justify-content: center;
+    width: 100%;
+  }
 `;
 
 const Word = styled(motion.span)`
@@ -303,14 +308,14 @@ const Hero: React.FC = () => {
     },
     visible: {
       scale: 1,
-      opacity: 0.15,
+      opacity: 0.05,
       transition: {
         duration: 0.3,
         ease: "easeOut"
       }
     },
     fadeOut: {
-      opacity: 0.15,
+      opacity: 0.05,
       transition: {
         duration: 0.3,
         delay: 0.5
