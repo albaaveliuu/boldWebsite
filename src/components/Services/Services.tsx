@@ -179,17 +179,17 @@ const Services: React.FC = () => {
   const services = [
     {
       title: 'BRANDING',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+      description: 'We create strong visual identities through logo design, brand strategy, and storytelling.From name to look and feel, we make sure your brand stands out and stays consistent everywhere.',
       image: brandingImage
     },
     {
       title: 'VIDEO &\nPRODUCTION',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+      description: 'We bring your ideas to life through sharp, engaging visuals. From concept to final cut, we handle video editing, motion graphics, and production - tailored to fit your brand and captivate your audience.',
       image: videoProductionImage
     },
     {
       title: 'BUSINESS\nEVENT\nHOSTING',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+      description: 'We handle all aspects of event management, from logistics to coordination, ensuring a seamless, professional experience that meets your business objectives and engages attendees.',
       image: businessEventImage,
       onClick: () => {
         window.open('/images/services/Event Hosting Bold.pdf', '_blank');
@@ -197,17 +197,17 @@ const Services: React.FC = () => {
     },
     {
       title: 'MOTION\nDESIGN',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+      description: 'We create dynamic motion graphics that bring your brand to life. From animated logos to explainer videos, we craft engaging content that captures attention and communicates clearly.',
       image: motionDesignImage
     },
     {
       title: 'DIGITAL\nMARKETING',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+      description: 'We develop targeted digital marketing strategies that drive engagement and growth. From social media campaigns to SEO and paid ads, we help you reach your audience and achieve measurable results.',
       image: digitalMarketingImage
     },
     {
-      title: 'WEB DESIGN',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+      title: 'WEB DESIGN\n AND DEVELOPMENT',
+      description: 'We create responsive, user-friendly websites with stunning designs and seamless functionality, ensuring an optimal user experience that aligns with your brand’s goals.',
       image: webDesignImage
     }
   ];
