@@ -241,8 +241,9 @@ class NewsletterPopup extends React.Component<NewsletterPopupProps, NewsletterPo
             </ImageSection>
             <ContentWrapper>
               <Title>
-                Subscribe to our newsletter
-                and stay updated with our latest news and offers.
+                Get exclusive design insights and Bold brand updates.
+                {'\n'}
+                No spam, just bold ideas.
               </Title>
               <Form onSubmit={this.handleSubmit}>
                 <Input
