@@ -202,7 +202,7 @@ const AnimatedDescription = styled(motion.p)`
 `;
 
 interface Service {
-  title: string;
+  title: string | string[];
   description: string;
   image: string;
 }
@@ -217,27 +217,27 @@ const Services: React.FC = () => {
       image: "/static/media/Branding.498dffa129e846c1595c.png"
     },
     {
-      title: "VIDEO &\nPRODUCTION",
+      title: ["VIDEO", "PRODUCTION"],
       description: "We bring your ideas to life through sharp, engaging visuals. From concept to final cut, we handle video editing, motion graphics, and production - tailored to fit your brand and captivate your audience.",
       image: "/static/media/VideoAndProduction.cccb4cb423d0833a4dc3.png"
     },
     {
-      title: "BUSINESS\nEVENT\nHOSTING",
+      title: ["BUSINESS", "EVENT", "HOSTING"],
       description: "We handle all aspects of event management, from logistics to coordination, ensuring a seamless, professional experience that meets your business objectives and engages attendees.",
       image: "/static/media/BusinessEventHosting.5466fcb245b4679cd102.png"
     },
     {
-      title: "MOTION\nDESIGN",
+      title: ["MOTION", "DESIGN"],
       description: "We create dynamic motion graphics that bring your brand to life. From animated logos to explainer videos, we craft engaging content that captures attention and communicates clearly.",
       image: "/static/media/MotionDesign.f09e871e5e4805a2008d.png"
     },
     {
-      title: "DIGITAL\nMARKETING",
+      title: ["DIGITAL", "MARKETING"],
       description: "We develop targeted digital marketing strategies that drive engagement and growth. From social media campaigns to SEO and paid ads, we help you reach your audience and achieve measurable results.",
       image: "/static/media/DigitalMarketing.217c18cb995f65eb2630.png"
     },
     {
-      title: "WEB DESIGN &\nDEVELOPMENT",
+      title: ["WEB DESIGN", "& DEVELOPMENT"],
       description: "We create responsive, user-friendly websites with stunning designs and seamless functionality, ensuring an optimal user experience that aligns with your brand's goals.",
       image: "/static/media/WebDesign.3577663009905919d19b.png"
     }
@@ -246,7 +246,7 @@ const Services: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % services.length);
-    }, 3000);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [services.length]);
@@ -267,6 +267,7 @@ const Services: React.FC = () => {
     initial: { opacity: 0 },
     animate: { opacity: 1 },
     exit: { opacity: 0 },
+    transition: { duration: 1 }
   };
 
   return (
@@ -279,32 +280,56 @@ const Services: React.FC = () => {
               variants={containerVariants}
               initial="initial"
               animate="animate"
-              transition={{ duration: 0.5 }}
+              transition={{ 
+                duration: 1,
+                ease: "easeInOut" 
+              }}
             >
               <ServiceImageContainer>
-                <ServiceImage src={currentService.image} alt={currentService.title} />
+                <ServiceImage src={currentService.image} alt={typeof currentService.title === 'string' ? currentService.title : currentService.title.join(' ')} />
               </ServiceImageContainer>
               <ServiceContent>
                 <ServiceTitle>
-                  {currentService.title.split('').map((char, index) => (
-                    <AnimatedTitle
-                      key={index}
-                      custom={index}
-                      variants={titleAnimation}
-                      initial="hidden"
-                      animate="visible"
-                    >
-                      {char === '\n' ? <br /> : char}
-                    </AnimatedTitle>
-                  ))}
+                  {Array.isArray(currentService.title) ? (
+                    currentService.title.map((line, lineIndex) => (
+                      <React.Fragment key={lineIndex}>
+                        {line.split('').map((char, charIndex) => (
+                          <AnimatedTitle
+                            key={`${lineIndex}-${charIndex}`}
+                            custom={charIndex + (lineIndex * 20)}
+                            variants={titleAnimation}
+                            initial="hidden"
+                            animate="visible"
+                          >
+                            {char}
+                          </AnimatedTitle>
+                        ))}
+                        {lineIndex < currentService.title.length - 1 && <br />}
+                      </React.Fragment>
+                    ))
+                  ) : (
+                    currentService.title.split('').map((char, index) => (
+                      <AnimatedTitle
+                        key={index}
+                        custom={index}
+                        variants={titleAnimation}
+                        initial="hidden"
+                        animate="visible"
+                      >
+                        {char}
+                      </AnimatedTitle>
+                    ))
+                  )}
                 </ServiceTitle>
               </ServiceContent>
               <AnimatedDescription
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ 
-                  delay: currentService.title.length * 0.05 + 0.2,
-                  duration: 0.5 
+                  delay: (Array.isArray(currentService.title) 
+                    ? currentService.title.join('').length 
+                    : currentService.title.length) * 0.05 + 0.2,
+                  duration: 0.8
                 }}
               >
                 {currentService.description}
