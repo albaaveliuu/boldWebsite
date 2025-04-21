@@ -142,6 +142,14 @@ const SubmitButton = styled.button`
   }
 `;
 
+const ErrorMessage = styled.p`
+  color: #f44336;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 14px;
+  width: 100%;
+`;
+
 interface NewsletterPopupProps {
   onClose: () => void;
   isVisible?: boolean;
@@ -151,6 +159,7 @@ interface NewsletterPopupState {
   email: string;
   isSubmitting: boolean;
   isSuccess: boolean;
+  error: string | null;
 }
 
 class NewsletterPopup extends React.Component<NewsletterPopupProps, NewsletterPopupState> {
@@ -159,13 +168,14 @@ class NewsletterPopup extends React.Component<NewsletterPopupProps, NewsletterPo
     this.state = {
       email: '',
       isSubmitting: false,
-      isSuccess: false
+      isSuccess: false,
+      error: null
     };
   }
 
   handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    this.setState({ isSubmitting: true });
+    this.setState({ isSubmitting: true, error: null });
     
     try {
       const response = await fetch('https://formspree.io/f/mnndabbd', {
@@ -181,9 +191,16 @@ class NewsletterPopup extends React.Component<NewsletterPopupProps, NewsletterPo
         setTimeout(() => {
           this.props.onClose();
         }, 2000);
+      } else {
+        const data = await response.json();
+        if (data.errors) {
+          this.setState({ error: data.errors.map((err: any) => err.message).join(', ') });
+        } else {
+          this.setState({ error: 'Failed to subscribe. Please try again.' });
+        }
       }
     } catch (error) {
-      console.error('Error submitting form:', error);
+      this.setState({ error: 'An error occurred. Please try again.' });
     } finally {
       this.setState({ isSubmitting: false });
     }
@@ -191,7 +208,7 @@ class NewsletterPopup extends React.Component<NewsletterPopupProps, NewsletterPo
 
   render() {
     const { onClose, isVisible = true } = this.props;
-    const { isSuccess, isSubmitting, email } = this.state;
+    const { isSuccess, isSubmitting, email, error } = this.state;
 
     if (isSuccess) {
       return (
@@ -258,6 +275,7 @@ class NewsletterPopup extends React.Component<NewsletterPopupProps, NewsletterPo
                   {isSubmitting ? 'Subscribing...' : 'Subscribe'}
                 </SubmitButton>
               </Form>
+              {error && <ErrorMessage>{error}</ErrorMessage>}
             </ContentWrapper>
           </PopupContainer>
         </PopupOverlay>
