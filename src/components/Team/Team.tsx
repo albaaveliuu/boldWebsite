@@ -202,7 +202,7 @@ const Team: React.FC = () => {
     },
     {
       name: 'Shuki Dema',
-      role: 'Chief Sales Officer',
+      role: 'Chief Revenue Officer',
       image: require('../../images/shuki.png'),
       description: 'With extensive experience in business events, Shuki connects senior executives and C-level leaders to network, collaborate, and solve challenges. From summits to virtual roundtables, he designs tailored experiences that exceed expectations and align with client goals.',
       signature: require('../../images/shukisignature.png'),
