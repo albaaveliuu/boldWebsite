@@ -226,36 +226,163 @@ const SloganImage = styled.img`
   }
 `;
 
-const Contact: React.FC = () => {
-  return (
-    <ContactSection id="contact">
-      <SectionTitleContainer>
-        <SectionTitle>CONTACT US</SectionTitle>
-      </SectionTitleContainer>
-      <ContactContainer>
-        <FormSection>
-          <SloganImage src={sloganImage} alt="Slogan" />
-          <FormTitle>
-            Get in Touch
-          </FormTitle>
-          <CollaborateText>Let's Collaborate!</CollaborateText>
-          <Form>
-            <InputRow>
-              <Input type="text" placeholder="Name" />
-              <Input type="text" placeholder="Company" />
-            </InputRow>
-            <InputRow>
-              <Input type="text" placeholder="Subject" />
-              <Input type="tel" placeholder="Phone" />
-            </InputRow>
-            <TextArea placeholder="Give us more ..." />
-            <SubmitButton type="submit">Contact us</SubmitButton>
-          </Form>
-        </FormSection>
-        <ImageContainer />
-      </ContactContainer>
-    </ContactSection>
-  );
-};
+interface ContactState {
+  formData: {
+    name: string;
+    company: string;
+    subject: string;
+    phone: string;
+    message: string;
+  };
+  isSubmitting: boolean;
+  isSuccess: boolean;
+  errors: string[];
+}
+
+class Contact extends React.Component<{}, ContactState> {
+  constructor(props: {}) {
+    super(props);
+    this.state = {
+      formData: {
+        name: '',
+        company: '',
+        subject: '',
+        phone: '',
+        message: ''
+      },
+      isSubmitting: false,
+      isSuccess: false,
+      errors: []
+    };
+  }
+
+  handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    this.setState({ isSubmitting: true, errors: [] });
+    
+    try {
+      const response = await fetch('https://formspree.io/f/mnndabbd', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(this.state.formData)
+      });
+      
+      if (response.ok) {
+        this.setState({ isSuccess: true });
+      } else {
+        this.setState({ errors: ['Failed to send message. Please try again.'] });
+      }
+    } catch (error) {
+      this.setState({ errors: ['An error occurred. Please try again.'] });
+    } finally {
+      this.setState({ isSubmitting: false });
+    }
+  };
+
+  handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    this.setState(prevState => ({
+      formData: {
+        ...prevState.formData,
+        [name]: value
+      }
+    }));
+  };
+
+  render() {
+    const { formData, isSubmitting, isSuccess, errors } = this.state;
+
+    return (
+      <ContactSection id="contact">
+        <SectionTitleContainer>
+          <SectionTitle>CONTACT US</SectionTitle>
+        </SectionTitleContainer>
+        <ContactContainer>
+          <FormSection>
+            <SloganImage src={sloganImage} alt="Slogan" />
+            <FormTitle>
+              Get in Touch
+            </FormTitle>
+            <CollaborateText>Let's Collaborate!</CollaborateText>
+            <Form onSubmit={this.handleSubmit}>
+              <InputRow>
+                <Input 
+                  type="text" 
+                  name="name"
+                  placeholder="Name" 
+                  required
+                  disabled={isSubmitting}
+                  value={formData.name}
+                  onChange={this.handleChange}
+                />
+                <Input 
+                  type="text" 
+                  name="company"
+                  placeholder="Company" 
+                  disabled={isSubmitting}
+                  value={formData.company}
+                  onChange={this.handleChange}
+                />
+              </InputRow>
+              <InputRow>
+                <Input 
+                  type="text" 
+                  name="subject"
+                  placeholder="Subject" 
+                  required
+                  disabled={isSubmitting}
+                  value={formData.subject}
+                  onChange={this.handleChange}
+                />
+                <Input 
+                  type="tel" 
+                  name="phone"
+                  placeholder="Phone" 
+                  disabled={isSubmitting}
+                  value={formData.phone}
+                  onChange={this.handleChange}
+                />
+              </InputRow>
+              <TextArea 
+                name="message"
+                placeholder="Give us more ..." 
+                required
+                disabled={isSubmitting}
+                value={formData.message}
+                onChange={this.handleChange}
+              />
+              {errors.map((error, index) => (
+                <ErrorMessage key={index}>{error}</ErrorMessage>
+              ))}
+              <SubmitButton type="submit" disabled={isSubmitting}>
+                {isSubmitting ? 'Sending...' : 'Contact us'}
+              </SubmitButton>
+            </Form>
+            {isSuccess && (
+              <SuccessMessage>Thank you for your message! We'll get back to you soon.</SuccessMessage>
+            )}
+          </FormSection>
+          <ImageContainer />
+        </ContactContainer>
+      </ContactSection>
+    );
+  }
+}
+
+const SuccessMessage = styled.p`
+  color: #4CAF50;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+`;
+
+const ErrorMessage = styled.p`
+  color: #f44336;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+`;
 
 export default Contact; 

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
 import { motion, domAnimation, LazyMotion } from 'framer-motion';
+import { useForm, ValidationError } from '@formspree/react';
 import headerImage from '../../images/header.png';
 
 const PopupOverlay = styled(motion.div)`
@@ -147,52 +148,122 @@ interface NewsletterPopupProps {
   isVisible?: boolean;
 }
 
-const NewsletterPopup: React.FC<NewsletterPopupProps> = ({ onClose, isVisible = true }): JSX.Element => {
-  const handleSubmit = (e: React.FormEvent) => {
+interface NewsletterPopupState {
+  email: string;
+  isSubmitting: boolean;
+  isSuccess: boolean;
+}
+
+class NewsletterPopup extends React.Component<NewsletterPopupProps, NewsletterPopupState> {
+  constructor(props: NewsletterPopupProps) {
+    super(props);
+    this.state = {
+      email: '',
+      isSubmitting: false,
+      isSuccess: false
+    };
+  }
+
+  handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    onClose();
+    this.setState({ isSubmitting: true });
+    
+    try {
+      const response = await fetch('https://formspree.io/f/mnndabbd', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: this.state.email })
+      });
+      
+      if (response.ok) {
+        this.setState({ isSuccess: true });
+        setTimeout(() => {
+          this.props.onClose();
+        }, 2000);
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    } finally {
+      this.setState({ isSubmitting: false });
+    }
   };
 
-  return (
-    <LazyMotion features={domAnimation}>
-      {isVisible && (
+  render() {
+    const { onClose, isVisible = true } = this.props;
+    const { isSuccess, isSubmitting, email } = this.state;
+
+    if (isSuccess) {
+      return (
+        <LazyMotion features={domAnimation}>
+          <PopupOverlay
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <PopupContainer
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+            >
+              <ImageSection>
+                <CloseButton onClick={onClose}>×</CloseButton>
+              </ImageSection>
+              <ContentWrapper>
+                <Title>
+                  Thank you for subscribing!
+                  We'll keep you updated with our latest news and offers.
+                </Title>
+              </ContentWrapper>
+            </PopupContainer>
+          </PopupOverlay>
+        </LazyMotion>
+      );
+    }
+
+    if (!isVisible) return null;
+
+    return (
+      <LazyMotion features={domAnimation}>
         <PopupOverlay
-          key="popup-overlay"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          onClick={onClose}
         >
           <PopupContainer
-            key="popup-container"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
-            transition={{ type: "spring", duration: 0.5 }}
-            onClick={(e) => e.stopPropagation()}
           >
-            <ImageSection />
-            <CloseButton onClick={onClose}>×</CloseButton>
+            <ImageSection>
+              <CloseButton onClick={onClose}>×</CloseButton>
+            </ImageSection>
             <ContentWrapper>
               <Title>
-                Get exclusive design insights and Bold brand updates.{'\n'}
-                No spam, just bold ideas.
+                Subscribe to our newsletter
+                and stay updated with our latest news and offers.
               </Title>
-              <Form onSubmit={handleSubmit}>
+              <Form onSubmit={this.handleSubmit}>
                 <Input
                   type="email"
+                  name="email"
                   placeholder="Enter your email"
                   required
+                  disabled={isSubmitting}
+                  value={email}
+                  onChange={(e) => this.setState({ email: e.target.value })}
                 />
-                <SubmitButton type="submit">Sign up</SubmitButton>
+                <SubmitButton type="submit" disabled={isSubmitting}>
+                  {isSubmitting ? 'Subscribing...' : 'Subscribe'}
+                </SubmitButton>
               </Form>
             </ContentWrapper>
           </PopupContainer>
         </PopupOverlay>
-      )}
-    </LazyMotion>
-  );
-};
+      </LazyMotion>
+    );
+  }
+}
 
 export default NewsletterPopup; 

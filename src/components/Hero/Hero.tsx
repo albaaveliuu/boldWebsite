@@ -491,30 +491,26 @@ const Hero: React.FC = () => {
           ))}
         </HeroImageContainer>
       </HeroSection>
-      <SloganSection ref={sloganRef}>
+      <SloganSection>
         <BackgroundSlogan
           src={Slogan}
-          alt="Bold Slogan"
-          variants={sloganVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          alt="Background Slogan"
+          initial={{ opacity: 0, scale: 1.2 }}
+          animate={{ opacity: 0.05, scale: 1 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
         />
         <SloganText>
           <TextLine>
             {lineOne.map((word, index) => (
               <Word
                 key={index}
-                className={word.highlight ? 'highlight' : ''}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
+                variants={wordVariants}
+                initial="hidden"
+                whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
-                transition={{ 
-                  delay: word.delay,
-                  duration: 0.5
-                }}
+                transition={{ delay: word.delay }}
               >
-                {renderAnimatedText(word.text, word.delay)}
+                {word.text}
               </Word>
             ))}
           </TextLine>
@@ -522,16 +518,13 @@ const Hero: React.FC = () => {
             {lineTwo.map((word, index) => (
               <Word
                 key={index}
-                className={word.highlight ? 'highlight' : ''}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
+                variants={wordVariants}
+                initial="hidden"
+                whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
-                transition={{ 
-                  delay: word.delay,
-                  duration: 0.5
-                }}
+                transition={{ delay: word.delay }}
               >
-                {renderAnimatedText(word.text, word.delay)}
+                {word.text}
               </Word>
             ))}
           </TextLine>
@@ -539,21 +532,19 @@ const Hero: React.FC = () => {
             {lineThree.map((word, index) => (
               <Word
                 key={index}
-                className={word.highlight ? 'highlight' : ''}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
+                variants={wordVariants}
+                initial="hidden"
+                whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
-                transition={{ 
-                  delay: word.delay,
-                  duration: 0.5
-                }}
+                transition={{ delay: word.delay }}
               >
-                {renderAnimatedText(word.text, word.delay)}
+                {word.text}
               </Word>
             ))}
           </TextLine>
         </SloganText>
       </SloganSection>
+      {/* @ts-ignore - isVisible prop is handled in the component */}
       <NewsletterPopup onClose={handleCloseNewsletter} isVisible={showNewsletter} />
     </>
   );
