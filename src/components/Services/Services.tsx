@@ -53,40 +53,53 @@ const Title = styled(motion.h2)`
 `;
 
 const ServicesList = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   padding: 0 40px;
   max-width: 1400px;
   margin: 0 auto;
-
-  @media (max-width: 1024px) {
-    grid-template-columns: 1fr;
-  }
 `;
 
 const ServiceItem = styled(motion.div)`
   position: relative;
   width: 100%;
-  height: 600px;
-  display: flex;
-  flex-direction: column;
+  height: 500px;
+  display: grid;
+  grid-template-columns: 500px 1fr;
   text-align: left;
   cursor: pointer;
   background: #1E1E1E;
   overflow: hidden;
 
+  @media (max-width: 1024px) {
+    height: 450px;
+    grid-template-columns: 450px 1fr;
+  }
+
   @media (max-width: 768px) {
-    height: 500px;
+    height: 400px;
+    grid-template-columns: 1fr;
   }
 `;
 
 const ServiceImageContainer = styled(motion.div)`
-  width: 100%;
-  height: 100%;
+  width: 500px;
+  height: 500px;
   position: relative;
   overflow: hidden;
+  grid-column: 1;
   
+  @media (max-width: 1024px) {
+    width: 450px;
+    height: 450px;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 400px;
+  }
+
   &::after {
     content: '';
     position: absolute;
@@ -94,7 +107,7 @@ const ServiceImageContainer = styled(motion.div)`
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(to bottom, rgba(30, 30, 30, 0) 0%, rgba(30, 30, 30, 0.95) 100%);
+    background: linear-gradient(90deg, rgba(30, 30, 30, 0) 0%, rgba(30, 30, 30, 0.8) 100%);
     pointer-events: none;
   }
 `;
@@ -112,42 +125,66 @@ const ServiceImage = styled.img`
 
 const ServiceContent = styled(motion.div)`
   position: absolute;
-  bottom: 40px;
-  left: 40px;
-  right: 40px;
+  left: 350px;
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 2;
 
+  @media (max-width: 1024px) {
+    left: 300px;
+  }
+
   @media (max-width: 768px) {
-    bottom: 30px;
     left: 30px;
-    right: 30px;
+    padding-right: 30px;
   }
 `;
 
 const ServiceTitle = styled.h3`
   color: #FFFFFF;
-  font-size: 48px;
+  font-size: 82px;
   font-weight: 700;
   font-family: 'Syne', sans-serif;
-  margin-bottom: 20px;
   text-transform: uppercase;
-  line-height: 1.2;
+  line-height: 0.9;
   white-space: pre-line;
+  letter-spacing: -1px;
+  margin-top: 20px;
+
+  @media (max-width: 1024px) {
+    font-size: 64px;
+  }
 
   @media (max-width: 768px) {
-    font-size: 36px;
+    font-size: 48px;
   }
 `;
 
 const ServiceDescription = styled.p`
   color: #FFFFFF;
-  font-size: 18px;
-  line-height: 1.6;
+  font-size: 20px;
+  line-height: 1.4;
   opacity: 0.9;
   font-family: 'Syne', sans-serif;
-  max-width: 500px;
+  max-width: 600px;
+  position: absolute;
+  left: 550px;
+  bottom: 0;
+  transform: none;
+  padding-bottom: 0;
+
+  @media (max-width: 1024px) {
+    left: 500px;
+    max-width: 450px;
+    font-size: 18px;
+  }
 
   @media (max-width: 768px) {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    margin-top: 20px;
+    max-width: 400px;
     font-size: 16px;
   }
 `;
@@ -172,8 +209,8 @@ const ServiceItemComponent: React.FC<{
       </ServiceImageContainer>
       <ServiceContent>
         <ServiceTitle>{service.title}</ServiceTitle>
-        <ServiceDescription>{service.description}</ServiceDescription>
       </ServiceContent>
+      <ServiceDescription>{service.description}</ServiceDescription>
     </ServiceItem>
   );
 };
@@ -209,7 +246,7 @@ const Services: React.FC = () => {
       image: digitalMarketingImage
     },
     {
-      title: 'WEB DESIGN\ & DEVELOPMENT',
+      title: 'WEB DESIGN &\nDEVELOPMENT',
       description: 'We create responsive, user-friendly websites with stunning designs and seamless functionality, ensuring an optimal user experience that aligns with your brand\'s goals.',
       image: webDesignImage
     }
