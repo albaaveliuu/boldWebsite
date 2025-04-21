@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import styled from '@emotion/styled';
 import { motion, useScroll } from 'framer-motion';
 import Slogan from '../../images/Slogan.svg';
@@ -223,6 +223,7 @@ const Hero: React.FC = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [buttonVisible, setButtonVisible] = useState(true);
   const [showNewsletter, setShowNewsletter] = useState<boolean>(true);
+  const sloganRef = useRef<HTMLDivElement>(null);
   
   const headerImages = [
     headerImage1,
@@ -244,6 +245,11 @@ const Hero: React.FC = () => {
     headerImage17,
     headerImage19
   ];
+
+  const { scrollYProgress } = useScroll({
+    target: sloganRef,
+    offset: ["start end", "end start"]
+  });
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -421,7 +427,7 @@ const Hero: React.FC = () => {
         variants={letterVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.5 }}
+        viewport={{ once: true, amount: 0.3 }}
       >
         {letter === ' ' ? '\u00A0' : letter}
       </Letter>
@@ -446,14 +452,14 @@ const Hero: React.FC = () => {
           ))}
         </HeroImageContainer>
       </HeroSection>
-      <SloganSection>
+      <SloganSection ref={sloganRef}>
         <BackgroundSlogan
           src={Slogan}
           alt="Bold Slogan"
           variants={sloganVariants}
           initial="hidden"
-          animate={["visible", "fadeOut"]}
-          viewport={{ once: true }}
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
         />
         <SloganText>
           <TextLine>
@@ -463,7 +469,7 @@ const Hero: React.FC = () => {
                 className={word.highlight ? 'highlight' : ''}
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
-                viewport={{ once: true, amount: 0.5 }}
+                viewport={{ once: true, amount: 0.3 }}
                 transition={{ 
                   delay: word.delay,
                   duration: 0.5
@@ -480,7 +486,7 @@ const Hero: React.FC = () => {
                 className={word.highlight ? 'highlight' : ''}
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
-                viewport={{ once: true, amount: 0.5 }}
+                viewport={{ once: true, amount: 0.3 }}
                 transition={{ 
                   delay: word.delay,
                   duration: 0.5
@@ -497,7 +503,7 @@ const Hero: React.FC = () => {
                 className={word.highlight ? 'highlight' : ''}
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
-                viewport={{ once: true, amount: 0.5 }}
+                viewport={{ once: true, amount: 0.3 }}
                 transition={{ 
                   delay: word.delay,
                   duration: 0.5
