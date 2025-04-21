@@ -20,6 +20,15 @@ const Container = styled.div`
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 40px;
+  margin-left: 60px;
+
+  @media (max-width: 1024px) {
+    margin-left: 40px;
+  }
+
+  @media (max-width: 768px) {
+    margin-left: 20px;
+  }
 `;
 
 const SectionTitleContainer = styled.div`
@@ -39,11 +48,11 @@ const SectionTitleContainer = styled.div`
 
 const Title = styled(motion.h2)`
   color: #FFFFFF;
-  font-size: 96px;
+  font-size: 95px;
   font-weight: 700;
   font-family: 'Syne', sans-serif;
   margin-bottom: 40px;
-  margin-left: 55px;
+  margin-left: 100px;
   text-transform: uppercase;
   line-height: 1;
   letter-spacing: -2px;
@@ -51,12 +60,12 @@ const Title = styled(motion.h2)`
 
   @media (max-width: 1024px) {
     font-size: 72px;
-    margin-left: 40px;
+    margin-left: 80px;
   }
   
   @media (max-width: 768px) {
     font-size: 48px;
-    margin-left: 20px;
+    margin-left: 40px;
   }
 `;
 
@@ -67,6 +76,15 @@ const ServicesList = styled.div`
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 40px;
+  margin-left: 60px;
+
+  @media (max-width: 1024px) {
+    margin-left: 40px;
+  }
+
+  @media (max-width: 768px) {
+    margin-left: 20px;
+  }
 `;
 
 const ServiceItem = styled(motion.div)`
