@@ -13,13 +13,13 @@ import webDesignImage from '../../images/services/WebDesign.png';
 const ServicesSection = styled.section`
   background: #1E1E1E;
   padding: 100px 0;
+  position: relative;
 `;
 
 const Container = styled.div`
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 40px;
-  text-align: left;
 `;
 
 const SectionTitleContainer = styled.div`
@@ -48,6 +48,16 @@ const Title = styled(motion.h2)`
   line-height: 1;
   letter-spacing: -2px;
   text-align: left;
+
+  @media (max-width: 1024px) {
+    font-size: 72px;
+    margin-left: 40px;
+  }
+  
+  @media (max-width: 768px) {
+    font-size: 48px;
+    margin-left: 20px;
+  }
 `;
 
 const ServicesList = styled.div`
@@ -272,72 +282,82 @@ const Services: React.FC = () => {
 
   return (
     <ServicesSection>
-      <ServicesList>
-        <LazyMotion features={domAnimation}>
-          <m.div style={{ position: 'relative' }}>
-            <ServiceItem
-              key={currentIndex}
-              variants={containerVariants}
-              initial="initial"
-              animate="animate"
-              transition={{ 
-                duration: 1,
-                ease: "easeInOut" 
-              }}
-            >
-              <ServiceImageContainer>
-                <ServiceImage src={currentService.image} alt={typeof currentService.title === 'string' ? currentService.title : currentService.title.join(' ')} />
-              </ServiceImageContainer>
-              <ServiceContent>
-                <ServiceTitle>
-                  {Array.isArray(currentService.title) ? (
-                    currentService.title.map((line, lineIndex) => (
-                      <React.Fragment key={lineIndex}>
-                        {line.split('').map((char, charIndex) => (
-                          <AnimatedTitle
-                            key={`${lineIndex}-${charIndex}`}
-                            custom={charIndex + (lineIndex * 20)}
-                            variants={titleAnimation}
-                            initial="hidden"
-                            animate="visible"
-                          >
-                            {char}
-                          </AnimatedTitle>
-                        ))}
-                        {lineIndex < currentService.title.length - 1 && <br />}
-                      </React.Fragment>
-                    ))
-                  ) : (
-                    currentService.title.split('').map((char, index) => (
-                      <AnimatedTitle
-                        key={index}
-                        custom={index}
-                        variants={titleAnimation}
-                        initial="hidden"
-                        animate="visible"
-                      >
-                        {char}
-                      </AnimatedTitle>
-                    ))
-                  )}
-                </ServiceTitle>
-              </ServiceContent>
-              <AnimatedDescription
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+      <Container>
+        <Title
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          WHAT WE<br />OFFER
+        </Title>
+        <ServicesList>
+          <LazyMotion features={domAnimation}>
+            <m.div style={{ position: 'relative' }}>
+              <ServiceItem
+                key={currentIndex}
+                variants={containerVariants}
+                initial="initial"
+                animate="animate"
                 transition={{ 
-                  delay: (Array.isArray(currentService.title) 
-                    ? currentService.title.join('').length 
-                    : currentService.title.length) * 0.05 + 0.2,
-                  duration: 0.8
+                  duration: 1,
+                  ease: "easeInOut" 
                 }}
               >
-                {currentService.description}
-              </AnimatedDescription>
-            </ServiceItem>
-          </m.div>
-        </LazyMotion>
-      </ServicesList>
+                <ServiceImageContainer>
+                  <ServiceImage src={currentService.image} alt={typeof currentService.title === 'string' ? currentService.title : currentService.title.join(' ')} />
+                </ServiceImageContainer>
+                <ServiceContent>
+                  <ServiceTitle>
+                    {Array.isArray(currentService.title) ? (
+                      currentService.title.map((line, lineIndex) => (
+                        <React.Fragment key={lineIndex}>
+                          {line.split('').map((char, charIndex) => (
+                            <AnimatedTitle
+                              key={`${lineIndex}-${charIndex}`}
+                              custom={charIndex + (lineIndex * 20)}
+                              variants={titleAnimation}
+                              initial="hidden"
+                              animate="visible"
+                            >
+                              {char}
+                            </AnimatedTitle>
+                          ))}
+                          {lineIndex < currentService.title.length - 1 && <br />}
+                        </React.Fragment>
+                      ))
+                    ) : (
+                      currentService.title.split('').map((char, index) => (
+                        <AnimatedTitle
+                          key={index}
+                          custom={index}
+                          variants={titleAnimation}
+                          initial="hidden"
+                          animate="visible"
+                        >
+                          {char}
+                        </AnimatedTitle>
+                      ))
+                    )}
+                  </ServiceTitle>
+                </ServiceContent>
+                <AnimatedDescription
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ 
+                    delay: (Array.isArray(currentService.title) 
+                      ? currentService.title.join('').length 
+                      : currentService.title.length) * 0.05 + 0.2,
+                    duration: 0.8
+                  }}
+                >
+                  {currentService.description}
+                </AnimatedDescription>
+              </ServiceItem>
+            </m.div>
+          </LazyMotion>
+        </ServicesList>
+      </Container>
     </ServicesSection>
   );
 };
