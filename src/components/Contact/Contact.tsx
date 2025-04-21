@@ -53,9 +53,10 @@ const ContactContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1100px;
   background:rgb(255, 255, 255);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
   
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -64,18 +65,18 @@ const ContactContainer = styled.div`
 
 const FormSection = styled.div`
   background: #FFFFFF;
-  padding: 60px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   
   @media (max-width: 768px) {
-    padding: 40px 20px;
+    padding: 20px 15px;
   }
 `;
 
 const FormTitle = styled.div`
-  margin: 0 0 20px 0;
+  margin: 0 0 15px 0;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -97,7 +98,7 @@ const FormTitle = styled.div`
 const CollaborateText = styled.h4`
   font-size: 24px;
   color: #1e1e1e;
-  margin: 20px 0;
+  margin: 15px 0;
   font-weight: 500;
   width: 100%;
   display: flex;
@@ -114,14 +115,14 @@ const Form = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-top: 40px;
+  gap: 12px;
+  margin-top: 30px;
 `;
 
 const InputRow = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 12px;
   
   @media (max-width: 480px) {
     grid-template-columns: 1fr;
@@ -130,7 +131,7 @@ const InputRow = styled.div`
 
 const Input = styled.input`
   width: 100%;
-  padding: 12px;
+  padding: 10px;
   background: #E5E5E5;
   border: none;
   color: #1e1e1e;
@@ -150,12 +151,12 @@ const Input = styled.input`
 
 const TextArea = styled.textarea`
   width: 100%;
-  padding: 12px;
+  padding: 10px;
   background: #E5E5E5;
   border: none;
   color: #1e1e1e;
   font-size: 16px;
-  min-height: 120px;
+  min-height: 100px;
   resize: vertical;
   font-family: 'Hando', sans-serif;
 
@@ -171,7 +172,7 @@ const TextArea = styled.textarea`
 `;
 
 const SubmitButton = styled.button`
-  padding: 12px 32px;
+  padding: 10px 32px;
   background: #1e1e1e;
   color: #FFFFFF;
   border: none;
@@ -182,7 +183,7 @@ const SubmitButton = styled.button`
   width: fit-content;
   min-width: 160px;
   display: block;
-  margin: 10px auto 0;
+  margin: 8px auto 0;
   font-family: 'Hando', sans-serif;
 
   &:hover {
@@ -216,8 +217,9 @@ const SloganImage = styled.img`
   width: 100%;
   max-width: 902px;
   height: auto;
-  filter: brightness(0); /* This makes the image black */
-  margin-bottom: 10px;
+  filter: brightness(0);
+  margin-bottom: -30px;
+  padding-top: 30px;
   
   @media (max-width: 768px) {
     max-width: 100%;

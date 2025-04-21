@@ -111,7 +111,7 @@ const Footer: React.FC = () => {
         <RightColumn>
           <Copyright>© 2024 Bold Kreativ L.L.C.</Copyright>
           <LinkGroup>
-          
+        
             <ExternalLink href="https://linkedin.com/company/boldkreativ" target="_blank" rel="noopener noreferrer">
               Linked In
             </ExternalLink>

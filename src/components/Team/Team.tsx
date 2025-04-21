@@ -197,7 +197,7 @@ const Team: React.FC = () => {
       description: 'Founder of Bold Kreativ LLC, Buna leads with a passion for bold design and impactful storytelling. She drives the creative vision, crafting visuals and experiences that leave a lasting impression. Every project is a blend of creativity and strategy, designed to make a statement.',
       image: require('../../images/bunasquare.png'),
       signature: require('../../images/bunasignature.png'),
-      linkedin: 'https://linkedin.com/in/bunapula',
+      linkedin: 'https://www.linkedin.com/in/buna-pula-7aa245199/',
       instagram: 'https://behance.net/bunapula'
     },
     {
