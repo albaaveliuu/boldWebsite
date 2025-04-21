@@ -138,7 +138,7 @@ const BackgroundSlogan = styled(motion.img)`
   height: 40%;
   object-fit: contain;
   filter: brightness(0) invert(1);
-  opacity: 0.15;
+  opacity: 0.05;
 `;
 
 const SloganText = styled(motion.div)`
@@ -164,31 +164,42 @@ const TextLine = styled(motion.div)`
 `;
 
 const Word = styled(motion.span)`
-  font-size: 32px;
+  font-size: 27px;
   color: rgba(255, 255, 255, 0.9);
   line-height: 1.2;
   display: inline-block;
   font-weight: 700;
   font-family: 'Syne', sans-serif;
+  opacity: 0;
+  transform: translateY(20px);
   
-  &.highlight {
-    color: #E01212;
-  }
-
   @media (max-width: 768px) {
-    font-size: 20px;
+    font-size: 15px;
   }
 
   @media (max-width: 480px) {
-    font-size: 16px;
+    font-size: 11px;
   }
 `;
 
+const Letter = styled(motion.span)`
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+`;
+
 const SloganDescription = styled(motion.p)`
-  font-size: 28px;
+  font-size: 23px;
   color:rgb(255, 255, 255);
   line-height: 1.6;
   margin: 0 auto;
+  opacity: 0;
+  
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
 `;
 
 const BackgroundImage = styled(motion.img)`
@@ -362,9 +373,9 @@ const Hero: React.FC = () => {
     { text: "and", delay: 1.5 },
     { text: "make", delay: 1.6 },
     { text: "you", delay: 1.7 },
-    { text: "IMPOSSIBLE", delay: 1.8, highlight: true },
-    { text: "TO", delay: 1.9, highlight: true },
-    { text: "IGNORE.", delay: 2.0, highlight: true }
+    { text: "IMPOSSIBLE", delay: 1.8},
+    { text: "TO", delay: 1.9},
+    { text: "IGNORE.", delay: 2.0 }
   ];
 
   const wordVariants = {
@@ -380,6 +391,37 @@ const Hero: React.FC = () => {
         ease: [0.43, 0.13, 0.23, 0.96]
       }
     }
+  };
+
+  const letterVariants = {
+    hidden: { 
+      opacity: 0,
+      y: 20
+    },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.03,
+        duration: 0.3,
+        ease: [0.43, 0.13, 0.23, 0.96]
+      }
+    })
+  };
+
+  const renderAnimatedText = (text: string, delay: number) => {
+    return text.split('').map((letter, i) => (
+      <Letter
+        key={i}
+        custom={i}
+        variants={letterVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.5 }}
+      >
+        {letter === ' ' ? '\u00A0' : letter}
+      </Letter>
+    ));
   };
 
   return (
@@ -415,17 +457,15 @@ const Hero: React.FC = () => {
               <Word
                 key={index}
                 className={word.highlight ? 'highlight' : ''}
-                variants={wordVariants}
-                initial="hidden"
-                whileInView="visible"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true, amount: 0.5 }}
                 transition={{ 
                   delay: word.delay,
-                  duration: 0.5,
-                  ease: [0.43, 0.13, 0.23, 0.96]
+                  duration: 0.5
                 }}
               >
-                {word.text}
+                {renderAnimatedText(word.text, word.delay)}
               </Word>
             ))}
           </TextLine>
@@ -434,17 +474,15 @@ const Hero: React.FC = () => {
               <Word
                 key={index}
                 className={word.highlight ? 'highlight' : ''}
-                variants={wordVariants}
-                initial="hidden"
-                whileInView="visible"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true, amount: 0.5 }}
                 transition={{ 
                   delay: word.delay,
-                  duration: 0.5,
-                  ease: [0.43, 0.13, 0.23, 0.96]
+                  duration: 0.5
                 }}
               >
-                {word.text}
+                {renderAnimatedText(word.text, word.delay)}
               </Word>
             ))}
           </TextLine>
@@ -453,17 +491,15 @@ const Hero: React.FC = () => {
               <Word
                 key={index}
                 className={word.highlight ? 'highlight' : ''}
-                variants={wordVariants}
-                initial="hidden"
-                whileInView="visible"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true, amount: 0.5 }}
                 transition={{ 
                   delay: word.delay,
-                  duration: 0.5,
-                  ease: [0.43, 0.13, 0.23, 0.96]
+                  duration: 0.5
                 }}
               >
-                {word.text}
+                {renderAnimatedText(word.text, word.delay)}
               </Word>
             ))}
           </TextLine>

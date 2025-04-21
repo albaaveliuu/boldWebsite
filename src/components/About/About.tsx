@@ -13,7 +13,7 @@ const AboutSection = styled.section`
 `;
 
 const Container = styled.div`
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 40px;
   display: flex;
@@ -30,9 +30,13 @@ const Container = styled.div`
 
 const Content = styled.div`
   flex: 1;
+  max-width: 1200px;
+  margin-left: 100px;
   
   @media (max-width: 768px) {
     width: 100%;
+    max-width: 100%;
+    margin-left: 0;
   }
 `;
 
@@ -63,7 +67,10 @@ const Description = styled.p`
   opacity: 0.8;
   font-family: 'Hando', sans-serif;
   margin-bottom: 20px;
-  max-width: 450px;
+  max-width: 1300px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
 
   &:last-of-type {
     margin-bottom: 30px;
@@ -80,8 +87,13 @@ const Description = styled.p`
   }
 `;
 
+const LocationText = styled.span`
+  display: inline-block;
+  margin-left: 55px;
+`;
+
 const LastDescription = styled(Description)`
-  max-width: 460px;
+  max-width: 1100px;
   
   @media (max-width: 768px) {
     max-width: 100%;
@@ -115,18 +127,18 @@ const ImageContainer = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: sticky;
-  top: 120px;
+  position: relative;
   perspective: 1000px;
+  margin-top: 80px;
   
   @media (max-width: 768px) {
-    position: relative;
-    top: 0;
     width: 100%;
+    margin-top: 40px;
   }
 
   img {
-    max-width: 100%;
+    max-width: 80%;
+    width: 350px;
     height: auto;
     transform-style: preserve-3d;
     cursor: pointer;
@@ -139,17 +151,13 @@ const ImageContainer = styled(motion.div)`
 `;
 
 const About: React.FC = () => {
-  const { scrollYProgress } = useScroll();
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.2, 1]);
-  const y = useTransform(scrollYProgress, [0, 0.5, 1], [0, -50, 0]);
-
   return (
     <AboutSection id="about">
       <Container>
         <Content>
           <Title>ABOUT US</Title>
           <Description>
-            <BoldItalicText>Bold Kreativ LLC</BoldItalicText> is a collective with roots in Kosovo and Berlin.
+            <BoldItalicText>Bold Kreativ LLC</BoldItalicText> is a collective with roots in Kosovo and Berlin
           </Description>
           <Description>
             We gather as a flexible, international team to craft bold design solutions and unforgettable event experiences.
@@ -162,10 +170,6 @@ const About: React.FC = () => {
           <motion.img 
             src={require('../../images/logo3d.png')} 
             alt="3D Logo"
-            style={{
-              scale,
-              y,
-            }}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{

@@ -25,12 +25,28 @@ const Container = styled.div`
   text-align: left;
 `;
 
+const SectionTitleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 40px;
+  margin-bottom: 60px;
+  justify-content: flex-start;
+  
+  @media (max-width: 768px) {
+    padding: 0 20px;
+  }
+`;
+
 const Title = styled(motion.h2)`
   color: #FFFFFF;
   font-size: 96px;
   font-weight: 700;
   font-family: 'Syne', sans-serif;
   margin-bottom: 40px;
+  margin-left: 55px;
   text-transform: uppercase;
   line-height: 1;
   letter-spacing: -2px;
@@ -253,14 +269,16 @@ const Services: React.FC = () => {
     <LazyMotion features={domAnimation}>
       <ServicesSection ref={containerRef} id="services">
         <Container>
-          <Title
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            WHAT WE<br />OFFER
-          </Title>
+          <SectionTitleContainer>
+            <Title
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              WHAT WE<br />OFFER
+            </Title>
+          </SectionTitleContainer>
           <ServicesList>
             {services.map((service, index) => (
               <ServiceItemComponent
