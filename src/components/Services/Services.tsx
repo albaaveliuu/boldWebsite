@@ -78,8 +78,11 @@ const ServiceItem = styled(motion.div)`
   }
 
   @media (max-width: 768px) {
-    height: 400px;
+    height: auto;
+    min-height: 400px;
     grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
   }
 `;
 
@@ -98,6 +101,7 @@ const ServiceImageContainer = styled(motion.div)`
   @media (max-width: 768px) {
     width: 100%;
     height: 400px;
+    position: relative;
   }
 
   &::after {
@@ -135,7 +139,11 @@ const ServiceContent = styled(motion.div)`
   }
 
   @media (max-width: 768px) {
+    position: absolute;
     left: 30px;
+    top: auto;
+    bottom: 120px;
+    transform: none;
     padding-right: 30px;
   }
 `;
@@ -157,6 +165,7 @@ const ServiceTitle = styled.h3`
 
   @media (max-width: 768px) {
     font-size: 48px;
+    margin-top: 0;
   }
 `;
 
@@ -181,10 +190,11 @@ const ServiceDescription = styled.p`
 
   @media (max-width: 768px) {
     position: relative;
-    left: auto;
-    bottom: auto;
-    margin-top: 20px;
-    max-width: 400px;
+    left: 30px;
+    bottom: 30px;
+    margin-top: 0;
+    padding-right: 30px;
+    max-width: calc(100% - 60px);
     font-size: 16px;
   }
 `;

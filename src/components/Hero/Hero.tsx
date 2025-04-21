@@ -130,6 +130,12 @@ const SloganSection = styled.section`
   background: #1E1E1E;
   overflow: hidden;
   padding: 0 40px;
+
+  @media (max-width: 768px) {
+    height: auto;
+    padding: 20px;
+    margin: 40px 0;
+  }
 `;
 
 const BackgroundSlogan = styled(motion.img)`
@@ -139,6 +145,11 @@ const BackgroundSlogan = styled(motion.img)`
   object-fit: contain;
   filter: brightness(0) invert(1);
   opacity: 0.05;
+
+  @media (max-width: 768px) {
+    width: 200%;
+    opacity: 0.03;
+  }
 `;
 
 const SloganText = styled(motion.div)`
@@ -149,6 +160,10 @@ const SloganText = styled(motion.div)`
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  @media (max-width: 768px) {
+    gap: 10px;
+  }
 `;
 
 const TextLine = styled(motion.div)`
@@ -156,10 +171,22 @@ const TextLine = styled(motion.div)`
   flex-wrap: wrap;
   gap: 12px;
   align-items: center;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #FFFFFF;
+  font-family: 'Syne', sans-serif;
 
   &:first-of-type {
     justify-content: center;
     width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 28px;
+    line-height: 1.2;
+    gap: 8px;
+    margin-bottom: 5px;
   }
 `;
 
@@ -172,13 +199,14 @@ const Word = styled(motion.span)`
   font-family: 'Syne', sans-serif;
   opacity: 0;
   transform: translateY(20px);
-  
+
   @media (max-width: 768px) {
-    font-size: 15px;
+    font-size: 13px;
+    margin-right: 4px;
   }
 
   @media (max-width: 480px) {
-    font-size: 11px;
+    font-size: 10px;
   }
 `;
 
@@ -186,6 +214,12 @@ const Letter = styled(motion.span)`
   display: inline-block;
   opacity: 0;
   transform: translateY(20px);
+  font-family: 'Syne', sans-serif;
+
+  @media (max-width: 768px) {
+    font-size: 28px;
+    transform: translateY(10px);
+  }
 `;
 
 const SloganDescription = styled(motion.p)`
@@ -443,10 +477,9 @@ const Hero: React.FC = () => {
               key={index}
               src={image}
               alt={`Digital Studio Hero ${index + 1}`}
-              initial={{ opacity: 0 }}
-              animate={{ 
+              style={{ 
                 opacity: index === currentImageIndex ? 1 : 0,
-                transition: { duration: 0.4 }
+                transition: 'none'
               }}
             />
           ))}
