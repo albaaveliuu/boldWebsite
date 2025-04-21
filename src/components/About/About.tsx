@@ -63,7 +63,7 @@ const Description = styled.p`
   opacity: 0.8;
   font-family: 'Hando', sans-serif;
   margin-bottom: 20px;
-  max-width: 600px;
+  max-width: 450px;
 
   &:last-of-type {
     margin-bottom: 30px;
@@ -78,6 +78,19 @@ const Description = styled.p`
       margin-bottom: 15px;
     }
   }
+`;
+
+const LastDescription = styled(Description)`
+  max-width: 460px;
+  
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
+`;
+
+const BoldItalicText = styled.span`
+  font-weight: 700;
+  font-style: italic;
 `;
 
 const Slogan = styled.div`
@@ -136,14 +149,14 @@ const About: React.FC = () => {
         <Content>
           <Title>ABOUT US</Title>
           <Description>
-            Bold Kreativ LLC is a collective with roots in Kosovo and Berlin.
+            <BoldItalicText>Bold Kreativ LLC</BoldItalicText> is a collective with roots in Kosovo and Berlin.
           </Description>
           <Description>
             We gather as a flexible, international team to craft bold design solutions and unforgettable event experiences.
           </Description>
-          <Description>
+          <LastDescription>
             As a collaborative network of designers, strategists, and event specialists, we tailor each project to fit your unique needs. From concept to execution, we blend visual design, media, branding, and hosting into one cohesive, impactful experience.
-          </Description>
+          </LastDescription>
         </Content>
         <ImageContainer>
           <motion.img 

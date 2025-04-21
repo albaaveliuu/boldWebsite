@@ -96,10 +96,10 @@ const MemberImage = styled.div<MemberImageProps>`
 const MemberInfo = styled.div`
   color: #FFFFFF;
   flex: 1;
-  padding-top: 8px;
+  padding-top: 30px;
   
   @media (max-width: 768px) {
-    padding-top: 0;
+    padding-top: 20px;
   }
 `;
 
