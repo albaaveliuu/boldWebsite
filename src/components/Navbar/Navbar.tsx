@@ -29,6 +29,10 @@ const NavGroup = styled.div`
   &.right-nav {
     justify-content: flex-end;
   }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const Logo = styled.img`
@@ -42,6 +46,12 @@ const Logo = styled.img`
 
   &:hover {
     opacity: 0.8;
+  }
+
+  @media (max-width: 768px) {
+    position: relative;
+    left: 0;
+    transform: none;
   }
 `;
 
@@ -63,10 +73,13 @@ const NavLink = styled.a<{ $isActive?: boolean }>`
 const MobileMenuButton = styled.button`
   background: none;
   border: none;
-  font-size: 24px;
   color: #FFFFFF;
   cursor: pointer;
   display: none;
+  font-size: 28px;
+  padding: 0;
+  z-index: 1002;
+  position: relative;
 
   @media (max-width: 768px) {
     display: block;
@@ -80,28 +93,30 @@ const MobileMenu = styled(motion.div)`
   right: 0;
   bottom: 0;
   z-index: 1001;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.95);
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 `;
 
-const MobileNavLinks = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin: 0;
+const MobileNavLinks = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
 `;
 
-const MobileNavLink = styled.li<{ $isActive?: boolean }>`
-  color: #FFFFFF;
+const MobileNavLink = styled(motion.div)<{ $isActive?: boolean }>`
+  color: ${props => props.$isActive ? '#E01212' : '#FFFFFF'};
   text-decoration: none;
-  font-size: 16px;
+  font-size: 24px;
   font-weight: 500;
   cursor: pointer;
   transition: color 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 1px;
-  padding: 10px;
+  text-align: center;
   
   &:hover {
     color: #E01212;
@@ -195,33 +210,57 @@ const Navbar: React.FC = () => {
       
       {isMobileMenuOpen && (
         <MobileMenu
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.3 }}
         >
           <MobileNavLinks>
-            <MobileNavLink 
-              onClick={() => scrollToSection('home')}
+            <MobileNavLink
+              onClick={() => {
+                scrollToSection('home');
+                setIsMobileMenuOpen(false);
+              }}
               $isActive={activeSection === 'home'}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
             >
               Home
             </MobileNavLink>
-            <MobileNavLink 
-              onClick={() => scrollToSection('about')}
+            <MobileNavLink
+              onClick={() => {
+                scrollToSection('about');
+                setIsMobileMenuOpen(false);
+              }}
               $isActive={activeSection === 'about'}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
             >
               About
             </MobileNavLink>
-            <MobileNavLink 
-              onClick={() => scrollToSection('services')}
+            <MobileNavLink
+              onClick={() => {
+                scrollToSection('services');
+                setIsMobileMenuOpen(false);
+              }}
               $isActive={activeSection === 'services'}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
             >
               Services
             </MobileNavLink>
-            <MobileNavLink 
-              onClick={() => scrollToSection('contact')}
-              $isActive={activeSection === 'contact'}
+            <MobileNavLink
+              onClick={() => {
+                scrollToSection('contact');
+                setIsMobileMenuOpen(false);
+              }}
+              $isActive={activeSection === 'about'}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
             >
               Contact
             </MobileNavLink>

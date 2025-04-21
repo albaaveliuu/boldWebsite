@@ -265,7 +265,7 @@ const Services: React.FC = () => {
       image: digitalMarketingImage
     },
     {
-      title: ["WEB DESIGN", "& DEVELOPMENT"],
+      title: ["WEB", "  DESIGN"],
       description: "We create responsive, user-friendly websites with stunning designs and seamless functionality, ensuring an optimal user experience that aligns with your brand's goals.",
       image: webDesignImage
     }
@@ -299,7 +299,7 @@ const Services: React.FC = () => {
   };
 
   return (
-    <ServicesSection>
+    <ServicesSection id="services">
       <Container>
         <Title
           initial={{ opacity: 0, y: 50 }}
