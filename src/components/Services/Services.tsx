@@ -1,6 +1,6 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
-import { motion, useScroll, useTransform, LazyMotion, domAnimation } from 'framer-motion';
+import { motion, AnimatePresence, LazyMotion, domAnimation } from 'framer-motion';
 
 // Import service images
 import brandingImage from '../../images/services/Branding.png';
@@ -13,8 +13,6 @@ import webDesignImage from '../../images/services/WebDesign.png';
 const ServicesSection = styled.section`
   background: #1E1E1E;
   padding: 100px 0;
-  position: relative;
-  overflow: hidden;
 `;
 
 const Container = styled.div`
@@ -56,9 +54,9 @@ const ServicesList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 0 40px;
   max-width: 1400px;
   margin: 0 auto;
+  padding: 0 40px;
 `;
 
 const ServiceItem = styled(motion.div)`
@@ -199,91 +197,81 @@ const ServiceDescription = styled.p`
   }
 `;
 
-const ServiceItemComponent: React.FC<{
-  service: {
-    title: string;
-    description: string;
-    image: string;
-    onClick?: () => void;
-  };
-}> = ({ service }) => {
-  return (
-    <ServiceItem 
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.5 }}
-    >
-      <ServiceImageContainer onClick={service.onClick}>
-        <ServiceImage src={service.image} alt={service.title} />
-      </ServiceImageContainer>
-      <ServiceContent>
-        <ServiceTitle>{service.title}</ServiceTitle>
-      </ServiceContent>
-      <ServiceDescription>{service.description}</ServiceDescription>
-    </ServiceItem>
-  );
-};
+interface Service {
+  title: string;
+  description: string;
+  image: string;
+}
 
 const Services: React.FC = () => {
-  const services = [
+  const [currentIndex, setCurrentIndex] = useState(0);
+  
+  const services: Service[] = [
     {
-      title: 'BRANDING',
-      description: 'We create strong visual identities through logo design, brand strategy, and storytelling. From name to look and feel, we make sure your brand stands out and stays consistent everywhere.',
-      image: brandingImage
+      title: "BRANDING",
+      description: "We create strong visual identities through logo design, brand strategy, and storytelling. From name to look and feel, we make sure your brand stands out and stays consistent everywhere.",
+      image: "/static/media/Branding.498dffa129e846c1595c.png"
     },
     {
-      title: 'VIDEO &\nPRODUCTION',
-      description: 'We bring your ideas to life through sharp, engaging visuals. From concept to final cut, we handle video editing, motion graphics, and production - tailored to fit your brand and captivate your audience.',
-      image: videoProductionImage
+      title: "VIDEO &\nPRODUCTION",
+      description: "We bring your ideas to life through sharp, engaging visuals. From concept to final cut, we handle video editing, motion graphics, and production - tailored to fit your brand and captivate your audience.",
+      image: "/static/media/VideoAndProduction.cccb4cb423d0833a4dc3.png"
     },
     {
-      title: 'BUSINESS\nEVENT\nHOSTING',
-      description: 'We handle all aspects of event management, from logistics to coordination, ensuring a seamless, professional experience that meets your business objectives and engages attendees.',
-      image: businessEventImage,
-      onClick: () => {
-        window.open('/images/services/Event Hosting Bold.pdf', '_blank');
-      }
+      title: "BUSINESS\nEVENT\nHOSTING",
+      description: "We handle all aspects of event management, from logistics to coordination, ensuring a seamless, professional experience that meets your business objectives and engages attendees.",
+      image: "/static/media/BusinessEventHosting.5466fcb245b4679cd102.png"
     },
     {
-      title: 'MOTION\nDESIGN',
-      description: 'We create dynamic motion graphics that bring your brand to life. From animated logos to explainer videos, we craft engaging content that captures attention and communicates clearly.',
-      image: motionDesignImage
+      title: "MOTION\nDESIGN",
+      description: "We create dynamic motion graphics that bring your brand to life. From animated logos to explainer videos, we craft engaging content that captures attention and communicates clearly.",
+      image: "/static/media/MotionDesign.f09e871e5e4805a2008d.png"
     },
     {
-      title: 'DIGITAL\nMARKETING',
-      description: 'We develop targeted digital marketing strategies that drive engagement and growth. From social media campaigns to SEO and paid ads, we help you reach your audience and achieve measurable results.',
-      image: digitalMarketingImage
+      title: "DIGITAL\nMARKETING",
+      description: "We develop targeted digital marketing strategies that drive engagement and growth. From social media campaigns to SEO and paid ads, we help you reach your audience and achieve measurable results.",
+      image: "/static/media/DigitalMarketing.217c18cb995f65eb2630.png"
     },
     {
-      title: 'WEB DESIGN &\nDEVELOPMENT',
-      description: 'We create responsive, user-friendly websites with stunning designs and seamless functionality, ensuring an optimal user experience that aligns with your brand\'s goals.',
-      image: webDesignImage
+      title: "WEB DESIGN &\nDEVELOPMENT",
+      description: "We create responsive, user-friendly websites with stunning designs and seamless functionality, ensuring an optimal user experience that aligns with your brand's goals.",
+      image: "/static/media/WebDesign.3577663009905919d19b.png"
     }
   ];
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % services.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [services.length]);
+
+  const currentService = services[currentIndex];
+
   return (
-    <ServicesSection id="services">
-      <Container>
-        <SectionTitleContainer>
-          <Title
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            WHAT WE<br />OFFER
-          </Title>
-        </SectionTitleContainer>
-        <ServicesList>
-          {services.map((service, index) => (
-            <ServiceItemComponent
-              key={index}
-              service={service}
-            />
-          ))}
-        </ServicesList>
-      </Container>
+    <ServicesSection>
+      <ServicesList>
+        <LazyMotion features={domAnimation}>
+          <AnimatePresence mode="wait">
+            <ServiceItem
+              key={currentIndex}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <ServiceImageContainer>
+                <ServiceImage src={currentService.image} alt={currentService.title} />
+              </ServiceImageContainer>
+              <ServiceContent>
+                <ServiceTitle>{currentService.title}</ServiceTitle>
+              </ServiceContent>
+              <ServiceDescription>{currentService.description}</ServiceDescription>
+            </ServiceItem>
+          </AnimatePresence>
+        </LazyMotion>
+      </ServicesList>
     </ServicesSection>
   );
 };
