@@ -214,32 +214,32 @@ const Services: React.FC = () => {
     {
       title: "BRANDING",
       description: "We create strong visual identities through logo design, brand strategy, and storytelling. From name to look and feel, we make sure your brand stands out and stays consistent everywhere.",
-      image: "/static/media/Branding.498dffa129e846c1595c.png"
+      image: brandingImage
     },
     {
       title: ["VIDEO", "PRODUCTION"],
       description: "We bring your ideas to life through sharp, engaging visuals. From concept to final cut, we handle video editing, motion graphics, and production - tailored to fit your brand and captivate your audience.",
-      image: "/static/media/VideoAndProduction.cccb4cb423d0833a4dc3.png"
+      image: videoProductionImage
     },
     {
       title: ["BUSINESS", "EVENT", "HOSTING"],
       description: "We handle all aspects of event management, from logistics to coordination, ensuring a seamless, professional experience that meets your business objectives and engages attendees.",
-      image: "/static/media/BusinessEventHosting.5466fcb245b4679cd102.png"
+      image: businessEventImage
     },
     {
       title: ["MOTION", "DESIGN"],
       description: "We create dynamic motion graphics that bring your brand to life. From animated logos to explainer videos, we craft engaging content that captures attention and communicates clearly.",
-      image: "/static/media/MotionDesign.f09e871e5e4805a2008d.png"
+      image: motionDesignImage
     },
     {
       title: ["DIGITAL", "MARKETING"],
       description: "We develop targeted digital marketing strategies that drive engagement and growth. From social media campaigns to SEO and paid ads, we help you reach your audience and achieve measurable results.",
-      image: "/static/media/DigitalMarketing.217c18cb995f65eb2630.png"
+      image: digitalMarketingImage
     },
     {
       title: ["WEB DESIGN", "& DEVELOPMENT"],
       description: "We create responsive, user-friendly websites with stunning designs and seamless functionality, ensuring an optimal user experience that aligns with your brand's goals.",
-      image: "/static/media/WebDesign.3577663009905919d19b.png"
+      image: webDesignImage
     }
   ];
 
