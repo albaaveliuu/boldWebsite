@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
-import { motion, AnimatePresence, LazyMotion, domAnimation } from 'framer-motion';
+import { motion, m, LazyMotion, domAnimation } from 'framer-motion';
 
 // Import service images
 import brandingImage from '../../images/services/Branding.png';
@@ -167,7 +167,11 @@ const ServiceTitle = styled.h3`
   }
 `;
 
-const ServiceDescription = styled.p`
+const AnimatedTitle = styled(motion.span)`
+  display: inline-block;
+`;
+
+const AnimatedDescription = styled(motion.p)`
   color: #FFFFFF;
   font-size: 20px;
   line-height: 1.4;
@@ -249,27 +253,64 @@ const Services: React.FC = () => {
 
   const currentService = services[currentIndex];
 
+  const titleAnimation = {
+    hidden: { opacity: 0 },
+    visible: (i: number) => ({
+      opacity: 1,
+      transition: {
+        delay: i * 0.05,
+      },
+    }),
+  };
+
+  const containerVariants = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    exit: { opacity: 0 },
+  };
+
   return (
     <ServicesSection>
       <ServicesList>
         <LazyMotion features={domAnimation}>
-          <AnimatePresence mode="wait">
+          <m.div style={{ position: 'relative' }}>
             <ServiceItem
               key={currentIndex}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              variants={containerVariants}
+              initial="initial"
+              animate="animate"
               transition={{ duration: 0.5 }}
             >
               <ServiceImageContainer>
                 <ServiceImage src={currentService.image} alt={currentService.title} />
               </ServiceImageContainer>
               <ServiceContent>
-                <ServiceTitle>{currentService.title}</ServiceTitle>
+                <ServiceTitle>
+                  {currentService.title.split('').map((char, index) => (
+                    <AnimatedTitle
+                      key={index}
+                      custom={index}
+                      variants={titleAnimation}
+                      initial="hidden"
+                      animate="visible"
+                    >
+                      {char === '\n' ? <br /> : char}
+                    </AnimatedTitle>
+                  ))}
+                </ServiceTitle>
               </ServiceContent>
-              <ServiceDescription>{currentService.description}</ServiceDescription>
+              <AnimatedDescription
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ 
+                  delay: currentService.title.length * 0.05 + 0.2,
+                  duration: 0.5 
+                }}
+              >
+                {currentService.description}
+              </AnimatedDescription>
             </ServiceItem>
-          </AnimatePresence>
+          </m.div>
         </LazyMotion>
       </ServicesList>
     </ServicesSection>
