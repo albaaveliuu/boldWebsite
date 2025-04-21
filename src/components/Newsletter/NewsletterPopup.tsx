@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { motion, domAnimation, LazyMotion } from 'framer-motion';
-import { useForm, ValidationError } from '@formspree/react';
 import headerImage from '../../images/header.png';
 
 const PopupOverlay = styled(motion.div)`
