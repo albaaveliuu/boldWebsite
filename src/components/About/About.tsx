@@ -4,11 +4,11 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 
 const AboutSection = styled.section`
   background: #1E1E1E;
-  padding: 180px 0;
+  padding: 120px 0;
   color: #FFFFFF;
   
   @media (max-width: 768px) {
-    padding: 100px 0;
+    padding: 80px 0;
   }
 `;
 

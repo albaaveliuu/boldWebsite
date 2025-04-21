@@ -127,6 +127,7 @@ const SloganSection = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: -60px;
   background: #1E1E1E;
   overflow: hidden;
   padding: 0 40px;
