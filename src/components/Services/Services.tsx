@@ -22,12 +22,9 @@ const Container = styled.div`
   padding: 0 40px;
   margin-left: 60px;
 
-  @media (max-width: 1024px) {
-    margin-left: 40px;
-  }
-
   @media (max-width: 768px) {
-    margin-left: 20px;
+    margin-left: 0;
+    padding: 0 20px;
   }
 `;
 
@@ -78,12 +75,10 @@ const ServicesList = styled.div`
   padding: 0 40px;
   margin-left: 60px;
 
-  @media (max-width: 1024px) {
-    margin-left: 40px;
-  }
-
   @media (max-width: 768px) {
-    margin-left: 20px;
+    margin-left: 0;
+    padding: 0 20px;
+    gap: 40px;
   }
 `;
 
@@ -98,17 +93,10 @@ const ServiceItem = styled(motion.div)`
   background: #1E1E1E;
   overflow: hidden;
 
-  @media (max-width: 1024px) {
-    height: 450px;
-    grid-template-columns: 450px 1fr;
-  }
-
   @media (max-width: 768px) {
-    height: auto;
-    min-height: 400px;
+    height: 550px;
     grid-template-columns: 1fr;
-    display: flex;
-    flex-direction: column;
+    grid-template-rows: 300px 1fr;
   }
 `;
 
@@ -118,16 +106,11 @@ const ServiceImageContainer = styled(motion.div)`
   position: relative;
   overflow: hidden;
   grid-column: 1;
-  
-  @media (max-width: 1024px) {
-    width: 450px;
-    height: 450px;
-  }
 
   @media (max-width: 768px) {
     width: 100%;
-    height: 400px;
-    position: relative;
+    height: 300px;
+    grid-row: 1;
   }
 
   &::after {
@@ -139,6 +122,10 @@ const ServiceImageContainer = styled(motion.div)`
     bottom: 0;
     background: linear-gradient(90deg, rgba(30, 30, 30, 0) 0%, rgba(30, 30, 30, 0.8) 100%);
     pointer-events: none;
+
+    @media (max-width: 768px) {
+      background: linear-gradient(180deg, rgba(30, 30, 30, 0) 0%, rgba(30, 30, 30, 0.9) 100%);
+    }
   }
 `;
 
@@ -160,17 +147,12 @@ const ServiceContent = styled(motion.div)`
   transform: translateY(-50%);
   z-index: 2;
 
-  @media (max-width: 1024px) {
-    left: 300px;
-  }
-
   @media (max-width: 768px) {
-    position: absolute;
-    left: 30px;
-    top: auto;
-    bottom: 120px;
+    position: relative;
+    left: 20px;
+    top: -60px;
     transform: none;
-    padding-right: 30px;
+    padding-right: 20px;
   }
 `;
 
@@ -185,13 +167,10 @@ const ServiceTitle = styled.h3`
   letter-spacing: -1px;
   margin-top: 20px;
 
-  @media (max-width: 1024px) {
-    font-size: 64px;
-  }
-
   @media (max-width: 768px) {
-    font-size: 48px;
+    font-size: 42px;
     margin-top: 0;
+    margin-bottom: 20px;
   }
 `;
 
@@ -212,20 +191,14 @@ const AnimatedDescription = styled(motion.p)`
   transform: none;
   padding-bottom: 0;
 
-  @media (max-width: 1024px) {
-    left: 500px;
-    max-width: 450px;
-    font-size: 18px;
-  }
-
   @media (max-width: 768px) {
     position: relative;
-    left: 30px;
-    bottom: 30px;
-    margin-top: 0;
-    padding-right: 30px;
-    max-width: calc(100% - 60px);
+    left: 20px;
+    bottom: 0;
     font-size: 16px;
+    max-width: calc(100% - 40px);
+    margin-top: 0;
+    padding-right: 20px;
   }
 `;
 

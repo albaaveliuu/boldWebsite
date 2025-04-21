@@ -163,6 +163,8 @@ const SloganText = styled(motion.div)`
 
   @media (max-width: 768px) {
     gap: 10px;
+    text-align: center;
+    align-items: center;
   }
 `;
 
@@ -187,6 +189,9 @@ const TextLine = styled(motion.div)`
     line-height: 1.2;
     gap: 8px;
     margin-bottom: 5px;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
   }
 `;
 
