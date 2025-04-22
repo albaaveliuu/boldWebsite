@@ -157,7 +157,7 @@ const Footer: React.FC = () => {
           <Copyright>© 2024 Bold Kreativ L.L.C.</Copyright>
           <LinkGroup>
         
-            <ExternalLink href="https://linkedin.com/company/boldkreativ" target="_blank" rel="noopener noreferrer">
+            <ExternalLink href="https://www.linkedin.com/company/bold-kreativ/" target="_blank" rel="noopener noreferrer">
               LinkedIn
             </ExternalLink>
             <ExternalLink href="https://www.instagram.com/bold.kreativ/#" target="_blank" rel="noopener noreferrer">
