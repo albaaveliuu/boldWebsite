@@ -172,11 +172,11 @@ const SloganText = styled(motion.div)`
 const TextLine = styled(motion.div)`
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 8px;
   align-items: center;
   font-size: 64px;
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 0.9;
   color: #FFFFFF;
   font-family: 'Syne', sans-serif;
 
@@ -187,9 +187,9 @@ const TextLine = styled(motion.div)`
 
   @media (max-width: 768px) {
     font-size: 28px;
-    line-height: 1.2;
-    gap: 8px;
-    margin-bottom: 5px;
+    line-height: 1;
+    gap: 4px;
+    margin-bottom: 2px;
     justify-content: center;
     text-align: center;
     width: 100%;
@@ -199,16 +199,20 @@ const TextLine = styled(motion.div)`
 const Word = styled(motion.span)`
   font-size: 27px;
   color: rgba(255, 255, 255, 0.9);
-  line-height: 1.2;
+  line-height: 1;
   display: inline-block;
-  font-weight: 700;
+  font-weight: 400;
   font-family: 'Syne', sans-serif;
   opacity: 0;
   transform: translateY(20px);
 
+  &.bold {
+    font-weight: 700;
+  }
+
   @media (max-width: 768px) {
     font-size: 13px;
-    margin-right: 4px;
+    margin-right: 2px;
   }
 
   @media (max-width: 480px) {
@@ -423,9 +427,9 @@ const Hero: React.FC = () => {
     { text: "and", delay: 1.5 },
     { text: "make", delay: 1.6 },
     { text: "you", delay: 1.7 },
-    { text: "IMPOSSIBLE", delay: 1.8},
-    { text: "TO", delay: 1.9},
-    { text: "IGNORE.", delay: 2.0 }
+    { text: "IMPOSSIBLE", delay: 1.8, highlight: true },
+    { text: "TO", delay: 1.9, highlight: true },
+    { text: "IGNORE.", delay: 2.0, highlight: true }
   ];
 
   const wordVariants = {
@@ -537,6 +541,7 @@ const Hero: React.FC = () => {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ delay: word.delay }}
+                className={word.highlight ? 'bold' : ''}
               >
                 {word.text}
               </Word>
