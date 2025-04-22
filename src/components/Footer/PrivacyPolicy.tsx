@@ -16,9 +16,9 @@ const Container = styled.div`
 
 const Title = styled.h1`
   font-size: 48px;
-  font-family: 'Syncopate', sans-serif;
+  font-family: 'Syne', sans-serif;
   margin-bottom: 40px;
-  color: #FFFFFF;
+  color: #F30100;
 `;
 
 const Content = styled.div`
@@ -55,7 +55,7 @@ const PrivacyPolicy: React.FC = () => {
           <p>You have the right to access, correct, or delete your personal data. You may also withdraw your consent at any time.</p>
 
           <h2>5. Contact</h2>
-          <p>For any questions about this Privacy Policy, please contact us at privacy@digitalstudio.com</p>
+          <p>For any questions about this Privacy Policy, please contact us at info@bold-kreativ.com</p>
         </Content>
       </Container>
     </PageContainer>

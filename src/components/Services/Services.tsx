@@ -153,7 +153,7 @@ const ServiceContent = styled.div`
 
 const ServiceTitle = styled.h3`
   color: #FFFFFF;
-  font-size: 85px;
+  font-size: 90px;
   font-weight: 700;
   font-family: 'Syne', sans-serif;
   text-transform: uppercase;
@@ -165,7 +165,7 @@ const ServiceTitle = styled.h3`
   margin-top: auto;
 
   @media (max-width: 768px) {
-    font-size: 48px;
+    font-size: 58px;
     margin-bottom: 15px;
   }
 `;

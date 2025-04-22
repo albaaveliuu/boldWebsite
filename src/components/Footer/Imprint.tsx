@@ -16,9 +16,9 @@ const Container = styled.div`
 
 const Title = styled.h1`
   font-size: 48px;
-  font-family: 'Syncopate', sans-serif;
+  font-family: 'Syne', sans-serif;
   margin-bottom: 40px;
-  color: #FFFFFF;
+  color: #F30100;
 `;
 
 const Content = styled.div`
@@ -43,31 +43,26 @@ const Imprint: React.FC = () => {
         <Title>Imprint</Title>
         <Content>
           <h2>Company Information</h2>
-          <p>Digital Studio<br />
-          123 Creative Street<br />
-          10115 Berlin<br />
-          Germany</p>
+          <p> Advertising Studio<br />
+          Mustafa Venhari <br />
+          10000 Prishtinë<br />
+          Kosovo</p>
+       
+
+
 
           <h2>Contact</h2>
-          <p>Phone: +49 (0) 123 456 789<br />
-          Email: info@digitalstudio.com</p>
+      
+          <p>Email: info@bold-kreativ.com</p>
 
           <h2>Management</h2>
           <p>Managing Director: Buna Pula</p>
 
           <h2>Registration</h2>
-          <p>Commercial Register: District Court Berlin<br />
-          Registration Number: HRB 123456</p>
+          <p>Unique Identification Number: 812252790<br />
+          Registered in QKB/ARBK</p>
 
-          <h2>VAT ID</h2>
-          <p>VAT identification number according to § 27a Value Added Tax Act:<br />
-          DE123456789</p>
-
-          <h2>Responsible for Content</h2>
-          <p>Buna Pula<br />
-          Digital Studio<br />
-          123 Creative Street<br />
-          10115 Berlin</p>
+         
         </Content>
       </Container>
     </PageContainer>

@@ -16,9 +16,9 @@ const Container = styled.div`
 
 const Title = styled.h1`
   font-size: 48px;
-  font-family: 'Syncopate', sans-serif;
+  font-family: 'Syne', sans-serif;
   margin-bottom: 40px;
-  color: #FFFFFF;
+  color: #F30100;
 `;
 
 const Content = styled.div`
@@ -52,7 +52,7 @@ const Terms: React.FC = () => {
           <p>All content on this website, including text, graphics, logos, and images, is our property and protected by intellectual property laws.</p>
 
           <h2>4. User Responsibilities</h2>
-          <p>You agree not to use our website for any unlawful purpose or in any way that could damage or impair the site's functionality.</p>
+          <p>We agree not to use our website for any unlawful purpose or in any way that could damage or impair the site's functionality.</p>
 
           <h2>5. Limitation of Liability</h2>
           <p>We shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of our services.</p>
@@ -61,7 +61,7 @@ const Terms: React.FC = () => {
           <p>We reserve the right to modify these terms at any time. Changes will be effective immediately upon posting to the website.</p>
 
           <h2>7. Contact</h2>
-          <p>For any questions about these Terms & Conditions, please contact us at legal@digitalstudio.com</p>
+          <p>For any questions about these Terms & Conditions, please contact us at info@bold-kreativ.com</p>
         </Content>
       </Container>
     </PageContainer>
