@@ -47,7 +47,15 @@ const Imprint: React.FC = () => {
           Mustafa Venhari <br />
           10000 Prishtinë<br />
           Kosovo</p>
+          <br />
+         <p>
+          Mittenwalder Strasse <br />
+          10961 Berlin<br />
+          Germany
+          </p>
        
+
+        
 
 
 
