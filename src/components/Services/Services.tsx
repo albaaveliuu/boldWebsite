@@ -175,7 +175,7 @@ const ServiceDescription = styled.p`
   font-size: 20px;
   line-height: 1.4;
   opacity: 0.9;
-  font-family: 'Syne', sans-serif;
+  font-family: 'Hando', sans-serif;
   max-width: 800px;
   padding-left: 100px;
   padding-right: 60px;

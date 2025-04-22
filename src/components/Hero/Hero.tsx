@@ -141,14 +141,14 @@ const SloganSection = styled.section`
 
 const BackgroundSlogan = styled(motion.img)`
   position: absolute;
-  width: 40%;
-  height: 40%;
+  width: 50%;
+  height: 50%;
   object-fit: contain;
   filter: brightness(0) invert(1);
   opacity: 0.05;
 
   @media (max-width: 768px) {
-    width: 200%;
+    width: 250%;
     opacity: 0.03;
   }
 `;
@@ -298,7 +298,7 @@ const Hero: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % headerImages.length);
-    }, 500);
+    }, 300);
     
     return () => clearInterval(interval);
   }, []);

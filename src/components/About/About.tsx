@@ -129,16 +129,16 @@ const ImageContainer = styled(motion.div)`
   align-items: center;
   position: relative;
   perspective: 1000px;
-  margin-top: 80px;
+  margin-top: 0;
   
   @media (max-width: 768px) {
     width: 100%;
-    margin-top: 40px;
+    margin-top: 0;
   }
 
   img {
-    max-width: 80%;
-    width: 350px;
+    max-width: 90%;
+    width: 500px;
     height: auto;
     transform-style: preserve-3d;
     cursor: pointer;
