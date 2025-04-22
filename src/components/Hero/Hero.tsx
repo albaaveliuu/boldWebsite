@@ -49,15 +49,32 @@ const HeroContent = styled.div`
   position: relative;
 `;
 
-const HeroText = styled.div`
+const HeroText = styled(motion.div)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(calc(-50% + 20px), -50%);
+  z-index: 2;
   text-align: center;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 20px;
   margin-bottom: 40px;
   color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  @media (min-width: 769px) {
+    transform: translate(calc(-50% + 20px), -50%);
+  }
   
   h1 {
     font-size: 64px;
     font-weight: 700;
     margin-bottom: 20px;
+    text-align: center;
     
     @media (max-width: 768px) {
       font-size: 36px;
@@ -67,6 +84,7 @@ const HeroText = styled.div`
   p {
     font-size: 20px;
     opacity: 0.8;
+    text-align: center;
     
     @media (max-width: 768px) {
       font-size: 16px;
@@ -156,33 +174,69 @@ const BackgroundSlogan = styled(motion.img)`
 const SloganText = styled(motion.div)`
   position: relative;
   z-index: 2;
-  text-align: left;
+  text-align: center;
   max-width: 1200px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
 
   @media (max-width: 768px) {
-    gap: 10px;
+    gap: 5px;
     text-align: center;
     align-items: center;
+  }
+`;
+
+const Word = styled(motion.span)`
+  font-size: 27px;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.2;
+  display: inline-block;
+  font-weight: 400;
+  font-family: 'Syne', sans-serif;
+  opacity: 0;
+  transform: translateY(20px);
+
+  &.bold {
+    font-weight: 700;
+    font-size: 32px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 13px;
+    margin-right: 2px;
+
+    &.bold {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    font-size: 10px;
+
+    &.bold {
+      font-size: 12px;
+    }
   }
 `;
 
 const TextLine = styled(motion.div)`
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 12px;
   align-items: center;
-  font-size: 64px;
-  font-weight: 700;
-  line-height: 0.9;
+  justify-content: center;
+  line-height: 1.2;
   color: #FFFFFF;
   font-family: 'Syne', sans-serif;
 
   &:first-of-type {
-    justify-content: center;
-    width: 100%;
+    margin-bottom: 0;
+    
+    ${Word} {
+      font-size: 27px;
+      font-weight: 400;
+    }
   }
 
   @media (max-width: 768px) {
@@ -193,30 +247,6 @@ const TextLine = styled(motion.div)`
     justify-content: center;
     text-align: center;
     width: 100%;
-  }
-`;
-
-const Word = styled(motion.span)`
-  font-size: 27px;
-  color: rgba(255, 255, 255, 0.9);
-  line-height: 1;
-  display: inline-block;
-  font-weight: 400;
-  font-family: 'Syne', sans-serif;
-  opacity: 0;
-  transform: translateY(20px);
-
-  &.bold {
-    font-weight: 700;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 13px;
-    margin-right: 2px;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 10px;
   }
 `;
 
@@ -404,10 +434,7 @@ const Hero: React.FC = () => {
   };
 
   const lineOne: WordType[] = [
-    { text: "Design", delay: 0 },
-    { text: "makes", delay: 0.05 },
-    { text: "a", delay: 0.1 },
-    { text: "statement.", delay: 0.15 }
+    { text: "Design makes a statement.", delay: 0 }
   ];
 
   const lineTwo: WordType[] = [
