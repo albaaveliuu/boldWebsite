@@ -158,10 +158,10 @@ const Footer: React.FC = () => {
           <LinkGroup>
         
             <ExternalLink href="https://linkedin.com/company/boldkreativ" target="_blank" rel="noopener noreferrer">
-              Linked In
+              LinkedIn
             </ExternalLink>
-            <ExternalLink href="https://facebook.com/boldkreativ" target="_blank" rel="noopener noreferrer">
-              Facebook
+            <ExternalLink href="https://www.instagram.com/bold.kreativ/#" target="_blank" rel="noopener noreferrer">
+             Instagram
             </ExternalLink>
           </LinkGroup>
         </RightColumn>

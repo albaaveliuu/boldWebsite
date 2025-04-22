@@ -206,8 +206,15 @@ const Team: React.FC = () => {
       image: require('../../images/shuki.png'),
       description: 'With extensive experience in business events, Shuki connects senior executives and C-level leaders to network, collaborate, and solve challenges. From summits to virtual roundtables, he designs tailored experiences that exceed expectations and align with client goals.',
       signature: require('../../images/shukisignature.png'),
-      linkedin: 'https://www.linkedin.com/in/shuki-dema/',
-  
+      linkedin: 'https://www.linkedin.com/in/shuki-dema/'
+    },
+    {
+      name: 'Blinera Orana',
+      role: 'Partnership & Growth Manager',
+      description: 'Blinera is the link between Bold Kreativ and the people who need us. With her influencer presence and deep network, she brings in the right clients and helps us grow loud and smart. She\'s all about building real connections, unlocking opportunities, and keeping the vibe bold.',
+      image: require('../../images/blinera.png'),
+      signature: require('../../images/blinerasignature.png'),
+      linkedin: 'https://www.linkedin.com/in/blinera-orana/'
     }
   ];
 
