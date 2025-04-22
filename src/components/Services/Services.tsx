@@ -78,7 +78,7 @@ const ServicesGrid = styled.div`
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 40px;
-  margin-left: 40px;
+  margin-left: 20px;
 
   @media (max-width: 768px) {
     margin-left: 0;

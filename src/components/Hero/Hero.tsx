@@ -405,31 +405,31 @@ const Hero: React.FC = () => {
 
   const lineOne: WordType[] = [
     { text: "Design", delay: 0 },
-    { text: "makes", delay: 0.1 },
-    { text: "a", delay: 0.2 },
-    { text: "statement.", delay: 0.3 }
+    { text: "makes", delay: 0.05 },
+    { text: "a", delay: 0.1 },
+    { text: "statement.", delay: 0.15 }
   ];
 
   const lineTwo: WordType[] = [
-    { text: "We", delay: 0.5 },
-    { text: "turn", delay: 0.6 },
-    { text: "concepts", delay: 0.7 },
-    { text: "into", delay: 0.8 },
-    { text: "visuals", delay: 0.9 },
-    { text: "that", delay: 1.0 },
-    { text: "demand", delay: 1.1 },
-    { text: "attention,", delay: 1.2 }
+    { text: "We", delay: 0.2 },
+    { text: "turn", delay: 0.25 },
+    { text: "concepts", delay: 0.3 },
+    { text: "into", delay: 0.35 },
+    { text: "visuals", delay: 0.4 },
+    { text: "that", delay: 0.45 },
+    { text: "demand", delay: 0.5 },
+    { text: "attention,", delay: 0.55 }
   ];
 
   const lineThree: WordType[] = [
-    { text: "spark", delay: 1.3 },
-    { text: "action,", delay: 1.4 },
-    { text: "and", delay: 1.5 },
-    { text: "make", delay: 1.6 },
-    { text: "you", delay: 1.7 },
-    { text: "IMPOSSIBLE", delay: 1.8, highlight: true },
-    { text: "TO", delay: 1.9, highlight: true },
-    { text: "IGNORE.", delay: 2.0, highlight: true }
+    { text: "spark", delay: 0.6 },
+    { text: "action,", delay: 0.65 },
+    { text: "and", delay: 0.7 },
+    { text: "make", delay: 0.75 },
+    { text: "you", delay: 0.8 },
+    { text: "IMPOSSIBLE", delay: 0.85, highlight: true },
+    { text: "TO", delay: 0.9, highlight: true },
+    { text: "IGNORE.", delay: 0.95, highlight: true }
   ];
 
   const wordVariants = {
@@ -441,7 +441,7 @@ const Hero: React.FC = () => {
       y: 0,
       opacity: 1,
       transition: {
-        duration: 0.5,
+        duration: 0.3,
         ease: [0.43, 0.13, 0.23, 0.96]
       }
     }
