@@ -22,8 +22,11 @@ const Container = styled.div`
   margin-left: 100px;
 
   @media (max-width: 768px) {
-    margin-left: 40px;
-    padding: 0 20px;
+    margin-left: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 `;
 
@@ -61,7 +64,10 @@ const Title = styled.h2`
   
   @media (max-width: 768px) {
     font-size: 48px;
-    margin-left: 20px;
+    margin-left: 0;
+    text-align: center;
+    width: 100%;
+    padding: 0 20px;
   }
 `;
 
@@ -78,6 +84,7 @@ const ServicesGrid = styled.div`
     margin-left: 0;
     padding: 0 20px;
     gap: 40px;
+    width: 100%;
   }
 `;
 
@@ -92,8 +99,11 @@ const ServiceItem = styled.div`
   overflow: hidden;
 
   @media (max-width: 768px) {
-    height: 600px;
+    height: auto;
+    min-height: 500px;
     grid-template-columns: 1fr;
+    gap: 20px;
+    text-align: center;
   }
 `;
 
@@ -103,23 +113,9 @@ const ServiceImageContainer = styled.div`
   position: relative;
   overflow: hidden;
 
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(90deg, rgba(30, 30, 30, 0) 0%, rgba(30, 30, 30, 0.8) 100%);
-    pointer-events: none;
-  }
-
   @media (max-width: 768px) {
     width: 100%;
-    height: 300px;
-    &::after {
-      background: linear-gradient(180deg, rgba(30, 30, 30, 0) 0%, rgba(30, 30, 30, 0.8) 100%);
-    }
+    height: 250px;
   }
 `;
 
@@ -147,7 +143,9 @@ const ServiceContent = styled.div`
     padding: 20px;
     justify-content: flex-start;
     padding-bottom: 20px;
-    padding-top: 40px;
+    padding-top: 20px;
+    height: auto;
+    align-items: center;
   }
 `;
 
@@ -165,8 +163,11 @@ const ServiceTitle = styled.h3`
   margin-top: auto;
 
   @media (max-width: 768px) {
-    font-size: 58px;
+    font-size: 36px;
     margin-bottom: 15px;
+    line-height: 1;
+    margin-top: 0;
+    text-align: center;
   }
 `;
 
@@ -184,7 +185,10 @@ const ServiceDescription = styled.p`
   @media (max-width: 768px) {
     padding-left: 0;
     padding-right: 0;
-    font-size: 18px;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    text-align: center;
   }
 `;
 
