@@ -183,13 +183,15 @@ const ServiceDescription = styled.p`
 `;
 
 const DownloadLink = styled.a`
-  color: #007bff;
+  color: #FFFFFF;
   text-decoration: underline;
   cursor: pointer;
   margin-left: 5px;
+  font-size: 16px;
+  padding-bottom: 2px;
   
   &:hover {
-    color: #0056b3;
+    color: rgba(255, 255, 255, 0.8);
   }
 `;
 
@@ -264,9 +266,12 @@ const Services: React.FC = () => {
                 <ServiceDescription>
                   {service.description}
                   {service.pdfLink && (
-                    <DownloadLink href={service.pdfLink} download="Event Hosting Bold.pdf">
-                      Here
-                    </DownloadLink>
+                    <>
+                      <br />
+                      <DownloadLink href={service.pdfLink} download="Event Hosting Bold.pdf">
+                        Download File Here
+                      </DownloadLink>
+                    </>
                   )}
                 </ServiceDescription>
               </ServiceContent>
