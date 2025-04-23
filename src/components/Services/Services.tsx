@@ -85,10 +85,11 @@ const ServiceItem = styled.div`
   width: 100%;
   height: 500px;
   display: grid;
-  grid-template-columns: 500px 1fr;
+  grid-template-columns: 500px minmax(700px, 1fr);
   text-align: left;
   background: #1E1E1E;
   overflow: hidden;
+  max-width: 1400px;
 
   @media (max-width: 768px) {
     height: auto;
@@ -124,10 +125,10 @@ const ServiceContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  margin-left: -100px;
+  margin-left: -140px;
   height: 100%;
   padding-bottom: 20px;
-  padding-top: 80px;
+  padding-top: 40px;
   width: 100%;
 
   @media (max-width: 768px) {
@@ -143,7 +144,7 @@ const ServiceContent = styled.div`
 
 const ServiceTitle = styled.h3`
   color: #FFFFFF;
-  font-size: 90px;
+  font-size: 85px;
   font-weight: 700;
   font-family: 'Syne', sans-serif;
   text-transform: uppercase;
@@ -152,7 +153,7 @@ const ServiceTitle = styled.h3`
   letter-spacing: -1px;
   margin-bottom: 45px;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  margin-top: auto;
+  margin-top: 0;
 
   @media (max-width: 768px) {
     font-size: 36px;
@@ -164,23 +165,31 @@ const ServiceTitle = styled.h3`
 `;
 
 const ServiceDescription = styled.p`
-  color: #FFFFFF;
-  font-size: 20px;
-  line-height: 1.4;
-  opacity: 0.9;
-  font-family: 'Hando', sans-serif;
-  max-width: 800px;
-  padding-left: 100px;
-  padding-right: 60px;
-  margin-bottom: 0;
-
+  font-size: 18px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 16px;
+  max-width: 700px;
+  padding-left: 120px;
+  padding-right: 40px;
+  
   @media (max-width: 768px) {
+    font-size: 16px;
+    max-width: 100%;
     padding-left: 0;
     padding-right: 0;
-    font-size: 16px;
-    line-height: 1.5;
-    margin-bottom: 20px;
     text-align: center;
+  }
+`;
+
+const DownloadLink = styled.a`
+  color: #007bff;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-left: 5px;
+  
+  &:hover {
+    color: #0056b3;
   }
 `;
 
@@ -188,6 +197,7 @@ interface Service {
   title: string | string[];
   description: string;
   image: string;
+  pdfLink?: string;
 }
 
 const Services: React.FC = () => {
@@ -205,7 +215,8 @@ const Services: React.FC = () => {
     {
       title: ["BUSINESS", "EVENT", "HOSTING"],
       description: "We handle all aspects of event management, from logistics to coordination, ensuring a seamless, professional experience that meets your business objectives and engages attendees.",
-      image: businessEventImage
+      image: businessEventImage,
+      pdfLink: require('../../images/services/Event Hosting Bold.pdf')
     },
     {
       title: ["MOTION", "DESIGN"],
@@ -252,6 +263,11 @@ const Services: React.FC = () => {
                 </ServiceTitle>
                 <ServiceDescription>
                   {service.description}
+                  {service.pdfLink && (
+                    <DownloadLink href={service.pdfLink} download="Event Hosting Bold.pdf">
+                      Here
+                    </DownloadLink>
+                  )}
                 </ServiceDescription>
               </ServiceContent>
             </ServiceItem>
@@ -262,4 +278,4 @@ const Services: React.FC = () => {
   );
 };
 
-export default Services; 
+export default Services;
