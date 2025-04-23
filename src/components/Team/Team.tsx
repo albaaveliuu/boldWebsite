@@ -48,6 +48,8 @@ const TeamGrid = styled.div`
   display: flex;
   flex-direction: column;
   gap: 100px;
+  margin-left: 50px;
+  margin-right: 10px;
   
   @media (max-width: 768px) {
     gap: 60px;

@@ -70,7 +70,7 @@ const ServicesGrid = styled.div`
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 40px;
-  margin-left: 20px;
+  margin-left: 10px;
 
   @media (max-width: 768px) {
     margin-left: 0;
@@ -165,7 +165,7 @@ const ServiceTitle = styled.h3`
 `;
 
 const ServiceDescription = styled.p`
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.8);
   margin-top: 16px;
