@@ -188,7 +188,7 @@ const ServiceDescription = styled.p`
 `;
 
 const DownloadLink = styled.a`
-  color: #FFFFFF;
+  color: #E01212;
   text-decoration: underline;
   cursor: pointer;
   margin-left: 5px;
@@ -196,7 +196,7 @@ const DownloadLink = styled.a`
   padding-bottom: 2px;
   
   &:hover {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(224, 18, 18, 0.8);
   }
 `;
 
