@@ -154,12 +154,16 @@ const ServiceTitle = styled.h3`
   margin-bottom: 45px;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   margin-top: 0;
+  margin-left: -80px;
+  position: relative;
+  z-index: 3;
 
   @media (max-width: 768px) {
     font-size: 36px;
     margin-bottom: 15px;
     line-height: 1;
     margin-top: 0;
+    margin-left: 0;
     text-align: center;
   }
 `;
@@ -172,6 +176,7 @@ const ServiceDescription = styled.p`
   max-width: 700px;
   padding-left: 120px;
   padding-right: 40px;
+  font-family: 'Hando', sans-serif;
   
   @media (max-width: 768px) {
     font-size: 16px;
