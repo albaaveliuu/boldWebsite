@@ -208,7 +208,7 @@ const Team: React.FC = () => {
       description: 'Lumi leads the motion design and video production department, bringing a refined visual approach to every project. With a strong foundation in editing, animation, and visual storytelling, he ensures that all video content aligns with the studio\'s creative vision and high standards of execution.',
       image: require('../../images/lumi.png'),
       signature: require('../../images/lumisignature.png'),
-      linkedin: 'https://www.linkedin.com/in/lumi-pula/'
+      linkedin: 'https://www.linkedin.com/in/lumi-pula-597859210/'
     },
     {
       name: 'Shuki Dema',
@@ -224,7 +224,7 @@ const Team: React.FC = () => {
       description: 'Blinera is a strategic link between Bold Kreativ and brands ready for bold change. With her influencer marketing edge and strong network, she sparks growth through real connections, smart partnerships, and standout brand presence while keeping our bold, creative energy alive.',
       image: require('../../images/blinera.png'),
       signature: require('../../images/blinerasignature.png'),
-      linkedin: 'https://www.linkedin.com/in/blinera-orana/'
+      linkedin: 'https://www.linkedin.com/in/blinera-orana-06b037240/'
     }
   ];
 
