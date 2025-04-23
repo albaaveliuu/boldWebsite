@@ -11,6 +11,11 @@ const ContactSection = styled.section`
   flex-direction: column;
   align-items: center;
   font-family: 'Hando', sans-serif;
+  margin-left: 55px;
+  
+  @media (max-width: 768px) {
+    margin-left: 20px;
+  }
 `;
 
 const SectionTitleContainer = styled.div`
