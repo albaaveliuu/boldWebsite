@@ -205,20 +205,20 @@ const Team: React.FC = () => {
       instagram: 'https://behance.net/bunapula'
     },
     {
-      name: 'Lumi Pula',
-      role: 'Motion & Production Lead',
-      description: 'Lumi leads the motion design and video production department, bringing a refined visual approach to every project. With a strong foundation in editing, animation, and visual storytelling, he ensures that all video content aligns with the studio\'s creative vision and high standards of execution.',
-      image: require('../../images/lumi.png'),
-      signature: require('../../images/lumisignature.png'),
-      linkedin: 'https://www.linkedin.com/in/lumi-pula-597859210/'
-    },
-    {
       name: 'Shuki Dema',
       role: 'Chief Revenue Officer',
       image: require('../../images/shuki.png'),
       description: 'With extensive experience in business events, Shuki connects senior executives and C-level leaders to network, collaborate, and solve challenges. From summits to virtual roundtables, he designs tailored experiences that exceed expectations and align with client goals.',
       signature: require('../../images/shukisignature.png'),
       linkedin: 'https://www.linkedin.com/in/shuki-dema/'
+    },
+    {
+      name: 'Lumi Pula',
+      role: 'Motion & Production Lead',
+      description: 'Lumi leads the motion design and video production department, bringing a refined visual approach to every project. With a strong foundation in editing, animation, and visual storytelling, he ensures that all video content aligns with the studio\'s creative vision and high standards of execution.',
+      image: require('../../images/lumi.png'),
+      signature: require('../../images/lumisignature.png'),
+      linkedin: 'https://www.linkedin.com/in/lumi-pula-597859210/'
     },
     {
       name: 'Blinera Orana',
