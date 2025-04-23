@@ -16,17 +16,12 @@ const ServicesSection = styled.section`
 `;
 
 const Container = styled.div`
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 40px;
-  margin-left: 100px;
-
+  
   @media (max-width: 768px) {
-    margin-left: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 0 20px;
   }
 `;
 
@@ -50,24 +45,21 @@ const Title = styled.h2`
   font-size: 95px;
   font-weight: 700;
   font-family: 'Syne', sans-serif;
-  margin-bottom: 60px;
+  margin-bottom: 100px;
   text-transform: uppercase;
   line-height: 1;
   letter-spacing: -2px;
-  text-align: left;
-  margin-left: 60px;
-
-  @media (max-width: 1024px) {
-    font-size: 72px;
-    margin-left: 40px;
-  }
+  margin-left: 40px;
   
   @media (max-width: 768px) {
-    font-size: 48px;
-    margin-left: 0;
-    text-align: center;
-    width: 100%;
-    padding: 0 20px;
+    font-size: 60px;
+    margin-bottom: 60px;
+    margin-left: 20px;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 40px;
+    margin-bottom: 40px;
   }
 `;
 

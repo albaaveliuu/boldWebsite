@@ -13,7 +13,7 @@ const AboutSection = styled.section`
 `;
 
 const Container = styled.div`
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 40px;
   display: flex;
@@ -30,13 +30,11 @@ const Container = styled.div`
 
 const Content = styled.div`
   flex: 1;
-  max-width: 1200px;
-  margin-left: 100px;
+  max-width: 600px;
+  margin-left: 40px;
   
   @media (max-width: 768px) {
-    width: 100%;
-    max-width: 100%;
-    margin-left: 0;
+    margin-left: 20px;
   }
 `;
 

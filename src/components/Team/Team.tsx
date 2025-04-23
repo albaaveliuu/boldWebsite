@@ -30,10 +30,12 @@ const Title = styled.h2`
   text-transform: uppercase;
   line-height: 1;
   letter-spacing: -2px;
+  margin-left: 40px;
   
   @media (max-width: 768px) {
     font-size: 60px;
     margin-bottom: 60px;
+    margin-left: 20px;
   }
   
   @media (max-width: 480px) {
@@ -201,6 +203,14 @@ const Team: React.FC = () => {
       instagram: 'https://behance.net/bunapula'
     },
     {
+      name: 'Lumi Pula',
+      role: 'Motion & Production Lead',
+      description: 'Lumi leads the motion design and video production department, bringing a refined visual approach to every project. With a strong foundation in editing, animation, and visual storytelling, he ensures that all video content aligns with the studio\'s creative vision and high standards of execution.',
+      image: require('../../images/lumi.png'),
+      signature: require('../../images/lumisignature.png'),
+      linkedin: 'https://www.linkedin.com/in/lumi-pula/'
+    },
+    {
       name: 'Shuki Dema',
       role: 'Chief Revenue Officer',
       image: require('../../images/shuki.png'),
@@ -211,7 +221,7 @@ const Team: React.FC = () => {
     {
       name: 'Blinera Orana',
       role: 'Partnership & Growth Manager',
-      description: 'Blinera is the link between Bold Kreativ and the people who need us. With her influencer presence and deep network, she brings in the right clients and helps us grow loud and smart. She\'s all about building real connections, unlocking opportunities, and keeping the vibe bold.',
+      description: 'Blinera is a strategic link between Bold Kreativ and brands ready for bold change. With her influencer marketing edge and strong network, she sparks growth through real connections, smart partnerships, and standout brand presence while keeping our bold, creative energy alive.',
       image: require('../../images/blinera.png'),
       signature: require('../../images/blinerasignature.png'),
       linkedin: 'https://www.linkedin.com/in/blinera-orana/'
