@@ -155,7 +155,7 @@ const About: React.FC = () => {
         <Content>
           <Title>ABOUT US</Title>
           <Description>
-            <BoldItalicText>Bold Kreativ LLC</BoldItalicText> is a collective with roots in Kosovo and Berlin
+            <BoldItalicText>Bold Kreativ LLC</BoldItalicText> is a collective with roots in Kosova and Berlin
           </Description>
           <Description>
             We gather as a flexible, international team to craft bold design solutions and unforgettable event experiences.
